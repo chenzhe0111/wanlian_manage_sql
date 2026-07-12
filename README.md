@@ -1,15 +1,104 @@
 # wanlian_manage_sql
 
-Management analysis SQL scripts for registration, dispatch, online shipper metrics, and waybill reporting.
+万联易达 **经营管理分析 SQL** 脚本库。口径与字段说明以飞书知识库为准。
 
-## Files
+**来源文档**：[经营管理 SQL 知识库（飞书）](https://wanlianyida.feishu.cn/wiki/JMtSwHtBVi7O97k1YxDcx2j0n8g)
 
-| Path | Description |
-|------|-------------|
-| `sql/metric_register_shipper_week_month.sql` | Register / certify shipper metrics (week & month) |
-| `sql/metric_dispatch_waybill_week_month.sql` | Dispatch waybill metrics (week & month) |
-| `sql/metric_online_shipper_count_week_month.sql` | Online shipper count metrics (week & month) |
-| `waybill/01_monthly_overall.sql` | Monthly waybill overall (举措 × 运单类型), 2026-01-01 ~ 2026-07-30 |
-| `waybill/04_weekly_overall.sql` | Weekly waybill overall (举措 × 运单类型) |
-| `shipper/08_monthly_online_shipper_count.sql` | Monthly online shipper count |
+---
 
+## 目录结构
+
+```
+wanlian_manage_sql/
+├── sql/          # 举措漏斗 & 专项分析（周度 + 月度合一输出）
+└── waybill/      # 运单大盘（整体 / 线上 / 举措 / 举措×运单类型）
+```
+
+---
+
+## 脚本清单
+
+### sql/ — 举措漏斗与专项
+
+| 文件 | 说明 | 主要指标 | 维度 |
+|------|------|----------|------|
+| [01_货主注册认证发货成交_周月.sql](sql/01_货主注册认证发货成交_周月.sql) | 货主全链路漏斗 | 注册企业数、认证企业数、发货货主数、成交货主数、成交运单量、注册账号（投流） | 举措 × 新老货主 × 周/月 |
+| [02_调度专项分析_周月.sql](sql/02_调度专项分析_周月.sql) | **仅调度**举措深度分析 | 见下表 | 运单类型 × 周/月 |
+| [03_线上发货货主数_周月.sql](sql/03_线上发货货主数_周月.sql) | 线上发货货主规模 | 线上发货货主数 | 周/月 |
+
+**02 调度专项 — 按运单类型**
+
+| 类型 | 指标 |
+|------|------|
+| **网货** | 注册企业数、认证企业数、发货货主数、成交运单量、成交货主数（注册/认证/发货为调度整体口径） |
+| **TMS** | 创建运单货主数、成交运单量、成交货主数 |
+| **撮合** | 成交运单量、成交货主数 |
+
+### waybill/ — 运单大盘
+
+| 文件 | 粒度 | 说明 |
+|------|------|------|
+| [01_运单大盘_月度.sql](waybill/01_运单大盘_月度.sql) | 月 | 整体 / 线上线下 / 线上运单类型 / 线上举措 / **举措×运单类型** |
+| [04_运单大盘_周度.sql](waybill/04_运单大盘_周度.sql) | 周 | 同上（周起始日，周三起算） |
+
+---
+
+## 公共口径
+
+### 举措（线上）
+
+| 举措 | 判定逻辑概要 |
+|------|----------------|
+| 货主招募 | 招募活动 `invitee_id` 命中企业 |
+| 投流 | 投放回传 `consign_callback_status=10` 或渠道表匹配 |
+| 电销 | `shipper_source='电销'` 企业名匹配 |
+| 调度 | `shipper_source='调度'` 企业名匹配 |
+| 无线下销售归属 | 未命中上述举措且无线下销售 |
+| 线下 | 有线下销售归属 `sales_lv1_company_id` |
+
+多举措命中时，**成交运单量/货主数按命中数分摊**（权重 = 1 / hit_cnt）。
+
+### 运单类型
+
+| 类型 | 条件 |
+|------|------|
+| 网货 | `invoice_type = 20` |
+| TMS | `invoice_type = 10 AND tms_flag = 10` |
+| 撮合 | 其余 |
+
+### 成交运单过滤（通用）
+
+- `waybill_status NOT IN (540, 100)`
+- 排除测试企业 ID（见各脚本）
+- `tms_flag = 20` 或 `tms_flag = 10 AND driver_operate_accept_time IS NOT NULL`
+
+### 微信事业群剔除
+
+线上口径：有线下销售归属 **或** 企业名不在 `dim.dim_vlsp_weixin_biz_company_minf.dept_name` 中。
+
+### 时间参数
+
+| 脚本 | 修改位置 |
+|------|----------|
+| sql/01、02 | `tim` CTE：`range_start`、`range_end`、`cutoff_dt` |
+| sql/03 | `WHERE ship_dt >= ...` |
+| waybill/01 | `BETWEEN DATE '2026-01-01' AND DATE '2026-07-30'` |
+| waybill/04 | `SUBSTR(accept_dt,1,10) >= ... AND <= CURRENT_DATE()` |
+
+### 周度起算
+
+周三为一周起始：`DATE_SUB(dt, INTERVAL ((WEEKDAY(dt) - 2 + 7) % 7) DAY)`
+
+---
+
+## 输出示例（sql/01）
+
+| 主键 | 月周标识 | 周期起始日 | 举措 | 新老货主 | 指标类型 | 指标值 |
+|------|----------|------------|------|----------|----------|--------|
+| 投流-新货主-注册企业数 | 周度 | 2026-07-01 | 投流 | 新货主 | 注册企业数 | 10 |
+
+---
+
+## 更新记录
+
+- 2026-07：初版入库，补充中文备注与目录说明
