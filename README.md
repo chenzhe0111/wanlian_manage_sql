@@ -40,6 +40,7 @@ wanlian_manage_sql/
 |------|------|------|
 | [01_运单大盘_月度.sql](waybill/01_运单大盘_月度.sql) | 月 | 整体 / 线上线下 / 线上运单类型 / 线上举措 / **举措×运单类型** |
 | [04_运单大盘_周度.sql](waybill/04_运单大盘_周度.sql) | 周 | 同上（周起始日，周三起算） |
+| [07_运单环比_本月vs上月.sql](waybill/07_运单环比_本月vs上月.sql) | 环比 | 本月 MTD vs 上月同期，整体/线上线下/线上举措 |
 
 ---
 
@@ -84,6 +85,7 @@ wanlian_manage_sql/
 | sql/03 | `WHERE ship_dt >= ...` |
 | waybill/01 | `BETWEEN DATE '2026-01-01' AND DATE '2026-07-30'` |
 | waybill/04 | `SUBSTR(accept_dt,1,10) >= ... AND <= CURRENT_DATE()` |
+| waybill/07 | 自动：`tim` CTE 按 `CURRENT_DATE()` 计算本月/上月同期 |
 
 ### 周度起算
 
