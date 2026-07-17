@@ -1,24 +1,8 @@
-/*
- * ============================================================================
- * 【脚本编号】sql/01
- * 【脚本名称】货主举措漏斗 — 注册 / 认证 / 发货 / 成交（周度 + 月度）
- * 【业务用途】
- *   - 按「举措 × 新老货主」统计：注册企业数、认证企业数、发货货主数、
- *     成交货主数、成交运单量
- *   - 「注册账号」为投流独立口径，UNION ALL 合并，不拆新老货主
- * 【输出字段】主键 | 月周标识 | 周期起始日 | 举措 | 新老货主 | 指标类型 | 指标值
- * 【举措】货主招募 | 投流 | 电销 | 调度 | 线下 | 无线下销售归属
- * 【新老货主】cutoff_dt 前首次发货 = 老货主，否则 = 新货主
- * 【时间参数】修改 tim：range_start / range_end（左闭右开）/ cutoff_dt
- * 【注册账号口径】login_callback_status=10 + party3/push_client 筛选，日期右闭
- * 【来源文档】https://wanlianyida.feishu.cn/wiki/JMtSwHtBVi7O97k1YxDcx2j0n8g
- * ============================================================================
- */
 /* 注册/认证 + 新老货主 + 发货/成交 | 周度 + 月度；注册账号独立计算后 UNION ALL 合并 */
 WITH tim AS (
     SELECT
         DATE '2026-07-01' AS range_start,
-        DATE '2026-07-12' AS range_end,
+        DATE '2026-07-14' AS range_end,   /* 统计截止日，右闭：event_dt <= range_end */
         DATE '2026-07-01' AS cutoff_dt  /* 新老货主分界 */
 ),
 comp AS (
@@ -200,7 +184,7 @@ register_fact AS (
     LEFT JOIN old_new ow ON ow.company_id = c.company_id
     CROSS JOIN tim t
     WHERE c.register_dt >= t.range_start
-      AND c.register_dt <  t.range_end
+      AND c.register_dt <= t.range_end
 ),
 certify_fact AS (
     SELECT
@@ -214,7 +198,7 @@ certify_fact AS (
     CROSS JOIN tim t
     WHERE c.audit_dt IS NOT NULL
       AND c.audit_dt >= t.range_start
-      AND c.audit_dt <  t.range_end
+      AND c.audit_dt <= t.range_end
 ),
 ship_fact AS (
     SELECT
@@ -227,7 +211,7 @@ ship_fact AS (
     INNER JOIN old_new ow ON ow.company_id = b.company_id
     CROSS JOIN tim t
     WHERE b.create_dt >= t.range_start
-      AND b.create_dt <  t.range_end
+      AND b.create_dt <= t.range_end
 ),
 waybill_hit AS (
     SELECT
@@ -263,7 +247,7 @@ waybill_hit AS (
         ON old_new.company_id = waybill.shipper_company_id
     CROSS JOIN tim t
     WHERE DATE(waybill.accept_dt) >= t.range_start
-      AND DATE(waybill.accept_dt) <  t.range_end
+      AND DATE(waybill.accept_dt) <= t.range_end
       AND waybill.waybill_status NOT IN (540, 100)
       AND NVL(waybill.shipper_company_id, '') NOT IN (
           '065d39e9afac48d8a0bdc5896c18d96c',
@@ -361,7 +345,7 @@ metric_union AS (
 
 /* ========== 注册账号：独立口径（不融入举措/新老货主逻辑） ========== */
 /* 与看板一致：users + ad 完整 CTE，LEFT JOIN ad ON user_base_id = ad.user_id，投放=ad.user_id IS NOT NULL */
-/* zc_users = COUNT(DISTINCT CASE WHEN is_shipper=1 THEN user_base_id END)；日期右闭 register_dt <= range_end */
+/* zc_users = COUNT(DISTINCT CASE WHEN is_shipper=1 THEN user_base_id END)；日期区间与主漏斗一致：>= range_start AND <= range_end */
 reg_users AS (
     SELECT
         register_dt,
@@ -414,7 +398,7 @@ register_account_base AS (
     WHERE ad.user_id IS NOT NULL                         /* user_tags = '投放' */
       AND u.is_shipper = 1
       AND CAST(u.register_dt AS DATE) >= t.range_start
-      AND CAST(u.register_dt AS DATE) <= t.range_end     /* 右闭，与看板 register_dt<='2026-07-12' 一致 */
+      AND CAST(u.register_dt AS DATE) <= t.range_end
 ),
 register_account_metric AS (
     SELECT

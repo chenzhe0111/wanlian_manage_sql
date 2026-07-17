@@ -1,16 +1,4 @@
-/*
- * ============================================================================
- * 【脚本编号】waybill/04
- * 【脚本名称】运单大盘 — 周度
- * 【业务用途】同月度大盘，粒度为周（周三起算）
- * 【输出字段】周起始日 | 统计层级 | 维度 | 层级维度 | 运单量（万单）
- * 【新增维度】线上举措 × 运单类型（如 调度-网货、调度-TMS、调度-撮合）
- * 【时间参数】accept_dt >= DATE '2026-06-01' AND <= CURRENT_DATE()（可按需修改）
- * 【来源文档】https://wanlianyida.feishu.cn/wiki/JMtSwHtBVi7O97k1YxDcx2j0n8g
- * ============================================================================
- */
--- 来源: 飞书知识库
-
+/* 月度汇总 | 来源：管理专项代码.docx */
 WITH company_zm AS (
     SELECT DISTINCT invitee_id
     FROM dwd_vlsp_mt_user_recruitment_business_process_minf zm
@@ -67,10 +55,7 @@ company_wxx AS (
 waybill_hit AS (
     SELECT
         waybill.waybill_id,
-        DATE_SUB(
-            DATE(waybill.accept_dt),
-            INTERVAL ((WEEKDAY(waybill.accept_dt) - 2 + 7) % 7) DAY
-        ) AS week_start,
+        DATE_FORMAT(waybill.accept_dt, '%Y-%m-01') AS mon,
         CASE
             WHEN waybill.invoice_type = 20 THEN '网货'
             WHEN waybill.invoice_type = 10 AND waybill.tms_flag = 10 THEN 'TMS'
@@ -93,9 +78,8 @@ waybill_hit AS (
     LEFT JOIN company_dx  ON company_dx.company_name_dx = waybill.process_shipper_company_name
     LEFT JOIN company_dd  ON company_dd.company_name_dd = waybill.process_shipper_company_name
     LEFT JOIN company_wxx ON company_wxx.customer_company_id = waybill.process_shipper_company_id
-    WHERE SUBSTR(waybill.accept_dt, 1, 10) >= DATE '2026-06-01'
-      AND SUBSTR(waybill.accept_dt, 1, 10) <= CURRENT_DATE()
-      AND (
+    WHERE SUBSTR(waybill.accept_dt, 1, 10) BETWEEN DATE '2026-01-01' AND DATE '2026-07-14'
+    AND (
           company_wxx.sales_lv1_company_id IS NOT NULL
           OR NVL(waybill.shipper_company_name, '') NOT IN (
               SELECT DISTINCT dept_name
@@ -111,11 +95,8 @@ waybill_hit AS (
 ),
 waybill_split AS (
     SELECT
-        waybill_id,
-        week_start,
-        waybill_category,
-        hit_offline,
-        hit_zm, hit_tl, hit_dx, hit_dd, hit_wxx,
+        waybill_id, mon, waybill_category,
+        hit_offline, hit_zm, hit_tl, hit_dx, hit_dd, hit_wxx,
         CASE WHEN hit_zm  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_zm,
         CASE WHEN hit_tl  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_tl,
         CASE WHEN hit_dx  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_dx,
@@ -125,22 +106,18 @@ waybill_split AS (
 ),
 agg AS (
     SELECT
-        week_start,
-        waybill_category,
+        mon, waybill_category,
         COUNT(DISTINCT waybill_id) AS total_cnt,
         COUNT(DISTINCT CASE WHEN hit_offline = 1 THEN waybill_id END) AS offline_cnt,
         COUNT(DISTINCT CASE WHEN hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx > 0 THEN waybill_id END) AS online_cnt,
-        SUM(w_zm)  AS zm_cnt,
-        SUM(w_tl)  AS tl_cnt,
-        SUM(w_dx)  AS dx_cnt,
-        SUM(w_dd)  AS dd_cnt,
-        SUM(w_wxx) AS wxx_cnt
+        SUM(w_zm) AS zm_cnt, SUM(w_tl) AS tl_cnt, SUM(w_dx) AS dx_cnt,
+        SUM(w_dd) AS dd_cnt, SUM(w_wxx) AS wxx_cnt
     FROM waybill_split
-    GROUP BY week_start, waybill_category
+    GROUP BY mon, waybill_category
 ),
 agg_all AS (
     SELECT
-        week_start,
+        mon,
         SUM(total_cnt)   AS total_cnt,
         SUM(offline_cnt) AS offline_cnt,
         SUM(online_cnt)  AS online_cnt,
@@ -150,55 +127,87 @@ agg_all AS (
         SUM(dd_cnt)      AS dd_cnt,
         SUM(wxx_cnt)     AS wxx_cnt
     FROM agg
-    GROUP BY week_start
+    GROUP BY mon
 ),
 result AS (
-    /* 整体 */
-    SELECT week_start, '整体' AS stat_level, '整体' AS stat_dim, total_cnt AS waybill_cnt FROM agg_all
+    /* ===== 整体：合计 + 运单类型 ===== */
+    SELECT mon, '整体' AS stat_level, '整体' AS stat_dim, total_cnt AS waybill_cnt FROM agg_all
     UNION ALL
-    /* 整体-线上 / 整体-线下 */
-    SELECT week_start, '整体', '线上', online_cnt FROM agg_all
+    SELECT mon, '整体', waybill_category, total_cnt FROM agg
+    /* ===== 线上线下 ===== */
     UNION ALL
-    SELECT week_start, '整体', '线下', offline_cnt FROM agg_all
+    SELECT mon, '线上线下', '线下', offline_cnt FROM agg_all
     UNION ALL
-    /* 线上-运单类型 */
-    SELECT week_start, '线上', waybill_category, online_cnt FROM agg
+    SELECT mon, '线上线下', '线上', online_cnt FROM agg_all
+    /* ===== ★ 新增：线上 + 运单类型 ===== */
     UNION ALL
-    /* ★ 新增：线上-举措 */
-    SELECT week_start, '线上举措', '货主招募', zm_cnt FROM agg_all
+    SELECT mon, '线上', '线上', online_cnt FROM agg_all
     UNION ALL
-    SELECT week_start, '线上举措', '投流', tl_cnt FROM agg_all
+    SELECT mon, '线上', waybill_category, online_cnt FROM agg
+    /* ===== 线上举措：合计 ===== */
     UNION ALL
-    SELECT week_start, '线上举措', '电销', dx_cnt FROM agg_all
+    SELECT mon, '线上举措', '货主招募', zm_cnt FROM agg_all
     UNION ALL
-    SELECT week_start, '线上举措', '调度', dd_cnt FROM agg_all
+    SELECT mon, '线上举措', '投流', tl_cnt FROM agg_all
     UNION ALL
-    SELECT week_start, '线上举措', '无线下销售归属', wxx_cnt FROM agg_all
-    /* 线上举措 × 运单类型 */
+    SELECT mon, '线上举措', '电销', dx_cnt FROM agg_all
     UNION ALL
-    SELECT week_start, '线上举措', CONCAT('货主招募-', waybill_category), zm_cnt FROM agg
+    SELECT mon, '线上举措', '调度', dd_cnt FROM agg_all
     UNION ALL
-    SELECT week_start, '线上举措', CONCAT('投流-', waybill_category), tl_cnt FROM agg
+    SELECT mon, '线上举措', '无线下销售归属', wxx_cnt FROM agg_all
+    /* ===== 线上举措 × 运单类型 ===== */
     UNION ALL
-    SELECT week_start, '线上举措', CONCAT('电销-', waybill_category), dx_cnt FROM agg
+    SELECT mon, '线上举措', CONCAT('货主招募-', waybill_category), zm_cnt FROM agg
     UNION ALL
-    SELECT week_start, '线上举措', CONCAT('调度-', waybill_category), dd_cnt FROM agg
+    SELECT mon, '线上举措', CONCAT('投流-', waybill_category), tl_cnt FROM agg
     UNION ALL
-    SELECT week_start, '线上举措', CONCAT('无线下销售归属-', waybill_category), wxx_cnt FROM agg
+    SELECT mon, '线上举措', CONCAT('电销-', waybill_category), dx_cnt FROM agg
+    UNION ALL
+    SELECT mon, '线上举措', CONCAT('调度-', waybill_category), dd_cnt FROM agg
+    UNION ALL
+    SELECT mon, '线上举措', CONCAT('无线下销售归属-', waybill_category), wxx_cnt FROM agg
+    /* ===== 举措：合计 ===== */
+    UNION ALL
+    SELECT mon, '举措', '货主招募', zm_cnt FROM agg_all
+    UNION ALL
+    SELECT mon, '举措', '投流', tl_cnt FROM agg_all
+    UNION ALL
+    SELECT mon, '举措', '电销', dx_cnt FROM agg_all
+    UNION ALL
+    SELECT mon, '举措', '调度', dd_cnt FROM agg_all
+    UNION ALL
+    SELECT mon, '举措', '无线下销售归属', wxx_cnt FROM agg_all
+    UNION ALL
+    SELECT mon, '举措', '线下', offline_cnt FROM agg_all
+    /* ===== 举措 × 运单类型 ===== */
+    UNION ALL
+    SELECT mon, '举措', CONCAT('货主招募-', waybill_category), zm_cnt FROM agg
+    UNION ALL
+    SELECT mon, '举措', CONCAT('投流-', waybill_category), tl_cnt FROM agg
+    UNION ALL
+    SELECT mon, '举措', CONCAT('电销-', waybill_category), dx_cnt FROM agg
+    UNION ALL
+    SELECT mon, '举措', CONCAT('调度-', waybill_category), dd_cnt FROM agg
+    UNION ALL
+    SELECT mon, '举措', CONCAT('无线下销售归属-', waybill_category), wxx_cnt FROM agg
+    UNION ALL
+    SELECT mon, '举措', CONCAT('线下-', waybill_category), offline_cnt FROM agg
 )
 SELECT
-    week_start AS 周起始日,
+    mon AS 月份,
     stat_level AS 统计层级,
-    stat_dim   AS 维度,
+    stat_dim AS 维度,
     CONCAT(stat_level, '-', stat_dim) AS 层级维度,
-    waybill_cnt / 10000 AS 运单量
+    waybill_cnt/10000 AS 运单量
 FROM result
 ORDER BY
-    week_start,
+    mon,
     CASE stat_level
-        WHEN '整体'   THEN 1
-        WHEN '线上'   THEN 2
-        WHEN '线上举措' THEN 3
+        WHEN '整体' THEN 1
+        WHEN '线上线下' THEN 2
+        WHEN '线上' THEN 3
+        WHEN '线上举措' THEN 4
+        WHEN '举措' THEN 5
         ELSE 99
     END,
     CASE
@@ -218,6 +227,7 @@ ORDER BY
         WHEN stat_dim LIKE '电销-%' THEN 32
         WHEN stat_dim LIKE '调度-%' THEN 33
         WHEN stat_dim LIKE '无线下销售归属-%' THEN 34
+        WHEN stat_dim LIKE '线下-%' THEN 35
         ELSE 99
     END,
     stat_dim;

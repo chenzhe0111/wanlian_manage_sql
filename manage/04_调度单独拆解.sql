@@ -1,24 +1,10 @@
-/*
- * ============================================================================
- * 【脚本编号】sql/02
- * 【脚本名称】调度专项分析（周度 + 月度）— 仅输出举措=调度
- * 【业务用途】调度举措深度拆解，按运单类型（网货 / TMS / 撮合）看漏斗与成交
- * 【输出字段】主键 | 月周标识 | 周期起始日 | 举措 | 类型 | 指标类型 | 指标值
- * 【类型维度】
- *   - 网货：注册/认证/发货（调度名单整体口径）+ 网货成交运单/货主
- *   - TMS：创建运单货主数（TMS运单+JHD计划单）+ 成交运单/货主
- *   - 撮合：成交运单量、成交货主数
- * 【调度名单】ads_vlsp_tms_shipper_and_dispatch_info_df shipper_source='调度'
- * 【运单类型】网货 invoice_type=20 | TMS invoice_type=10&tms_flag=10 | 其余撮合
- * 【时间参数】修改 tim：range_start / range_end
- * 【来源文档】https://wanlianyida.feishu.cn/wiki/JMtSwHtBVi7O97k1YxDcx2j0n8g
- * ============================================================================
+/* 调度专项分析 | 网货：注册/认证/发货+成交；TMS：创建+成交；撮合：成交+三方调度员注册/认证/产生调度 | 周度+月度
+ * 三方调度：user_base_id = waybill.dispatcher_user_id；注册/认证=用户表累积至 range_end；产生调度=周期内去重
  */
-/* 调度专项分析 | 网货：调度整体注册/认证/发货+网货成交；TMS：创建运单货主数+成交；撮合：成交 | 周度+月度 */
 WITH tim AS (
     SELECT
         DATE '2026-07-01' AS range_start,
-        DATE '2026-07-12' AS range_end,
+        DATE '2026-07-14' AS range_end,   /* 统计截止日，右闭：event_dt <= range_end */
         DATE '2026-07-01' AS cutoff_dt  /* 新老货主分界，发货口径与主 SQL 一致 */
 ),
 comp AS (
@@ -200,7 +186,7 @@ waybill_hit AS (
         ON wxx.company_id = waybill.process_shipper_company_id
     CROSS JOIN tim t
     WHERE DATE(waybill.accept_dt) >= t.range_start
-      AND DATE(waybill.accept_dt) <  t.range_end
+      AND DATE(waybill.accept_dt) <= t.range_end
       AND waybill.waybill_status NOT IN (540, 100)
       AND NVL(waybill.shipper_company_id, '') NOT IN (
           '065d39e9afac48d8a0bdc5896c18d96c',
@@ -232,7 +218,7 @@ dispatch_register_base AS (
     INNER JOIN company_dispatch dd ON dd.company_id = c.company_id
     CROSS JOIN tim t
     WHERE c.register_dt >= t.range_start
-      AND c.register_dt <  t.range_end
+      AND c.register_dt <= t.range_end
 ),
 dispatch_certify_base AS (
     SELECT
@@ -243,7 +229,7 @@ dispatch_certify_base AS (
     CROSS JOIN tim t
     WHERE c.audit_dt IS NOT NULL
       AND c.audit_dt >= t.range_start
-      AND c.audit_dt <  t.range_end
+      AND c.audit_dt <= t.range_end
 ),
 dispatch_ship_base AS (
     SELECT
@@ -254,7 +240,7 @@ dispatch_ship_base AS (
     INNER JOIN old_new ow ON ow.company_id = b.company_id
     CROSS JOIN tim t
     WHERE b.create_dt >= t.range_start
-      AND b.create_dt <  t.range_end
+      AND b.create_dt <= t.range_end
 ),
 /* TMS 创建运单货主数：TMS运单创建(waybill_create) + 计划单JHD创建(jhd_create)，调度名单按企业名匹配 */
 tms_waybill_create AS (
@@ -272,7 +258,7 @@ tms_waybill_create AS (
       )
       AND waybill.tms_flag = 10
       AND DATE(waybill.waybill_create_time) >= t.range_start
-      AND DATE(waybill.waybill_create_time) <  t.range_end
+      AND DATE(waybill.waybill_create_time) <= t.range_end
 ),
 tms_jhd_create AS (
     SELECT DISTINCT
@@ -291,12 +277,70 @@ tms_jhd_create AS (
       AND goods.goods_id NOT IN ('CHQY20251204000000016246', 'CHQY20251211000000012094')
       AND goods.goods_id LIKE 'JHD%'
       AND DATE(goods.create_dt) >= t.range_start
-      AND DATE(goods.create_dt) <  t.range_end
+      AND DATE(goods.create_dt) <= t.range_end
 ),
 tms_create_base AS (
     SELECT event_dt, company_name FROM tms_waybill_create
     UNION
     SELECT event_dt, company_name FROM tms_jhd_create
+),
+/* 三方调度员账号（累积到截止日） */
+dispatcher_user AS (
+    SELECT
+        user_base_id,
+        DATE(SUBSTR(register_dt, 1, 10)) AS register_dt
+    FROM dwd.dwd_vlsp_mt_em_user_manage_info_minf
+    WHERE is_dispatcher = 1
+      AND deleted = 21
+      AND user_status = 11
+      AND dispatch_type = 30
+      AND COALESCE(user_base_id, '') <> ''
+    GROUP BY user_base_id, DATE(SUBSTR(register_dt, 1, 10))
+),
+/* 注册=认证：累积至 range_end 的全量人数 */
+dispatcher_cum AS (
+    SELECT COUNT(DISTINCT d.user_base_id) AS total_cnt
+    FROM dispatcher_user d
+    CROSS JOIN tim t
+    WHERE d.register_dt IS NULL
+       OR d.register_dt <= t.range_end
+),
+/* 产生调度：运单上 dispatcher 命中三方调度员 */
+third_dispatch_base AS (
+    SELECT
+        DATE(w.accept_dt) AS event_dt,
+        w.dispatcher_user_id AS user_base_id
+    FROM dwd.dwd_vlsp_mt_match_waybill_match_business_process_minf w
+    INNER JOIN dispatcher_user d
+        ON d.user_base_id = w.dispatcher_user_id
+    CROSS JOIN tim t
+    WHERE DATE(w.accept_dt) >= t.range_start
+      AND DATE(w.accept_dt) <= t.range_end
+      AND COALESCE(w.dispatcher_user_id, '') <> ''
+      AND w.waybill_status NOT IN (540, 100)
+    GROUP BY DATE(w.accept_dt), w.dispatcher_user_id
+),
+/* 注册/认证挂载的周期（含截止日所在月/周，保证有数据时也能出） */
+third_period AS (
+    SELECT
+        '月' AS stat_granularity,
+        DATE_FORMAT(t.range_end, '%Y-%m-01') AS period_start
+    FROM tim t
+    UNION
+    SELECT
+        '周',
+        DATE_SUB(t.range_end, INTERVAL ((WEEKDAY(t.range_end) - 2 + 7) % 7) DAY)
+    FROM tim t
+    UNION
+    SELECT
+        '月',
+        DATE_FORMAT(event_dt, '%Y-%m-01')
+    FROM third_dispatch_base
+    UNION
+    SELECT
+        '周',
+        DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
+    FROM third_dispatch_base
 ),
 metric_union AS (
     SELECT
@@ -418,6 +462,47 @@ metric_union AS (
         COUNT(DISTINCT company_id)
     FROM dispatch_ship_base
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
+    /* ===== 撮合：三方调度注册/认证（累积至截止日）+ 产生调度用户数（周期内） ===== */
+    UNION ALL
+    SELECT
+        p.stat_granularity,
+        p.period_start,
+        '调度',
+        '撮合',
+        '三方调度注册用户量',
+        c.total_cnt
+    FROM third_period p
+    CROSS JOIN dispatcher_cum c
+    UNION ALL
+    SELECT
+        p.stat_granularity,
+        p.period_start,
+        '调度',
+        '撮合',
+        '三方调度认证注册量',
+        c.total_cnt
+    FROM third_period p
+    CROSS JOIN dispatcher_cum c
+    UNION ALL
+    SELECT
+        '月',
+        DATE_FORMAT(event_dt, '%Y-%m-01'),
+        '调度',
+        '撮合',
+        '产生调度的用户量',
+        COUNT(DISTINCT user_base_id)
+    FROM third_dispatch_base
+    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01')
+    UNION ALL
+    SELECT
+        '周',
+        DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
+        '调度',
+        '撮合',
+        '产生调度的用户量',
+        COUNT(DISTINCT user_base_id)
+    FROM third_dispatch_base
+    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
 )
 SELECT
     CONCAT(initiative, '-', waybill_type, '-', metric_type) AS 主键,
@@ -435,5 +520,7 @@ ORDER BY
     CASE metric_type
         WHEN '注册企业数' THEN 1 WHEN '认证企业数' THEN 2 WHEN '发货货主数' THEN 3
         WHEN '创建运单货主数' THEN 4 WHEN '成交运单量' THEN 5 WHEN '成交货主数' THEN 6
+        WHEN '三方调度注册用户量' THEN 7 WHEN '三方调度认证注册量' THEN 8
+        WHEN '产生调度的用户量' THEN 9
         ELSE 99
     END;
