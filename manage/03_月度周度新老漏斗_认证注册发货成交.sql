@@ -4,7 +4,7 @@
 WITH tim AS (
     SELECT
         DATE '2026-07-01' AS range_start,
-        DATE '2026-07-14' AS range_end,   /* 统计截止日，右闭：event_dt <= range_end */
+        DATE '2026-07-20' AS range_end,   /* 统计截止日，右闭：event_dt <= range_end */
         DATE '2026-07-01' AS cutoff_dt  /* 新老货主分界 */
 ),
 comp AS (
@@ -334,15 +334,13 @@ metric_union AS (
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), initiative, shipper_type
 ),
 
-/* ========== 投流宽口径：信息流+拼表单货主用户（不要求事件日>=引流日） ========== */
+/* ========== 投流宽口径（对齐漏斗 ktf_*：不要求事件日>=引流日） ========== */
+/* 用户池：信息流 + 拼表单，货主；企业池：company_tl 全量（不限 is_shipper） */
 tl_user AS (
     SELECT DISTINCT
         ad.user_id,
         SUBSTR(ad.ad_time, 1, 10) AS ad_dt,
-        COALESCE(SUBSTR(t1.register_time, 1, 10), SUBSTR(t2.register_time, 1, 10)) AS register_dt,
-        comp.company_id,
-        comp.comp_create_dt,
-        comp.comp_audit_dt
+        COALESCE(SUBSTR(t1.register_time, 1, 10), SUBSTR(t2.register_time, 1, 10)) AS register_dt
     FROM (
         SELECT
             a.user_id,
@@ -362,31 +360,9 @@ tl_user AS (
         ON ad.user_id = t1.user_base_id
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t2
         ON t1.psn_acct_user_base_id = t2.user_base_id
-    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
-        ON t3.psn_acct_user_base_id = ad.user_id
-    LEFT JOIN (
-        SELECT
-            company_id,
-            SUBSTR(create_date, 1, 10) AS comp_create_dt,
-            CASE
-                WHEN original_company_type IN (5, 7, 8)
-                 AND license_aptitude_status = 3
-                    THEN SUBSTR(license_aptitude_time, 1, 10)
-                WHEN original_company_type IN (1, 2, 3, 4)
-                 AND license_aptitude_status = 3
-                 AND authorize_audit_status = 30
-                    THEN SUBSTR(
-                        IF(license_aptitude_time > authorize_audit_time,
-                           license_aptitude_time,
-                           authorize_audit_time),
-                        1, 10
-                    )
-            END AS comp_audit_dt
-        FROM dwd_vlsp_mt_em_company_manage_info_minf
-    ) comp ON COALESCE(t1.company_id, t3.company_id) = comp.company_id
     WHERE t1.is_shipper = 1 OR t2.is_shipper = 1
 ),
-/* 注册账号-宽口径：按个人注册日归期 */
+/* 注册账号-宽口径：ktf_zc_acct_cnt，按个人注册日归期 */
 tl_register_account_base AS (
     SELECT
         DATE(u.register_dt) AS event_dt,
@@ -394,8 +370,8 @@ tl_register_account_base AS (
     FROM tl_user u
     CROSS JOIN tim t
     WHERE u.register_dt IS NOT NULL
-      AND DATE(u.register_dt) >= t.range_start
-      AND DATE(u.register_dt) <= t.range_end
+      AND u.register_dt >= t.range_start
+      AND u.register_dt <= t.range_end
 ),
 tl_register_account_metric AS (
     SELECT
@@ -416,17 +392,16 @@ tl_register_account_metric AS (
     FROM tl_register_account_base
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
 ),
-/* 注册企业数-宽口径：按企业创建日归期（不限新老，对齐漏斗宽口径） */
+/* 注册企业数-宽口径：ktf_qyzc_comp_cnt = company_tl ∩ 期间创建企业，不拆新老、不限 is_shipper */
 tl_register_comp_base AS (
     SELECT
-        DATE(u.comp_create_dt) AS event_dt,
-        u.company_id
-    FROM tl_user u
+        DATE(c.register_dt) AS event_dt,
+        c.company_id
+    FROM comp c
+    INNER JOIN company_tl tl ON tl.company_id = c.company_id
     CROSS JOIN tim t
-    WHERE u.company_id IS NOT NULL
-      AND u.comp_create_dt IS NOT NULL
-      AND DATE(u.comp_create_dt) >= t.range_start
-      AND DATE(u.comp_create_dt) <= t.range_end
+    WHERE c.register_dt >= t.range_start
+      AND c.register_dt <= t.range_end
 ),
 tl_register_comp_metric AS (
     SELECT
@@ -447,17 +422,17 @@ tl_register_comp_metric AS (
     FROM tl_register_comp_base
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
 ),
-/* 认证企业数-宽口径：按企业认证日归期（不限新老，对齐漏斗宽口径） */
+/* 认证企业数-宽口径：ktf_qyrz_comp_cnt = company_tl ∩ 期间认证企业 */
 tl_certify_comp_base AS (
     SELECT
-        DATE(u.comp_audit_dt) AS event_dt,
-        u.company_id
-    FROM tl_user u
+        DATE(c.audit_dt) AS event_dt,
+        c.company_id
+    FROM comp c
+    INNER JOIN company_tl tl ON tl.company_id = c.company_id
     CROSS JOIN tim t
-    WHERE u.company_id IS NOT NULL
-      AND u.comp_audit_dt IS NOT NULL
-      AND DATE(u.comp_audit_dt) >= t.range_start
-      AND DATE(u.comp_audit_dt) <= t.range_end
+    WHERE c.audit_dt IS NOT NULL
+      AND c.audit_dt >= t.range_start
+      AND c.audit_dt <= t.range_end
 ),
 tl_certify_comp_metric AS (
     SELECT
