@@ -416,14 +416,12 @@ tl_register_account_metric AS (
     FROM tl_register_account_base
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
 ),
-/* 注册企业数-宽口径：按企业创建日归期 */
+/* 注册企业数-宽口径：按企业创建日归期（不限新老，对齐漏斗宽口径） */
 tl_register_comp_base AS (
     SELECT
         DATE(u.comp_create_dt) AS event_dt,
-        u.company_id,
-        ow.shipper_type
+        u.company_id
     FROM tl_user u
-    LEFT JOIN old_new ow ON ow.company_id = u.company_id
     CROSS JOIN tim t
     WHERE u.company_id IS NOT NULL
       AND u.comp_create_dt IS NOT NULL
@@ -435,30 +433,26 @@ tl_register_comp_metric AS (
         '月' AS stat_granularity,
         DATE_FORMAT(event_dt, '%Y-%m-01') AS period_start,
         '投流' AS initiative,
-        shipper_type,
+        '整体' AS shipper_type,
         '注册企业数' AS metric_type,
         COUNT(DISTINCT company_id) AS metric_value
     FROM tl_register_comp_base
-    WHERE shipper_type IS NOT NULL
-    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), shipper_type
+    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01')
     UNION ALL
     SELECT
         '周',
         DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
-        '投流', shipper_type, '注册企业数',
+        '投流', '整体', '注册企业数',
         COUNT(DISTINCT company_id)
     FROM tl_register_comp_base
-    WHERE shipper_type IS NOT NULL
-    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), shipper_type
+    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
 ),
-/* 认证企业数-宽口径：按企业认证日归期 */
+/* 认证企业数-宽口径：按企业认证日归期（不限新老，对齐漏斗宽口径） */
 tl_certify_comp_base AS (
     SELECT
         DATE(u.comp_audit_dt) AS event_dt,
-        u.company_id,
-        ow.shipper_type
+        u.company_id
     FROM tl_user u
-    LEFT JOIN old_new ow ON ow.company_id = u.company_id
     CROSS JOIN tim t
     WHERE u.company_id IS NOT NULL
       AND u.comp_audit_dt IS NOT NULL
@@ -470,21 +464,19 @@ tl_certify_comp_metric AS (
         '月' AS stat_granularity,
         DATE_FORMAT(event_dt, '%Y-%m-01') AS period_start,
         '投流' AS initiative,
-        shipper_type,
+        '整体' AS shipper_type,
         '认证企业数' AS metric_type,
         COUNT(DISTINCT company_id) AS metric_value
     FROM tl_certify_comp_base
-    WHERE shipper_type IS NOT NULL
-    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), shipper_type
+    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01')
     UNION ALL
     SELECT
         '周',
         DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
-        '投流', shipper_type, '认证企业数',
+        '投流', '整体', '认证企业数',
         COUNT(DISTINCT company_id)
     FROM tl_certify_comp_base
-    WHERE shipper_type IS NOT NULL
-    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), shipper_type
+    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
 ),
 
 metric_all AS (
