@@ -7,33 +7,26 @@ WITH company_zm AS (
     WHERE activity_title = '货主招募活动'
       AND invitee_id IS NOT NULL AND invitee_id <> ''
 ),
-company_tl_channel AS (
-    SELECT DISTINCT company.company_id
-    FROM dwd_vlsp_mt_em_user_manage_info_minf user
-    INNER JOIN ads.ads_vlsp_tms_advertise_placement_channel_info_df channel
-        ON channel.telephone = user.telephone
-    INNER JOIN dwd_vlsp_mt_em_company_manage_info_minf company
-        ON company.company_apply_user_base_id = user.user_base_id
-    WHERE user.user_status = 11 AND user.deleted = 21 AND user.account_type = 10
-      AND company.company_id IS NOT NULL
-),
 company_tl AS (
-    SELECT company_id
+    SELECT DISTINCT COALESCE(t1.company_id, t3.company_id) AS company_id
     FROM (
-        SELECT user.company_id
-        FROM dwd.dwd_vlsp_mt_bt_advertise_placement_business_process_minf advertise
-        LEFT JOIN (
-            SELECT user_base_id, company_id
-            FROM dwd.dwd_vlsp_mt_em_user_manage_info_minf
-            WHERE user_status = 11 AND deleted = 21
-            GROUP BY 1, 2
-        ) user ON user.user_base_id = advertise.user_id
-        WHERE advertise.user_id <> '' AND advertise.consign_callback_status = 10
-          AND user.company_id IS NOT NULL
+        /* 信息流投放 */
+        SELECT a.user_id
+        FROM dwd_vlsp_mt_bt_advertise_placement_business_process_minf a
+        WHERE a.user_id <> ''
         UNION
-        SELECT company_id FROM company_tl_channel
-    ) t
-    GROUP BY company_id
+        /* 拼表单投放 */
+        SELECT b.user_base_id AS user_id
+        FROM match_shipper_table_advertise_info a
+        LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
+            ON a.telephone = b.telephone
+        WHERE b.user_base_id <> ''
+    ) ad
+    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
+        ON ad.user_id = t1.user_base_id
+    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
+        ON t3.psn_acct_user_base_id = ad.user_id
+    WHERE COALESCE(t1.company_id, t3.company_id) IS NOT NULL
 ),
 company_dx AS (
     SELECT DISTINCT company_name AS company_name_dx
@@ -142,6 +135,9 @@ result AS (
     /* 整体 */
     SELECT week_start, '整体' AS stat_level, '整体' AS stat_dim, total_cnt AS waybill_cnt FROM agg_all
     UNION ALL
+    /* 整体-运单类型：网货 / TMS / 撮合 */
+    SELECT week_start, '整体', waybill_category, total_cnt FROM agg
+    UNION ALL
     /* 整体-线上 / 整体-线下 */
     SELECT week_start, '整体', '线上', online_cnt FROM agg_all
     UNION ALL
@@ -150,7 +146,7 @@ result AS (
     /* 线上-运单类型 */
     SELECT week_start, '线上', waybill_category, online_cnt FROM agg
     UNION ALL
-    /* ★ 新增：线上-举措 */
+    /* 线上举措 */
     SELECT week_start, '线上举措', '货主招募', zm_cnt FROM agg_all
     UNION ALL
     SELECT week_start, '线上举措', '投流', tl_cnt FROM agg_all
@@ -189,16 +185,16 @@ ORDER BY
     END,
     CASE
         WHEN stat_dim = '整体' THEN 0
-        WHEN stat_dim = '线上' THEN 1
-        WHEN stat_dim = '线下' THEN 2
+        WHEN stat_dim = '网货' THEN 1
+        WHEN stat_dim = 'TMS' THEN 2
+        WHEN stat_dim = '撮合' THEN 3
+        WHEN stat_dim = '线上' THEN 4
+        WHEN stat_dim = '线下' THEN 5
         WHEN stat_dim = '货主招募' THEN 10
         WHEN stat_dim = '投流' THEN 11
         WHEN stat_dim = '电销' THEN 12
         WHEN stat_dim = '调度' THEN 13
         WHEN stat_dim = '无线下销售归属' THEN 14
-        WHEN stat_dim = '网货' THEN 20
-        WHEN stat_dim = 'TMS' THEN 21
-        WHEN stat_dim = '撮合' THEN 22
         WHEN stat_dim LIKE '货主招募-%' THEN 30
         WHEN stat_dim LIKE '投流-%' THEN 31
         WHEN stat_dim LIKE '电销-%' THEN 32

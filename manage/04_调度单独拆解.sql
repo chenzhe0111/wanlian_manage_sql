@@ -93,36 +93,26 @@ company_zm AS (
       AND invitee_id IS NOT NULL
       AND invitee_id <> ''
 ),
-company_tl_channel AS (
-    SELECT DISTINCT company.company_id
-    FROM dwd_vlsp_mt_em_user_manage_info_minf usr
-    INNER JOIN ads.ads_vlsp_tms_advertise_placement_channel_info_df channel
-        ON channel.telephone = usr.telephone
-    INNER JOIN dwd_vlsp_mt_em_company_manage_info_minf company
-        ON company.company_apply_user_base_id = usr.user_base_id
-    WHERE usr.user_status = 11
-      AND usr.deleted = 21
-      AND usr.account_type = 10
-      AND company.company_id IS NOT NULL
-),
 company_tl AS (
-    SELECT company_id
+    SELECT DISTINCT COALESCE(t1.company_id, t3.company_id) AS company_id
     FROM (
-        SELECT u.company_id
-        FROM dwd.dwd_vlsp_mt_bt_advertise_placement_business_process_minf ad
-        LEFT JOIN (
-            SELECT user_base_id, company_id
-            FROM dwd.dwd_vlsp_mt_em_user_manage_info_minf
-            WHERE user_status = 11 AND deleted = 21
-            GROUP BY user_base_id, company_id
-        ) u ON u.user_base_id = ad.user_id
-        WHERE ad.user_id <> ''
-          AND ad.consign_callback_status = 10
-          AND u.company_id IS NOT NULL
+        /* 信息流投放 */
+        SELECT a.user_id
+        FROM dwd_vlsp_mt_bt_advertise_placement_business_process_minf a
+        WHERE a.user_id <> ''
         UNION
-        SELECT company_id FROM company_tl_channel
-    ) t
-    GROUP BY company_id
+        /* 拼表单投放 */
+        SELECT b.user_base_id AS user_id
+        FROM match_shipper_table_advertise_info a
+        LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
+            ON a.telephone = b.telephone
+        WHERE b.user_base_id <> ''
+    ) ad
+    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
+        ON ad.user_id = t1.user_base_id
+    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
+        ON t3.psn_acct_user_base_id = ad.user_id
+    WHERE COALESCE(t1.company_id, t3.company_id) IS NOT NULL
 ),
 company_dx AS (
     SELECT DISTINCT company_name AS company_name_dx
