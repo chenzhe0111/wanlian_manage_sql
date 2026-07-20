@@ -79,14 +79,12 @@ company_tl AS (
     GROUP BY company_id
 ),
 company_dx AS (
-    SELECT DISTINCT shipper_company_name AS company_name_dx
-    FROM ads.ads_vlsp_tms_shipper_and_dispatch_info_df
-    WHERE shipper_source = '电销'
+    SELECT DISTINCT company_name AS company_name_dx
+    FROM match_shipper_telesales_leads_info
 ),
 company_dd AS (
-    SELECT DISTINCT shipper_company_name AS company_name_dd
-    FROM ads.ads_vlsp_tms_shipper_and_dispatch_info_df
-    WHERE shipper_source = '调度'
+    SELECT DISTINCT company_name AS company_name_dd
+    FROM match_shipper_dispatching_leads_info
 ),
 company_wxx AS (
     SELECT customer_company_id, MAX(sales_lv1_company_id) AS sales_lv1_company_id
