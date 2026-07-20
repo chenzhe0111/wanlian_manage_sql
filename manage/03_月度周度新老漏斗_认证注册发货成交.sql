@@ -1,4 +1,6 @@
-/* 注册/认证 + 新老货主 + 发货/成交 | 周度 + 月度；注册账号独立计算后 UNION ALL 合并 */
+/* 注册/认证 + 新老货主 + 发货/成交 | 周度 + 月度
+ * 投流注册账号/注册企业/认证企业：宽口径（信息流+拼表单货主，按事件日归期，不要求事件日>=引流日）
+ */
 WITH tim AS (
     SELECT
         DATE '2026-07-01' AS range_start,
@@ -284,23 +286,24 @@ waybill_initiative_filtered AS (
     WHERE weight > 0 AND shipper_type IS NOT NULL
 ),
 metric_union AS (
+    /* 注册/认证企业：投流改走宽口径 tl_*_metric，此处排除投流避免双计 */
     SELECT '月' AS stat_granularity, DATE_FORMAT(event_dt, '%Y-%m-01') AS period_start,
            initiative, shipper_type, '注册企业数' AS metric_type, COUNT(DISTINCT company_id) AS metric_value
-    FROM register_fact WHERE shipper_type IS NOT NULL
+    FROM register_fact WHERE shipper_type IS NOT NULL AND initiative <> '投流'
     GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, shipper_type
     UNION ALL
     SELECT '周', DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
            initiative, shipper_type, '注册企业数', COUNT(DISTINCT company_id)
-    FROM register_fact WHERE shipper_type IS NOT NULL
+    FROM register_fact WHERE shipper_type IS NOT NULL AND initiative <> '投流'
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), initiative, shipper_type
     UNION ALL
     SELECT '月', DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, shipper_type, '认证企业数', COUNT(DISTINCT company_id)
-    FROM certify_fact WHERE shipper_type IS NOT NULL
+    FROM certify_fact WHERE shipper_type IS NOT NULL AND initiative <> '投流'
     GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, shipper_type
     UNION ALL
     SELECT '周', DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
            initiative, shipper_type, '认证企业数', COUNT(DISTINCT company_id)
-    FROM certify_fact WHERE shipper_type IS NOT NULL
+    FROM certify_fact WHERE shipper_type IS NOT NULL AND initiative <> '投流'
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), initiative, shipper_type
     UNION ALL
     SELECT '月', DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, shipper_type, '发货货主数', COUNT(DISTINCT company_id)
@@ -331,87 +334,167 @@ metric_union AS (
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), initiative, shipper_type
 ),
 
-/* ========== 注册账号：独立口径（不融入举措/新老货主逻辑） ========== */
-/* 与看板一致：users + ad 完整 CTE，LEFT JOIN ad ON user_base_id = ad.user_id，投放=ad.user_id IS NOT NULL */
-/* zc_users = COUNT(DISTINCT CASE WHEN is_shipper=1 THEN user_base_id END)；日期区间与主漏斗一致：>= range_start AND <= range_end */
-reg_users AS (
-    SELECT
-        register_dt,
-        reg_source_code,
-        real_name_cert_status,
-        user_base_id,
-        is_shipper
-    FROM dwd_vlsp_mt_em_user_manage_info_minf
-    WHERE user_status = 11
-      AND deleted = 21
-      AND account_type = 10
-    GROUP BY 1, 2, 3, 4, 5
-),
-reg_ad AS (
-    SELECT
+/* ========== 投流宽口径：信息流+拼表单货主用户（不要求事件日>=引流日） ========== */
+tl_user AS (
+    SELECT DISTINCT
         ad.user_id,
-        t2.user_base_id
+        SUBSTR(ad.ad_time, 1, 10) AS ad_dt,
+        COALESCE(SUBSTR(t1.register_time, 1, 10), SUBSTR(t2.register_time, 1, 10)) AS register_dt,
+        comp.company_id,
+        comp.comp_create_dt,
+        comp.comp_audit_dt
     FROM (
-        SELECT user_id
-        FROM dwd_vlsp_mt_bt_advertise_placement_business_process_minf
-        WHERE login_callback_status = 10
-          AND user_id <> ''
-          AND (
-              party3_plf_acct_id IN (78862151, 78862170)
-              OR push_client_type IN (20, 21)
-          )
+        SELECT
+            a.user_id,
+            COALESCE(a.login_convert_time, a.auth_convert_time, a.consign_convert_time) AS ad_time
+        FROM dwd_vlsp_mt_bt_advertise_placement_business_process_minf a
+        WHERE a.user_id <> ''
+        UNION ALL
+        SELECT
+            b.user_base_id AS user_id,
+            a.clue_time AS ad_time
+        FROM match_shipper_table_advertise_info a
+        LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
+            ON a.telephone = b.telephone
+        WHERE b.user_base_id <> ''
     ) ad
+    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
+        ON ad.user_id = t1.user_base_id
+    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t2
+        ON t1.psn_acct_user_base_id = t2.user_base_id
+    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
+        ON t3.psn_acct_user_base_id = ad.user_id
     LEFT JOIN (
         SELECT
-            user_base_id,
+            company_id,
+            SUBSTR(create_date, 1, 10) AS comp_create_dt,
             CASE
-                WHEN psn_acct_user_base_id IS NULL OR TRIM(psn_acct_user_base_id) = ''
-                    THEN user_base_id
-                ELSE psn_acct_user_base_id
-            END AS psn_acct_user_base_id,
-            company_id
-        FROM dwd_vlsp_mt_em_user_manage_info_minf
-    ) t1 ON ad.user_id = t1.user_base_id
-    LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t2
-        ON t2.user_base_id = t1.psn_acct_user_base_id
-       AND t2.account_type = 10
+                WHEN original_company_type IN (5, 7, 8)
+                 AND license_aptitude_status = 3
+                    THEN SUBSTR(license_aptitude_time, 1, 10)
+                WHEN original_company_type IN (1, 2, 3, 4)
+                 AND license_aptitude_status = 3
+                 AND authorize_audit_status = 30
+                    THEN SUBSTR(
+                        IF(license_aptitude_time > authorize_audit_time,
+                           license_aptitude_time,
+                           authorize_audit_time),
+                        1, 10
+                    )
+            END AS comp_audit_dt
+        FROM dwd_vlsp_mt_em_company_manage_info_minf
+    ) comp ON COALESCE(t1.company_id, t3.company_id) = comp.company_id
+    WHERE t1.is_shipper = 1 OR t2.is_shipper = 1
 ),
-register_account_base AS (
+/* 注册账号-宽口径：按个人注册日归期 */
+tl_register_account_base AS (
     SELECT
-        DATE(SUBSTR(u.register_dt, 1, 10)) AS event_dt,
-        u.user_base_id
-    FROM reg_users u
-    LEFT JOIN reg_ad ad ON u.user_base_id = ad.user_id
+        DATE(u.register_dt) AS event_dt,
+        u.user_id
+    FROM tl_user u
     CROSS JOIN tim t
-    WHERE ad.user_id IS NOT NULL                         /* user_tags = '投放' */
-      AND u.is_shipper = 1
-      AND CAST(u.register_dt AS DATE) >= t.range_start
-      AND CAST(u.register_dt AS DATE) <= t.range_end
+    WHERE u.register_dt IS NOT NULL
+      AND DATE(u.register_dt) >= t.range_start
+      AND DATE(u.register_dt) <= t.range_end
 ),
-register_account_metric AS (
+tl_register_account_metric AS (
     SELECT
         '月' AS stat_granularity,
         DATE_FORMAT(event_dt, '%Y-%m-01') AS period_start,
         '投流' AS initiative,
         '整体' AS shipper_type,
         '注册账号' AS metric_type,
-        COUNT(DISTINCT user_base_id) AS metric_value
-    FROM register_account_base
+        COUNT(DISTINCT user_id) AS metric_value
+    FROM tl_register_account_base
     GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01')
     UNION ALL
     SELECT
         '周',
         DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
         '投流', '整体', '注册账号',
-        COUNT(DISTINCT user_base_id)
-    FROM register_account_base
+        COUNT(DISTINCT user_id)
+    FROM tl_register_account_base
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
+),
+/* 注册企业数-宽口径：按企业创建日归期 */
+tl_register_comp_base AS (
+    SELECT
+        DATE(u.comp_create_dt) AS event_dt,
+        u.company_id,
+        ow.shipper_type
+    FROM tl_user u
+    LEFT JOIN old_new ow ON ow.company_id = u.company_id
+    CROSS JOIN tim t
+    WHERE u.company_id IS NOT NULL
+      AND u.comp_create_dt IS NOT NULL
+      AND DATE(u.comp_create_dt) >= t.range_start
+      AND DATE(u.comp_create_dt) <= t.range_end
+),
+tl_register_comp_metric AS (
+    SELECT
+        '月' AS stat_granularity,
+        DATE_FORMAT(event_dt, '%Y-%m-01') AS period_start,
+        '投流' AS initiative,
+        shipper_type,
+        '注册企业数' AS metric_type,
+        COUNT(DISTINCT company_id) AS metric_value
+    FROM tl_register_comp_base
+    WHERE shipper_type IS NOT NULL
+    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), shipper_type
+    UNION ALL
+    SELECT
+        '周',
+        DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
+        '投流', shipper_type, '注册企业数',
+        COUNT(DISTINCT company_id)
+    FROM tl_register_comp_base
+    WHERE shipper_type IS NOT NULL
+    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), shipper_type
+),
+/* 认证企业数-宽口径：按企业认证日归期 */
+tl_certify_comp_base AS (
+    SELECT
+        DATE(u.comp_audit_dt) AS event_dt,
+        u.company_id,
+        ow.shipper_type
+    FROM tl_user u
+    LEFT JOIN old_new ow ON ow.company_id = u.company_id
+    CROSS JOIN tim t
+    WHERE u.company_id IS NOT NULL
+      AND u.comp_audit_dt IS NOT NULL
+      AND DATE(u.comp_audit_dt) >= t.range_start
+      AND DATE(u.comp_audit_dt) <= t.range_end
+),
+tl_certify_comp_metric AS (
+    SELECT
+        '月' AS stat_granularity,
+        DATE_FORMAT(event_dt, '%Y-%m-01') AS period_start,
+        '投流' AS initiative,
+        shipper_type,
+        '认证企业数' AS metric_type,
+        COUNT(DISTINCT company_id) AS metric_value
+    FROM tl_certify_comp_base
+    WHERE shipper_type IS NOT NULL
+    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), shipper_type
+    UNION ALL
+    SELECT
+        '周',
+        DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
+        '投流', shipper_type, '认证企业数',
+        COUNT(DISTINCT company_id)
+    FROM tl_certify_comp_base
+    WHERE shipper_type IS NOT NULL
+    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), shipper_type
 ),
 
 metric_all AS (
     SELECT * FROM metric_union
     UNION ALL
-    SELECT * FROM register_account_metric
+    SELECT * FROM tl_register_account_metric
+    UNION ALL
+    SELECT * FROM tl_register_comp_metric
+    UNION ALL
+    SELECT * FROM tl_certify_comp_metric
 )
 SELECT
     CONCAT(
