@@ -1,5 +1,7 @@
 /* 调度专项分析 | 网货：注册/认证/发货+成交；TMS：创建+成交；撮合：成交+三方调度员注册/认证/产生调度 | 周度+月度
- * 三方调度：user_base_id = waybill.dispatcher_user_id；注册/认证=用户表累积至 range_end；产生调度=周期内去重
+ * 三方调度：user_base_id = waybill.dispatcher_user_id；
+ * 注册/认证=用户表按周/月累计（W1 截止到 W1 周末，W2 截止到 W2 周末，与 range_end 取小）；
+ * 产生调度=周期内去重
  */
 WITH tim AS (
     SELECT
@@ -272,7 +274,7 @@ tms_create_base AS (
     UNION
     SELECT event_dt, company_name FROM tms_jhd_create
 ),
-/* 三方调度员账号（累积到截止日） */
+/* 三方调度员账号 */
 dispatcher_user AS (
     SELECT
         user_base_id,
@@ -284,14 +286,6 @@ dispatcher_user AS (
       AND dispatch_type = 30
       AND COALESCE(user_base_id, '') <> ''
     GROUP BY user_base_id, DATE(SUBSTR(register_dt, 1, 10))
-),
-/* 注册=认证：累积至 range_end 的全量人数 */
-dispatcher_cum AS (
-    SELECT COUNT(DISTINCT d.user_base_id) AS total_cnt
-    FROM dispatcher_user d
-    CROSS JOIN tim t
-    WHERE d.register_dt IS NULL
-       OR d.register_dt <= t.range_end
 ),
 /* 产生调度：运单上 dispatcher 命中三方调度员 */
 third_dispatch_base AS (
@@ -308,27 +302,45 @@ third_dispatch_base AS (
       AND w.waybill_status NOT IN (540, 100)
     GROUP BY DATE(w.accept_dt), w.dispatcher_user_id
 ),
-/* 注册/认证挂载的周期（含截止日所在月/周，保证有数据时也能出） */
+/* 周期清单：月=截止月末；周=周三起始，period_end=当周结束日与 range_end 取小 */
 third_period AS (
     SELECT
         '月' AS stat_granularity,
-        DATE_FORMAT(t.range_end, '%Y-%m-01') AS period_start
+        DATE_FORMAT(t.range_end, '%Y-%m-01') AS period_start,
+        LEAST(LAST_DAY(t.range_end), t.range_end) AS period_end
     FROM tim t
     UNION
-    SELECT
+    SELECT DISTINCT
         '周',
-        DATE_SUB(t.range_end, INTERVAL ((WEEKDAY(t.range_end) - 2 + 7) % 7) DAY)
+        ws.week_start,
+        LEAST(DATE_ADD(ws.week_start, INTERVAL 6 DAY), t.range_end)
     FROM tim t
-    UNION
+    CROSS JOIN (
+        SELECT
+            DATE_SUB(
+                DATE_ADD(t2.range_start, INTERVAL s.n DAY),
+                INTERVAL ((WEEKDAY(DATE_ADD(t2.range_start, INTERVAL s.n DAY)) - 2 + 7) % 7) DAY
+            ) AS week_start
+        FROM tim t2
+        CROSS JOIN (
+            SELECT 0 AS n UNION ALL SELECT 7 UNION ALL SELECT 14
+            UNION ALL SELECT 21 UNION ALL SELECT 28 UNION ALL SELECT 35
+        ) s
+        WHERE DATE_ADD(t2.range_start, INTERVAL s.n DAY) <= t2.range_end
+    ) ws
+    WHERE ws.week_start <= t.range_end
+),
+/* 注册=认证：按周期累计，W1 截止到 W1，W2 截止到 W2 */
+dispatcher_cum_by_period AS (
     SELECT
-        '月',
-        DATE_FORMAT(event_dt, '%Y-%m-01')
-    FROM third_dispatch_base
-    UNION
-    SELECT
-        '周',
-        DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
-    FROM third_dispatch_base
+        p.stat_granularity,
+        p.period_start,
+        COUNT(DISTINCT d.user_base_id) AS total_cnt
+    FROM third_period p
+    CROSS JOIN dispatcher_user d
+    WHERE d.register_dt IS NULL
+       OR d.register_dt <= p.period_end
+    GROUP BY p.stat_granularity, p.period_start
 ),
 metric_union AS (
     SELECT
@@ -450,27 +462,25 @@ metric_union AS (
         COUNT(DISTINCT company_id)
     FROM dispatch_ship_base
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
-    /* ===== 撮合：三方调度注册/认证（累积至截止日）+ 产生调度用户数（周期内） ===== */
+    /* ===== 撮合：三方调度注册/认证（按周/月累计至当期末）+ 产生调度用户数（周期内） ===== */
     UNION ALL
     SELECT
-        p.stat_granularity,
-        p.period_start,
+        c.stat_granularity,
+        c.period_start,
         '调度',
         '撮合',
         '三方调度注册用户量',
         c.total_cnt
-    FROM third_period p
-    CROSS JOIN dispatcher_cum c
+    FROM dispatcher_cum_by_period c
     UNION ALL
     SELECT
-        p.stat_granularity,
-        p.period_start,
+        c.stat_granularity,
+        c.period_start,
         '调度',
         '撮合',
         '三方调度认证注册量',
         c.total_cnt
-    FROM third_period p
-    CROSS JOIN dispatcher_cum c
+    FROM dispatcher_cum_by_period c
     UNION ALL
     SELECT
         '月',
