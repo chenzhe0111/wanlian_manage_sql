@@ -1,4 +1,5 @@
--- 线上发货货主数 | 一次查询输出月度+周度（UNION ALL 合并，2026-01-01 起）
+-- 线上发货货主数 | 月度全月去重 + 周度「月内累计至当周」（2026-01-01 起）
+-- 周度：以月分段，W1=月初～W1周末，W2=月初～W2周末，依此类推
 
 WITH company_zm AS (
     SELECT DISTINCT invitee_id AS company_id
@@ -118,7 +119,14 @@ ship_online AS (
     FROM ship_hit
     WHERE hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx > 0
 ),
+/* 有发货的周（周三起始） */
+week_period AS (
+    SELECT DISTINCT
+        DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY) AS week_start
+    FROM ship_online
+),
 metric_all AS (
+    /* 月度：当月全月去重发货货主 */
     SELECT
         '月' AS stat_granularity,
         DATE_FORMAT(event_dt, '%Y-%m-01') AS period_start,
@@ -126,12 +134,20 @@ metric_all AS (
     FROM ship_online
     GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01')
     UNION ALL
+    /* 周度：所属月月初 ～ 当周结束日（与月末、今天取小）累计去重 */
     SELECT
         '周',
-        DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
-        COUNT(DISTINCT company_id)
-    FROM ship_online
-    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
+        w.week_start,
+        COUNT(DISTINCT s.company_id)
+    FROM week_period w
+    INNER JOIN ship_online s
+        ON s.event_dt >= DATE_FORMAT(w.week_start, '%Y-%m-01')
+       AND s.event_dt <= LEAST(
+             DATE_ADD(w.week_start, INTERVAL 6 DAY),
+             LAST_DAY(w.week_start),
+             CURRENT_DATE()
+           )
+    GROUP BY w.week_start
 )
 SELECT
     CONCAT(
