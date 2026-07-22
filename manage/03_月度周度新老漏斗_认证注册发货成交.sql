@@ -1,5 +1,7 @@
 /* 注册/认证 + 新老货主 + 发货/成交 | 周度 + 月度
- * 投流注册账号/注册企业/认证企业：宽口径（信息流+拼表单货主，按事件日归期，不要求事件日>=引流日）
+ * 投流注册账号/注册企业/认证企业：宽口径（信息流+拼表单货主，按事件日归期，不要求事件日>=引流日）——逻辑不变
+ * 电销/货主招募 注册/认证：全量不拆新老，统一写入 shipper_type=新货主（含未发货企业）
+ * 其余举措注册/认证：仍按新老拆分（仅能判新老的企业）
  */
 WITH tim AS (
     SELECT
@@ -286,24 +288,53 @@ waybill_initiative_filtered AS (
     WHERE weight > 0 AND shipper_type IS NOT NULL
 ),
 metric_union AS (
-    /* 注册/认证企业：投流改走宽口径 tl_*_metric，此处排除投流避免双计 */
+    /* 电销/货主招募：注册/认证全量→新货主；投流仍走宽口径 tl_*_metric（不变） */
     SELECT '月' AS stat_granularity, DATE_FORMAT(event_dt, '%Y-%m-01') AS period_start,
-           initiative, shipper_type, '注册企业数' AS metric_type, COUNT(DISTINCT company_id) AS metric_value
-    FROM register_fact WHERE shipper_type IS NOT NULL AND initiative <> '投流'
+           initiative, '新货主' AS shipper_type, '注册企业数' AS metric_type, COUNT(DISTINCT company_id) AS metric_value
+    FROM register_fact WHERE initiative IN ('电销', '货主招募')
+    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), initiative
+    UNION ALL
+    SELECT '周', DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
+           initiative, '新货主', '注册企业数', COUNT(DISTINCT company_id)
+    FROM register_fact WHERE initiative IN ('电销', '货主招募')
+    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), initiative
+    UNION ALL
+    SELECT '月', DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, '新货主', '认证企业数', COUNT(DISTINCT company_id)
+    FROM certify_fact WHERE initiative IN ('电销', '货主招募')
+    GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), initiative
+    UNION ALL
+    SELECT '周', DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
+           initiative, '新货主', '认证企业数', COUNT(DISTINCT company_id)
+    FROM certify_fact WHERE initiative IN ('电销', '货主招募')
+    GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), initiative
+    UNION ALL
+    /* 其余举措（调度/线下/无线下销售归属等）：注册/认证仍按新老拆分 */
+    SELECT '月', DATE_FORMAT(event_dt, '%Y-%m-01'),
+           initiative, shipper_type, '注册企业数', COUNT(DISTINCT company_id)
+    FROM register_fact
+    WHERE shipper_type IS NOT NULL
+      AND initiative NOT IN ('投流', '电销', '货主招募')
     GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, shipper_type
     UNION ALL
     SELECT '周', DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
            initiative, shipper_type, '注册企业数', COUNT(DISTINCT company_id)
-    FROM register_fact WHERE shipper_type IS NOT NULL AND initiative <> '投流'
+    FROM register_fact
+    WHERE shipper_type IS NOT NULL
+      AND initiative NOT IN ('投流', '电销', '货主招募')
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), initiative, shipper_type
     UNION ALL
-    SELECT '月', DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, shipper_type, '认证企业数', COUNT(DISTINCT company_id)
-    FROM certify_fact WHERE shipper_type IS NOT NULL AND initiative <> '投流'
+    SELECT '月', DATE_FORMAT(event_dt, '%Y-%m-01'),
+           initiative, shipper_type, '认证企业数', COUNT(DISTINCT company_id)
+    FROM certify_fact
+    WHERE shipper_type IS NOT NULL
+      AND initiative NOT IN ('投流', '电销', '货主招募')
     GROUP BY DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, shipper_type
     UNION ALL
     SELECT '周', DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY),
            initiative, shipper_type, '认证企业数', COUNT(DISTINCT company_id)
-    FROM certify_fact WHERE shipper_type IS NOT NULL AND initiative <> '投流'
+    FROM certify_fact
+    WHERE shipper_type IS NOT NULL
+      AND initiative NOT IN ('投流', '电销', '货主招募')
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY), initiative, shipper_type
     UNION ALL
     SELECT '月', DATE_FORMAT(event_dt, '%Y-%m-01'), initiative, shipper_type, '发货货主数', COUNT(DISTINCT company_id)
