@@ -1,0 +1,266 @@
+[
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E2:H2",
+      "cells": [
+        [
+          {
+            "formula": "=E4+E9"
+          },
+          {
+            "formula": "=F4+F9"
+          },
+          {
+            "formula": "=G4+G9"
+          },
+          {
+            "formula": "=H4+H9"
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E4:H4",
+      "cells": [
+        [
+          {
+            "formula": "='四举措推演_9-12'!D43"
+          },
+          {
+            "formula": "='四举措推演_9-12'!E43"
+          },
+          {
+            "formula": "='四举措推演_9-12'!F43"
+          },
+          {
+            "formula": "='四举措推演_9-12'!G43"
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E9:H9",
+      "cells": [
+        [
+          {
+            "formula": "='四举措推演_9-12'!D42"
+          },
+          {
+            "formula": "='四举措推演_9-12'!E42"
+          },
+          {
+            "formula": "='四举措推演_9-12'!F42"
+          },
+          {
+            "formula": "='四举措推演_9-12'!G42"
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E6:H6",
+      "cells": [
+        [
+          {
+            "formula": "=ROUND(E4*10000/E8,0)"
+          },
+          {
+            "formula": "=ROUND(F4*10000/F8,0)"
+          },
+          {
+            "formula": "=ROUND(G4*10000/G8,0)"
+          },
+          {
+            "formula": "=ROUND(H4*10000/H8,0)"
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E5:H5",
+      "cells": [
+        [
+          {
+            "formula": "=ROUND(E6/E7,0)"
+          },
+          {
+            "formula": "=ROUND(F6/F7,0)"
+          },
+          {
+            "formula": "=ROUND(G6/G7,0)"
+          },
+          {
+            "formula": "=ROUND(H6/H7,0)"
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E11:H11",
+      "cells": [
+        [
+          {
+            "formula": "=ROUND(E9*10000/E13,0)"
+          },
+          {
+            "formula": "=ROUND(F9*10000/F13,0)"
+          },
+          {
+            "formula": "=ROUND(G9*10000/G13,0)"
+          },
+          {
+            "formula": "=ROUND(H9*10000/H13,0)"
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E10:H10",
+      "cells": [
+        [
+          {
+            "formula": "=ROUND(E11/E12,0)"
+          },
+          {
+            "formula": "=ROUND(F11/F12,0)"
+          },
+          {
+            "formula": "=ROUND(G11/G12,0)"
+          },
+          {
+            "formula": "=ROUND(H11/H12,0)"
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E8:H8",
+      "cells": [
+        [
+          {
+            "value": 324
+          },
+          {
+            "value": 324
+          },
+          {
+            "value": 324
+          },
+          {
+            "value": 324
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E13:H13",
+      "cells": [
+        [
+          {
+            "value": 182
+          },
+          {
+            "value": 182
+          },
+          {
+            "value": 182
+          },
+          {
+            "value": 182
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E7:H7",
+      "cells": [
+        [
+          {
+            "value": 1
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 1
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "hb67Ua",
+      "range": "E12:H12",
+      "cells": [
+        [
+          {
+            "value": 0.51
+          },
+          {
+            "value": 0.51
+          },
+          {
+            "value": 0.51
+          },
+          {
+            "value": 0.51
+          }
+        ]
+      ],
+      "allow_overwrite": true
+    }
+  }
+]

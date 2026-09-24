@@ -1,13 +1,18 @@
 /* 注册/认证 + 新老货主 + 发货/成交 | 周度 + 月度
  * 投流注册账号/注册企业/认证企业：宽口径（信息流+拼表单货主，按事件日归期，不要求事件日>=引流日）——逻辑不变
  * 电销/货主招募 注册/认证：全量不拆新老，统一写入 shipper_type=新货主（含未发货企业）
- * 其余举措注册/认证：仍按新老拆分（仅能判新老的企业）
+ * 其余举措注册/认证、以及发货/成交：按「事件所在自然月月初」判新老（支持跨月周）
+ *
+ * 新老口径（跨月周关键）：
+ *   first_dt = 货主历史首次发货/运单日（TMS创建∪货源发布）
+ *   cutoff   = DATE_FORMAT(event_dt, '%Y-%m-01')  —— 事件日所在月 1 号
+ *   first_dt >= cutoff → 新货主；first_dt < cutoff → 老货主
+ * 例：0729–0804 周内，7/29–7/31 相对 7/1 判；8/1–8/4 相对 8/1 判（同一货主周内可分属新/老）
  */
 WITH tim AS (
     SELECT
         DATE '2026-07-01' AS range_start,
-        DATE '2026-07-20' AS range_end,   /* 统计截止日，右闭：event_dt <= range_end */
-        DATE '2026-07-01' AS cutoff_dt  /* 新老货主分界 */
+        DATE '2026-08-04' AS range_end   /* 统计截止日，右闭：event_dt <= range_end；含 0729-0804 跨月周 */
 ),
 comp AS (
     SELECT
@@ -30,6 +35,7 @@ comp AS (
         company_name
     FROM dwd_vlsp_mt_em_company_manage_info_minf
     WHERE company_id IS NOT NULL
+      AND is_fake_company_apply_user = '0'
 ),
 tms_waybill AS (
     SELECT waybill_create_time, shipper_company_id, waybill_id
@@ -63,13 +69,11 @@ base AS (
     SELECT create_dt, publish_company_id AS company_id
     FROM goods
 ),
-old_new AS (
+/* 仅存首活日；新老在各 fact 里按「事件月月初」动态判定 */
+company_first AS (
     SELECT
         company_id,
-        CASE
-            WHEN create_dt >= (SELECT cutoff_dt FROM tim) THEN '新货主'
-            WHEN create_dt <  (SELECT cutoff_dt FROM tim) THEN '老货主'
-        END AS shipper_type
+        create_dt AS first_dt
     FROM (
         SELECT
             company_id,
@@ -99,12 +103,15 @@ company_tl AS (
         FROM match_shipper_table_advertise_info a
         LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
             ON a.telephone = b.telephone
+            AND b.is_fake_user = '0'
         WHERE b.user_base_id <> ''
     ) ad
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON ad.user_id = t1.user_base_id
+        AND t1.is_fake_user = '0'
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
         ON t3.psn_acct_user_base_id = ad.user_id
+        AND t3.is_fake_user = '0'
     WHERE COALESCE(t1.company_id, t3.company_id) IS NOT NULL
 ),
 company_dx AS (
@@ -169,11 +176,15 @@ register_fact AS (
     SELECT
         c.company_id,
         ci.initiative,
-        ow.shipper_type,
+        CASE
+            WHEN cf.first_dt IS NULL THEN NULL
+            WHEN cf.first_dt >= DATE_FORMAT(DATE(c.register_dt), '%Y-%m-01') THEN '新货主'
+            ELSE '老货主'
+        END AS shipper_type,
         DATE(c.register_dt) AS event_dt
     FROM comp c
     INNER JOIN company_initiative ci ON ci.company_id = c.company_id
-    LEFT JOIN old_new ow ON ow.company_id = c.company_id
+    LEFT JOIN company_first cf ON cf.company_id = c.company_id
     CROSS JOIN tim t
     WHERE c.register_dt >= t.range_start
       AND c.register_dt <= t.range_end
@@ -182,11 +193,15 @@ certify_fact AS (
     SELECT
         c.company_id,
         ci.initiative,
-        ow.shipper_type,
+        CASE
+            WHEN cf.first_dt IS NULL THEN NULL
+            WHEN cf.first_dt >= DATE_FORMAT(DATE(c.audit_dt), '%Y-%m-01') THEN '新货主'
+            ELSE '老货主'
+        END AS shipper_type,
         DATE(c.audit_dt) AS event_dt
     FROM comp c
     INNER JOIN company_initiative ci ON ci.company_id = c.company_id
-    LEFT JOIN old_new ow ON ow.company_id = c.company_id
+    LEFT JOIN company_first cf ON cf.company_id = c.company_id
     CROSS JOIN tim t
     WHERE c.audit_dt IS NOT NULL
       AND c.audit_dt >= t.range_start
@@ -196,11 +211,14 @@ ship_fact AS (
     SELECT
         b.company_id,
         ci.initiative,
-        ow.shipper_type,
+        CASE
+            WHEN cf.first_dt >= DATE_FORMAT(DATE(b.create_dt), '%Y-%m-01') THEN '新货主'
+            ELSE '老货主'
+        END AS shipper_type,
         DATE(b.create_dt) AS event_dt
     FROM base b
     INNER JOIN company_initiative ci ON ci.company_id = b.company_id
-    INNER JOIN old_new ow ON ow.company_id = b.company_id
+    INNER JOIN company_first cf ON cf.company_id = b.company_id
     CROSS JOIN tim t
     WHERE b.create_dt >= t.range_start
       AND b.create_dt <= t.range_end
@@ -210,7 +228,11 @@ waybill_hit AS (
         waybill.waybill_id,
         waybill.shipper_company_id,
         DATE(waybill.accept_dt) AS event_dt,
-        old_new.shipper_type,
+        CASE
+            WHEN cf.first_dt IS NULL THEN NULL
+            WHEN cf.first_dt >= DATE_FORMAT(DATE(waybill.accept_dt), '%Y-%m-01') THEN '新货主'
+            ELSE '老货主'
+        END AS shipper_type,
         CASE WHEN wxx.sales_lv1_company_id IS NOT NULL THEN 1 ELSE 0 END AS hit_offline,
         CASE WHEN zm.company_id IS NOT NULL THEN 1 ELSE 0 END AS hit_zm,
         CASE WHEN tl.company_id IS NOT NULL THEN 1 ELSE 0 END AS hit_tl,
@@ -235,8 +257,8 @@ waybill_hit AS (
         ON dd.company_name_dd = waybill.process_shipper_company_name
     LEFT JOIN company_wxx wxx
         ON wxx.company_id = waybill.process_shipper_company_id
-    LEFT JOIN old_new
-        ON old_new.company_id = waybill.shipper_company_id
+    LEFT JOIN company_first cf
+        ON cf.company_id = waybill.shipper_company_id
     CROSS JOIN tim t
     WHERE DATE(waybill.accept_dt) >= t.range_start
       AND DATE(waybill.accept_dt) <= t.range_end
@@ -385,12 +407,15 @@ tl_user AS (
         FROM match_shipper_table_advertise_info a
         LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
             ON a.telephone = b.telephone
+            AND b.is_fake_user = '0'
         WHERE b.user_base_id <> ''
     ) ad
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON ad.user_id = t1.user_base_id
+        AND t1.is_fake_user = '0'
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t2
         ON t1.psn_acct_user_base_id = t2.user_base_id
+        AND t2.is_fake_user = '0'
     WHERE t1.is_shipper = 1 OR t2.is_shipper = 1
 ),
 /* 注册账号-宽口径：ktf_zc_acct_cnt，按个人注册日归期 */
@@ -423,7 +448,7 @@ tl_register_account_metric AS (
     FROM tl_register_account_base
     GROUP BY DATE_SUB(event_dt, INTERVAL ((WEEKDAY(event_dt) - 2 + 7) % 7) DAY)
 ),
-/* 注册企业数-宽口径：ktf_qyzc_comp_cnt = company_tl ∩ 期间创建企业，不拆新老、不限 is_shipper */
+/* 注册企业数-宽口径：ktf_qyzc_comp_cnt = company_tl ∩ 期间注册企业，不拆新老、不限 is_shipper */
 tl_register_comp_base AS (
     SELECT
         DATE(c.register_dt) AS event_dt,

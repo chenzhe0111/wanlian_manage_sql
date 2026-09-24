@@ -1,0 +1,203 @@
+[
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "B3:F5",
+      "cells": [
+        [
+          {"value": 4.79, "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=(C4-B4)/LN(C4/B4)", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=(D4-C4)/LN(D4/C4)", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=(E4-D4)/LN(E4/D4)", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=(F4-E4)/LN(F4/E4)", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"value": 8.24, "cell_styles": {"number_format": "0.00"}},
+          {"value": 18, "cell_styles": {"number_format": "0.00"}},
+          {"value": 24, "cell_styles": {"number_format": "0.00"}},
+          {"value": 32, "cell_styles": {"number_format": "0.00"}},
+          {"value": 40, "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B3*B31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C3*C31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D3*D31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E3*E31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F3*F31", "cell_styles": {"number_format": "0.00"}}
+        ]
+      ]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "B10:F13",
+      "cells": [
+        [
+          {"formula": "=B11/B$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=C11/C$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=D11/D$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=E11/E$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=F11/F$3", "cell_styles": {"number_format": "0.00%"}}
+        ],
+        [
+          {"value": 1.34, "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C32/C33/C31/10000", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D32/D33/D31/10000", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E32/E33/E31/10000", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F32/F33/F31/10000", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B$4*B10", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C$4*C10", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D$4*D10", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E$4*E10", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F$4*F10", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B11*B$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C11*C$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D11*D$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E11*E$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F11*F$31", "cell_styles": {"number_format": "0.00"}}
+        ]
+      ]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "B15:F18",
+      "cells": [
+        [
+          {"formula": "=B16/B$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=C16/C$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=D16/D$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=E16/E$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=F16/F$3", "cell_styles": {"number_format": "0.00%"}}
+        ],
+        [
+          {"formula": "=B$3-B11-B21-B26", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C$3-C11-C21-C26", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D$3-D11-D21-D26", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E$3-E11-E21-E26", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F$3-F11-F21-F26", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B$4*B15", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C$4*C15", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D$4*D15", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E$4*E15", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F$4*F15", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B16*B$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C16*C$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D16*D$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E16*E$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F16*F$31", "cell_styles": {"number_format": "0.00"}}
+        ]
+      ]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "B20:F23",
+      "cells": [
+        [
+          {"formula": "=B21/B$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=C21/C$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=D21/D$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=E21/E$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=F21/F$3", "cell_styles": {"number_format": "0.00%"}}
+        ],
+        [
+          {"value": 2.13, "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C$3*C34", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D$3*D34", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E$3*E34", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F$3*F34", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B$4*B20", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C$4*C20", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D$4*D20", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E$4*E20", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F$4*F20", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B21*B$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C21*C$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D21*D$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E21*E$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F21*F$31", "cell_styles": {"number_format": "0.00"}}
+        ]
+      ]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "B25:F28",
+      "cells": [
+        [
+          {"formula": "=B26/B$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=C26/C$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=D26/D$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=E26/E$3", "cell_styles": {"number_format": "0.00%"}},
+          {"formula": "=F26/F$3", "cell_styles": {"number_format": "0.00%"}}
+        ],
+        [
+          {"formula": "=B$3*B35", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C$3*C35", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D$3*D35", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E$3*E35", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F$3*F35", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B$4*B25", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C$4*C25", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D$4*D25", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E$4*E25", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F$4*F25", "cell_styles": {"number_format": "0.00"}}
+        ],
+        [
+          {"formula": "=B26*B$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=C26*C$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=D26*D$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=E26*E$31", "cell_styles": {"number_format": "0.00"}},
+          {"formula": "=F26*F$31", "cell_styles": {"number_format": "0.00"}}
+        ]
+      ]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "B34:F35",
+      "cells": [
+        [
+          {},
+          {"value": 0.49, "cell_styles": {"number_format": "0%"}},
+          {"value": 0.51, "cell_styles": {"number_format": "0%"}},
+          {"value": 0.5, "cell_styles": {"number_format": "0%"}},
+          {"value": 0.5, "cell_styles": {"number_format": "0%"}}
+        ],
+        [
+          {"value": 0, "cell_styles": {"number_format": "0%"}},
+          {"value": 0, "cell_styles": {"number_format": "0%"}},
+          {"value": 0, "cell_styles": {"number_format": "0%"}},
+          {"value": 0, "cell_styles": {"number_format": "0%"}},
+          {"value": 0, "cell_styles": {"number_format": "0%"}}
+        ]
+      ]
+    }
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A3:A4",
+      "cells": [[{"value": "整体-日均值"}], [{"value": "整体-峰值运单量"}]]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A13:A14",
+      "cells": [[{"value": "日均值"}], [{"value": "峰值运单量"}]]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A18:A19",
+      "cells": [[{"value": "日均值"}], [{"value": "峰值运单量"}]]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A23:A24",
+      "cells": [[{"value": "日均值"}], [{"value": "峰值运单量"}]]
+    }
+  }
+]

@@ -1,0 +1,93 @@
+<table>
+  <colgroup>
+    <col width="275"/><col width="108"/><col width="108"/><col width="115"/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th background-color="light-blue" vertical-align="middle"><p align="center"><b>指标</b></p></th>
+      <th background-color="light-blue" vertical-align="middle"><p align="center"><b>7月目标值</b></p></th>
+      <th background-color="light-blue" vertical-align="middle"><p align="center"><b>7月实际值</b></p></th>
+      <th background-color="light-blue" vertical-align="middle"><p align="center"><b>目标完成度</b></p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>①裂变 招募</b></p></td>
+      <td vertical-align="middle"><p align="center">1.38</p></td>
+      <td vertical-align="middle"><p align="center">0.29</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center"><b>21.3%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>留存</p></td>
+      <td vertical-align="middle"><p align="center">0.14</p></td>
+      <td vertical-align="middle"><p align="center">0.25</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">175.4%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>新增</p></td>
+      <td vertical-align="middle"><p align="center">1.24</p></td>
+      <td vertical-align="middle"><p align="center">0.05</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">3.8%</p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>②电销触达（万单）</b></p></td>
+      <td vertical-align="middle"><p align="center">3.98</p></td>
+      <td vertical-align="middle"><p align="center">6.01</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>151.0%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>留存</p></td>
+      <td vertical-align="middle"><p align="center">2.54</p></td>
+      <td vertical-align="middle"><p align="center">4.45</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">175.4%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>新增</p></td>
+      <td vertical-align="middle"><p align="center">1.44</p></td>
+      <td vertical-align="middle"><p align="center">1.56</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">108.2%</p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>③端外线上流量转化（万单）</b></p></td>
+      <td vertical-align="middle"><p align="center">11.91</p></td>
+      <td vertical-align="middle"><p align="center">11.97</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>100.5%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>留存</p></td>
+      <td vertical-align="middle"><p align="center">7.75</p></td>
+      <td vertical-align="middle"><p align="center">9.58</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">123.7%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>新增</p></td>
+      <td vertical-align="middle"><p align="center">4.16</p></td>
+      <td vertical-align="middle"><p align="center">2.39</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">57.4%</p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>④调度触达（万单）</b></p></td>
+      <td vertical-align="middle"><p align="center">5.13</p></td>
+      <td vertical-align="middle"><p align="center">7.17</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>139.9%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>1-撮合</p></td>
+      <td vertical-align="middle"><p align="center">0.93</p></td>
+      <td vertical-align="middle"><p align="center">0.26</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">27.7%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>2-TMS</p></td>
+      <td vertical-align="middle"><p align="center">2.57</p></td>
+      <td vertical-align="middle"><p align="center">6.04</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">235.2%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>3-网货</p></td>
+      <td vertical-align="middle"><p align="center">1.68</p></td>
+      <td vertical-align="middle"><p align="center">0.87</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">51.9%</p></td>
+    </tr>
+  </tbody>
+</table>

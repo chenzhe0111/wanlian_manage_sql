@@ -1,0 +1,1 @@
+[[{"formula": "=$N$1", "cell_styles": {"number_format": "0.00%"}}, {"formula": "=IF(OR(J3=\"\",NOT(ISNUMBER(C3)),C3=0),\"\",J3/C3)", "cell_styles": {"number_format": "0.00%"}}]]

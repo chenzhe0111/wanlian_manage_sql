@@ -1,0 +1,190 @@
+<title>工作总结｜目标管理（2026.5.17–9.4）</title>
+<callout emoji="bulb" background-color="light-blue" border-color="blue" text-color="blue">
+<p><b>本阶段量化速览：</b>目标测算约 <b>5 版</b>（当前跟踪目标 v4）；口径大迭代 <b>4 次</b>、沉淀 SQL <b>63 条</b>；进度周报约 <b>8 次</b>（可核验链接 7 份 + 7M4 阶段总结），配套业务周报 <b>6 次</b>；专项异常 / 差异分析 <b>5～6 份</b>。相关材料按「目标管理 / 周报 / 分析」三类集中附于文末。</p>
+</callout>
+<p>汇报周期：2026 年 5 月 17 日 – 9 月 4 日。岗位定位为平台运营侧「目标管理」数据支持，核心职责是把线上订单目标从「有没有数」推进到「数准、能拆、能周更、能解释」。本阶段工作主要围绕以下六件事展开。</p>
+
+<h1>一、根据业务逻辑，完成周度体系化取数能力</h1>
+<p>线上订单目标管理要同时服务「整月看完成度」和「按周看节奏」。围绕业务已确认的口径，把整体、线上、线下，以及裂变、电销、投流、调度等举措，沉淀为一套可复用的周 / 月取数体系：同一套过滤规则、同一套举措归属与分摊方式，避免周报、进度表、目标表各说各话。</p>
+<p>本阶段完成了 <b>4 次大的口径 / 代码迭代</b>：①成交口径主体系（周 / 月 / 新老漏斗）；②线上不含线下（自闭环）；③履约并剔除异常（c 系列）；④周首活新客（03d）与目标达成对接（06d）。仓库 <code>manage/</code> 累计沉淀 SQL <b>63 条</b>，其中履约剔异常相关约 13+ 条，保证周报、进度表、目标表共用一套规则。</p>
+<p>在业务逻辑迭代过程中，同步完成了从「成交口径」到「履约并剔除异常」口径的升级与并行对照。前者更适合看放量与经营节奏，后者更贴近质量与考核诉求。两套口径的适用场景写清楚后，例会上讨论「为什么两个数不一样」的成本明显下降，业务可以按用途选数，而不是反复核对口径。</p>
+<p>周度体系还覆盖新老货主漏斗、运单类型（撮合 / TMS / 网货）、天粒度趋势等常用切面，保证周报要加维度时，不必从头另起炉灶，而是在既有体系上扩展。这是后续周报稳定产出、目标看板可拆可下钻的基础。</p>
+
+<h1>二、搭建目标看板，服务「总览—下钻」决策</h1>
+<p>针对领导与业务「先看总完成，再问是谁拖后腿」的使用习惯，梳理并落地了线上举措目标看板的信息架构：第一层看整体与线上关键指标（量、占比、相对目标进度）；第二层看四举措矩阵贡献与结构；再往下可进入单举措的类型结构、新老结构与转化漏斗，最终落到明细与公司维度。</p>
+<p>看板设计强调「一页说清现状、两跳找到原因」：总览页控制信息密度，避免一上来堆满漏斗；下钻页保证问题可定位到举措、类型或客户层。目前已完成原型与核心指标链路打通，日常跟踪仍以目标表 + 周报材料为主，看板能力为后续产品化与业务自助查看预留了清晰路径。相关看板与矩阵入口见文末「目标管理文档」。</p>
+
+<h1>三、测算多版目标，并完成细节目标梳理</h1>
+<p>下半年目标并非一次拍板。本阶段围绕峰值路径、线上规模、四举措结构、运单类型结构、新老与转化假设等，连续测算并迭代了约 <b>5 版</b>目标方案（峰值40万初版 → 20260623 → 区分新老 → 整合表 → 目标 v4），每版都把「总量目标」拆到业务能认领的细节：分月路径、分举措贡献、分类型结构，以及关键转化环节假设。</p>
+<p>在推演方法上，明确了峰值—日均—月量的衔接逻辑（含指数增长情景下的日均算法），保证「锁峰值」与「锁月量」不互相打架。细节目标梳理后，业务讨论可以从「线上要到多少」进一步落到「裂变 / 电销 / 投流 / 调度各扛多少、类型结构是否合理」，目标拆解从口号变成可对照、可复盘的表。</p>
+<p>同时保留可调参数（结构占比、转化率、峰值路径等），后续若战略假设调整，可在现有框架上重算，而不必推倒重来。当前跟踪以目标 v4 及 v1 线上拆解为主口径，与周报实际对照使用；材料见文末「目标管理文档」。</p>
+
+<h1>四、每周按时产出目标周报，并结合 AI 提升效率</h1>
+<p>周报是目标管理对业务最直接的服务窗口。6 月侧重框架起盘与测算；7 月起进入稳定周更。可核验进度文档约 <b>8 次</b>（链接 7 份：7M3、8M1–8M5、9MW1，另含 7M4 阶段总结），配套业务周报 <b>6 次</b>（8月W1–W5、9月W1）。每期覆盖进度数据、举措结构、完整转化漏斗、本周进展与下周计划，以及司机拉新、撮合专项等板块，保证例会材料按时到位。全部周报链接集中见文末「周报文档」。</p>
+<p>写作上坚持「进展写动作、结论写数字」：进展栏压缩为可验收、可跟盯的事项；分析结论单独呈现完成度、老新 / 类型结构与观察点，避免把复盘长文塞进进展。过程中系统引入 AI 协作：从业务周报提炼进展与计划、按模板生成分析结论、批量刷新表格与核对口径，在保证质量的前提下缩短周更耗时，把人力更多放在异常解读与业务沟通上。</p>
+<p>随着周更次数增加，模板与规则逐步固化（含进度文档三处进展 / 计划的更新边界），交接与复用成本下降，周报从「每次重写」变成「按框架刷新 + 重点加判断」。</p>
+
+<h1>五、追踪异常指标，开展相关分析</h1>
+<p>目标跟踪不只看完成率，也盯「数是否健康」。本阶段累计输出专项异常 / 差异分析约 <b>5～6 份</b>，覆盖异常订单影响、口径切换前后差异、电销不同线索口径落差、投流货主波动、线上占比阶段性变化等，把「异常」翻译成业务能决策的语言：是质量问题、结构问题，还是统计口径问题。分析文档统一见文末「分析文档」。</p>
+<p>例如在履约剔异常口径落地后，补充了成交与剔异常的对比说明，帮助业务理解量级差异来自哪里；近两周又专门跟踪各举措异常剔除占比，结论指向整体剔除占比略降、投流侧变化更明显，电销 / 调度仅小幅波动，未出现系统性恶化信号。这类分析的价值在于：在冲量阶段提前回答「量上来了，质量有没有被透支」。</p>
+
+<h1>六、对业务的日常数据支持</h1>
+<p>除固定周更外，还承担大量临时取数与口径答疑：公司 / 客户明细下钻、新老漏斗口径澄清（03c 月首活 vs 03d 周首活）、资源转化误计新增修正、自闭环与宽口径线上对照、目标达成度核对等。问题从「要个数」升级为「这个数能不能用、该怎么讲」，响应形态覆盖 SQL、Excel、飞书表与结论短文。日常对照入口同样归入文末三类材料。</p>
+
+<h1>七、小结与下一步</h1>
+<p>回顾这一阶段，工作重心可以概括为：用体系化取数托住周报（<b>4 次大迭代 / 63 条 SQL</b>），用多版目标测算托住路径（<b>约 5 版，落地 v4</b>），用看板与专项分析托住解释力（原型 1 套 + 分析 <b>5～6 份</b>），并用 AI 提升周更效率（进度周报约 <b>8 次</b>、业务周报 <b>6 次</b>）。对业务领导而言，可见结果是——每周有稳定材料、目标有可拆路径、异常有解释、临时问题有响应。</p>
+<p>下一步将继续稳住 9–12 月目标跟踪节奏，推进看板从原型走向更易用的经营视图，并把进度落后、结构异常等预警做成固定机制，进一步减少人工盯盘成本。</p>
+
+<h1>附录：相关材料（按类集中）</h1>
+
+<h2>一、目标管理文档</h2>
+<table>
+  <thead>
+    <tr>
+      <th>材料</th>
+      <th>说明</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>目标 v4</td>
+      <td>当前跟踪主口径；含 v1 线上拆解</td>
+      <td><a href="https://wanlianyida.feishu.cn/wiki/SovCwkvzCiH80MkJWURc6L47nme">打开</a></td>
+    </tr>
+    <tr>
+      <td>峰值40万 / 周报数据表</td>
+      <td>峰值路径、整合表、周报取数源</td>
+      <td><a href="https://wanlianyida.feishu.cn/sheets/KwqEsS5LGhrvajthmIOcVBw5nUg">打开</a></td>
+    </tr>
+    <tr>
+      <td>线上举措 · 目标看板原型 v1</td>
+      <td>总览—下钻信息架构与原型</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/EoZsdyEhjocuafxAzYvc6f4PnAh">打开</a></td>
+    </tr>
+    <tr>
+      <td>平台运营-矩阵</td>
+      <td>月 / 周履约运单量与占比跟踪</td>
+      <td><a href="https://wanlianyida.feishu.cn/wiki/YypZwtrD2iMRpOkTHVTctqZRn9c">打开</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>二、周报文档</h2>
+<p><b>进度周报（用户+平台+线上）</b></p>
+<table>
+  <thead>
+    <tr>
+      <th>周次</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7M3W 进度</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/WSv6d6VLfouEtoxcZ1Zc8S6Fnhg">打开</a></td>
+    </tr>
+    <tr>
+      <td>8M1W 进度</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/GKgTdBx8FoIqfYxfa7gcN3qLn1e">打开</a></td>
+    </tr>
+    <tr>
+      <td>8M2W 进度</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/XSVJdlAV1oMngQxB5zJcm9TPnbd">打开</a></td>
+    </tr>
+    <tr>
+      <td>8M3W 进度</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/Mp8nddgvOoE2c1xigpicpKVEndh">打开</a></td>
+    </tr>
+    <tr>
+      <td>8M4W 进度</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/KXGhdd47woDkD4xFMRqcVJTCnpg">打开</a></td>
+    </tr>
+    <tr>
+      <td>8M5W 进度</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/VzemdJkp6oNcFZxcch5cr0Gsnvd">打开</a></td>
+    </tr>
+    <tr>
+      <td>9MW1 进度</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/OuCzdF8kIoumVcxHd9yc3hminIe">打开</a></td>
+    </tr>
+  </tbody>
+</table>
+<p><b>业务周报</b></p>
+<table>
+  <thead>
+    <tr>
+      <th>周次</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>8月 W1 周报</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/A7HpdDrisoG3mBxtJhScULvanpg">打开</a></td>
+    </tr>
+    <tr>
+      <td>8月 W2 周报</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/COcRd5rV4oSHCkxJTP5cgwX6nMh">打开</a></td>
+    </tr>
+    <tr>
+      <td>8月 W3 周报</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/HP9kd67Mlofl2PxXeobcztNSnTb">打开</a></td>
+    </tr>
+    <tr>
+      <td>8月 W4 周报</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/Du7UdvalCoc15vxI9Q5cEhkPnNg">打开</a></td>
+    </tr>
+    <tr>
+      <td>8月 W5 周报</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/NZYMdX4RKoghc9xU3ZGcuYiXnQf">打开</a></td>
+    </tr>
+    <tr>
+      <td>9月 W1 周报</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/Gh39dycOOoHlgGxuyjvckcXonHc">打开</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>三、分析文档</h2>
+<table>
+  <thead>
+    <tr>
+      <th>材料</th>
+      <th>说明</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5–8月线上占比 vs 剔除异常后占比</td>
+      <td>成交 / 履约剔异常口径对照</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/CunOd5pM0oL6vLx9olicKO7fn2d">打开</a></td>
+    </tr>
+    <tr>
+      <td>电销下半旬占比骤增原因分析</td>
+      <td>8 月电销结构变化</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/QcnUdc1j4oJlgGxcEVbckmBxnvd">打开</a></td>
+    </tr>
+    <tr>
+      <td>8/16后电销占线上抬升原因</td>
+      <td>分母效应 vs 绝对量</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/FRycdf2aIogENOxrdWfcWa1Nn1e">打开</a></td>
+    </tr>
+    <tr>
+      <td>8/16后电销占整体抬升分析</td>
+      <td>只看电销 / 整体口径</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/BLtzd05GHomzLYxPwNkc2lFTnve">打开</a></td>
+    </tr>
+    <tr>
+      <td>近两周异常剔除占比</td>
+      <td>分举措剔除占比周对比</td>
+      <td><a href="https://wanlianyida.feishu.cn/wiki/NzfzwkzyhihKdSkvrD5csaHTniY">打开</a></td>
+    </tr>
+    <tr>
+      <td>7月线上数据结论报告</td>
+      <td>月度复盘结论</td>
+      <td><a href="https://wanlianyida.feishu.cn/docx/SK7OdlrCgo1VO7xoRGccjLLjn9d">打开</a></td>
+    </tr>
+  </tbody>
+</table>

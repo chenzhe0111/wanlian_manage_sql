@@ -1,0 +1,155 @@
+<title>线上数据定时任务清单（Quick BI → 飞书）</title>
+
+<callout emoji="💡">
+<p>整理日：2026-09-22。本机 macOS LaunchAgent 共 <b>6</b> 个任务，工作目录 <code>scripts/quickbi_export/</code>。目标表统一为飞书表格 <a href="https://wanlianyida.feishu.cn/sheets/L91EsEtAohwjhStD4y6cYLCGnVe">峰值40万整合表 L91Es…</a>。</p>
+<p>调度方式：launchd（非 Cursor Automation）。当前 6 个 Label 均已 load。</p>
+</callout>
+
+<h1>一、总览（每日早高峰）</h1>
+
+<table>
+  <colgroup>
+    <col width="90"/>
+    <col width="160"/>
+    <col width="200"/>
+    <col width="180"/>
+    <col width="220"/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th background-color="light-blue">时间</th>
+      <th background-color="light-blue">Label / plist</th>
+      <th background-color="light-blue">脚本</th>
+      <th background-color="light-blue">产出数据</th>
+      <th background-color="light-blue">写入位置</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>09:30</td>
+      <td><code>com.wanlian.quickbi.export</code></td>
+      <td><code>run.sh</code> → <code>export_dataset.py</code></td>
+      <td>默认数据服务 T-1 全量 CSV</td>
+      <td>本地 <code>out/quickbi_dataset_*.csv</code>（含 <code>_latest</code>）；不写飞书</td>
+    </tr>
+    <tr>
+      <td>09:30</td>
+      <td><code>com.wanlian.sheet.actuals</code></td>
+      <td><code>refresh_sheet_actuals.py</code></td>
+      <td>整体/业务线/线上线下/四举措月实际（万单等）</td>
+      <td>sheet「整合表」<code>1074dd</code>：当月实际列（9月=H…12月=K）+ <code>J1</code> 截止日</td>
+    </tr>
+    <tr>
+      <td>09:32</td>
+      <td><code>com.wanlian.sheet.newold</code></td>
+      <td><code>refresh_sheet_newold.py</code></td>
+      <td>四举措×新老货主漏斗实际</td>
+      <td>「整合表」第七部分明细行（同月实际列）+ 更新 <code>J1</code></td>
+    </tr>
+    <tr>
+      <td>09:34</td>
+      <td><code>com.wanlian.sheet.driver</code></td>
+      <td><code>refresh_sheet_driver.py</code></td>
+      <td>注册司机分类型（TMS/撮合/网货）</td>
+      <td>sheet「注册司机车辆数据」<code>41UJIa</code>：当月列（9月=J…12月=M）行 7–16</td>
+    </tr>
+    <tr>
+      <td>09:36</td>
+      <td><code>com.wanlian.sheet.weekly</code></td>
+      <td><code>refresh_sheet_weekly.py</code></td>
+      <td>最近两周履约运单（整体/线上/四举措×类型）</td>
+      <td>sheet「周度详细数据」<code>66mgnV</code>（整表覆盖）+ 本地 <code>out/quickbi_weekly_*.csv</code></td>
+    </tr>
+    <tr>
+      <td>09:38</td>
+      <td><code>com.wanlian.sheet.funnel</code></td>
+      <td><code>refresh_sheet_funnel.py</code></td>
+      <td>本月 + 近两周新老漏斗指标</td>
+      <td>sheet「月度周度漏斗数据」<code>QbfdXI</code>（整表覆盖）+ 本地 <code>out/quickbi_funnel_*.csv</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>时间错开 2 分钟，避免同时打 Quick BI / 飞书 API。</p>
+
+<h1>二、分任务说明</h1>
+
+<h2>1. Quick BI 本地导出（09:30）</h2>
+<ul>
+  <li><b>作用</b>：把默认 <code>QUICKBI_API_ID</code> 数据集拉到本机，方便排查与下游固定路径读取。</li>
+  <li><b>入参</b>：<code>--pt yesterday</code>（分区日=昨天）。</li>
+  <li><b>产出</b>：<code>out/&lt;prefix&gt;_YYYYMMDD_HHMMSS.csv</code>、<code>out/&lt;prefix&gt;_latest.csv</code>。</li>
+  <li><b>日志</b>：<code>logs/export.out.log</code> / <code>export.err.log</code>。</li>
+  <li><b>注意</b>：此任务不写飞书；与 actuals 同刻启动，互不依赖。</li>
+</ul>
+
+<h2>2. 整合表 · 月实际（09:30）</h2>
+<ul>
+  <li><b>数据源</b>：Quick BI 数据服务（整体/类型/线上线下/四举措）。</li>
+  <li><b>写入</b>：「整合表」当月实际列。9 月示例：H3/H4/H5（整体日均/峰值/月量）、业务线 GTV/客单/日均、线上 H64–H66、四举措 H72–H76、线上类型 H85–H88 等；并写 <code>J1=统计截止日</code>。</li>
+  <li><b>不改</b>：目标列、占比/达成率等公式列、时间进度 <code>L1</code>。</li>
+  <li><b>下游</b>：线上表格 QCleBZ 的 KPI 概览 / KPI 举措 / 平台矩阵等，大量单元格用公式引用本表 H 列。</li>
+</ul>
+
+<h2>3. 整合表 · 新老货主（09:32）</h2>
+<ul>
+  <li><b>ApiId</b>：<code>QUICKBI_API_ID_NEWOLD</code>（默认 <code>f181db8dd61c</code>）；pt 格式 <code>YYYYMMDD</code>。</li>
+  <li><b>写入</b>：第七部分举措转化明细——裂变新增/留存、电销/投流新老漏斗、调度新老运单与发货客户等（如 H99–H108、H112–H123、H141–H157、H167–H181）。</li>
+  <li><b>同步</b>：也会刷新 <code>J1</code> 截止日。</li>
+</ul>
+
+<h2>4. 注册司机车辆（09:34）</h2>
+<ul>
+  <li><b>ApiId</b>：<code>QUICKBI_API_ID_DRIVER</code>（默认 <code>a136c69111d1</code>）。</li>
+  <li><b>写入</b>：「注册司机车辆数据」当月列；行 7 业务合计，8–10 TMS / 11–13 撮合 / 14–16 网货（司机数、单均、运单量）。</li>
+  <li><b>校验</b>：用第 8 行（约 8 月）TMS 运单量 ≈72.7 万校验行序，异常则不写表。</li>
+  <li><b>不写</b>：累计/当月新增（接口无此字段）、J1 标题。</li>
+</ul>
+
+<h2>5. 周度详细数据（09:36）</h2>
+<ul>
+  <li><b>ApiId</b>：<code>6148260aafa3</code> → sheet <code>66mgnV</code>。</li>
+  <li><b>口径</b>：周三～周二；每天回写最近两周（含进行中周）。因数据服务把 pt 编译成「周起始日 &gt; pt」，脚本用相邻 pt 差分还原单周。</li>
+  <li><b>写入</b>：清空 A1:G500 后整表重写（周标签如 M9W2/M9W3、层级维度、运单量万单）。</li>
+  <li><b>下游</b>：QCleBZ KPI 举措周度列、平台矩阵 M9W3、KPI 概览周度等通过 SUMIFS 引用本 sheet。</li>
+</ul>
+
+<h2>6. 月度+周度漏斗（09:38）</h2>
+<ul>
+  <li><b>ApiId</b>：<code>9cd9d778e4fd</code> → sheet <code>QbfdXI</code>。</li>
+  <li><b>口径</b>：本月（月初 1 日）+ 近两周；同样差分还原周期。</li>
+  <li><b>指标</b>：注册/认证/发货/成交货主、成交运单等（分举措×新老）。</li>
+  <li><b>写入</b>：清空 A1:G2000 后整表重写。</li>
+</ul>
+
+<h1>三、数据流向（简图）</h1>
+
+<pre lang="text"><code>Quick BI 数据服务
+  ├─ 09:30 export        → 本地 CSV（备份/排查）
+  ├─ 09:30 actuals       → 整合表(1074dd) 月实际 + J1
+  ├─ 09:32 newold        → 整合表 第七部分新老明细 + J1
+  ├─ 09:34 driver        → 注册司机车辆数据(41UJIa)
+  ├─ 09:36 weekly        → 周度详细数据(66mgnV)
+  └─ 09:38 funnel        → 月度周度漏斗(QbfdXI)
+         │
+         ▼（公式引用，非定时直写）
+  线上表格 QCleBZ：KPI概览 / KPI举措 / 平台矩阵 …
+</code></pre>
+
+<h1>四、未覆盖 / 需知缺口</h1>
+<ul>
+  <li><b>同比数据</b>（sheet <code>B3cT3z</code>）：当前无对应 LaunchAgent。QCleBZ 的「8月同期 / 月同比」依赖该 sheet，需手工或另补任务刷新。</li>
+  <li><b>线上表格 QCleBZ</b>：KPI/矩阵本身不由定时任务写数，靠公式引用整合表、周度详细、同比数据；公式坏了（如旧 sheet 名）需人工修。</li>
+  <li><b>进度文档 / 周报进展文案</b>：属人工或 Agent 会话更新，不在本套定时里。</li>
+</ul>
+
+<h1>五、运维速查</h1>
+<ul>
+  <li><b>目录</b>：<code>scripts/quickbi_export/</code>（plist、脚本、.env、logs、out）</li>
+  <li><b>安装</b>：<code>cp com.wanlian.*.plist ~/Library/LaunchAgents/</code> → <code>launchctl load …</code></li>
+  <li><b>立刻试跑</b>：<code>launchctl start com.wanlian.sheet.actuals</code>（其余 Label 同理）</li>
+  <li><b>日志</b>：<code>logs/sheet_*.out.log</code> / <code>*.err.log</code>；回写 payload 常落在 <code>logs/*_ops.json</code></li>
+  <li><b>密钥</b>：<code>.env</code> 仅本机，勿提交 git</li>
+</ul>
+
+<p>更细的配置说明见仓库 <code>scripts/quickbi_export/README.md</code>。</p>

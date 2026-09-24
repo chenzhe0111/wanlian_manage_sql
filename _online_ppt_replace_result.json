@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "note": "batch replace is not atomic; each page was created before its old page was deleted",
+    "pages_count": 1,
+    "results": [
+      {
+        "new_slide_id": "pTP",
+        "old_slide_id": "pTT",
+        "revision_id": 3,
+        "status": "replaced"
+      }
+    ],
+    "revision_id": 3,
+    "status": "completed",
+    "summary": {
+      "failed": 0,
+      "replaced": 1,
+      "total": 1
+    },
+    "xml_presentation_id": "OiyZsLgbOl9jTKdf00dcgIbSnTc"
+  }
+}

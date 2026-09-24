@@ -1,0 +1,18 @@
+{
+  "ok": false,
+  "identity": "user",
+  "error": {
+    "type": "validation",
+    "subtype": "invalid_argument",
+    "message": "invalid value \"plaintext\" for --detail, allowed: simple, with-ids, full",
+    "param": "--detail"
+  },
+  "_notice": {
+    "update": {
+      "command": "lark-cli update",
+      "current": "1.0.70",
+      "latest": "1.0.94",
+      "message": "lark-cli 1.0.94 available, current 1.0.70, run: lark-cli update"
+    }
+  }
+}

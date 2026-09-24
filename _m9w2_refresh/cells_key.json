@@ -1,0 +1,26 @@
+{
+  "ok": false,
+  "error": {
+    "type": "validation",
+    "subtype": "invalid_argument",
+    "message": "unknown flag \"--ranges\" for \"lark-cli sheets +cells-get\"",
+    "hint": "did you mean --range? valid flags: --as, --dry-run, --format, --help, --include, --jq, --json, --max-chars, --range, --sheet-id, --sheet-name, --skip-hidden, --spreadsheet-token, --url",
+    "params": [
+      {
+        "name": "--ranges",
+        "reason": "unknown flag",
+        "suggestions": [
+          "--range"
+        ]
+      }
+    ]
+  },
+  "_notice": {
+    "update": {
+      "command": "lark-cli update",
+      "current": "1.0.70",
+      "latest": "1.0.95",
+      "message": "lark-cli 1.0.95 available, current 1.0.70, run: lark-cli update"
+    }
+  }
+}

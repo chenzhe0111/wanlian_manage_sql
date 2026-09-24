@@ -1,0 +1,189 @@
+[
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A46:F53",
+      "cells": [
+        [
+          {
+            "value": "四、线上整体目标"
+          },
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        [
+          {},
+          {
+            "value": "2026年8月"
+          },
+          {
+            "value": "2026年9月"
+          },
+          {
+            "value": "2026年10月"
+          },
+          {
+            "value": "2026年11月"
+          },
+          {
+            "value": "2026年12月"
+          }
+        ],
+        [
+          {
+            "value": "线上运单量（万）"
+          },
+          {
+            "formula": "=B60"
+          },
+          {
+            "formula": "=C60"
+          },
+          {
+            "formula": "=D60"
+          },
+          {
+            "formula": "=E60"
+          },
+          {
+            "formula": "=F60"
+          }
+        ],
+        [
+          {
+            "value": "线上日均运单量（万）"
+          },
+          {
+            "formula": "=B48/B33"
+          },
+          {
+            "formula": "=C48/C33"
+          },
+          {
+            "formula": "=D48/D33"
+          },
+          {
+            "formula": "=E48/E33"
+          },
+          {
+            "formula": "=F48/F33"
+          }
+        ],
+        [
+          {
+            "value": "线上峰值运单量（万）"
+          },
+          {
+            "value": 1.35
+          },
+          {
+            "value": 1.65
+          },
+          {
+            "value": 2.01
+          },
+          {
+            "value": 2.46
+          },
+          {
+            "value": 3.0
+          }
+        ],
+        [
+          {
+            "value": "线上峰值占比"
+          },
+          {
+            "formula": "=B50/B4"
+          },
+          {
+            "formula": "=C50/C4"
+          },
+          {
+            "formula": "=D50/D4"
+          },
+          {
+            "formula": "=E50/E4"
+          },
+          {
+            "formula": "=F50/F4"
+          }
+        ],
+        [
+          {
+            "value": "线上自闭环占比"
+          },
+          {
+            "value": 0.02
+          },
+          {
+            "value": 0.05
+          },
+          {
+            "value": 0.1
+          },
+          {
+            "value": 0.16
+          },
+          {
+            "value": 0.25
+          }
+        ],
+        [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ]
+      ]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A54",
+      "cells": [
+        [
+          {
+            "value": "五、线上举措运单分布"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A62",
+      "cells": [
+        [
+          {
+            "value": "六、线上运单类型分布"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A72",
+      "cells": [
+        [
+          {
+            "value": "七、线上举措转化（明细）"
+          }
+        ]
+      ]
+    }
+  }
+]

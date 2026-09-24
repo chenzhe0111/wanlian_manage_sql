@@ -1,0 +1,110 @@
+<title>成交运单 vs 剔异常&amp;履约：两口径差异对比</title>
+<p>数据源：桌面《运单.xlsx》两张 sheet（成交运单 / 剔除异常运单&amp;履约），结构同月度汇总（01）：1–8 月，8 月截止日序 30。单位：万单。<b>数据已按 2026-08-31 更新重算。</b></p>
+<callout emoji="📌"><p><b>一句话。</b>两口径结构完全对齐（393 行一一对应）。<b>成交运单</b>是业务放量口径；<b>剔异常&amp;履约</b>在成交基础上再扣「异常剔除 + 申诉中」（申诉成功保留）。1–4 月整体保留率约 92%–96%，5–6 月约 88%；<b>7 月骤降到 56.4%</b>（被剔约 121.7 万单），8 月回升到约 <b>76.5%</b>（被剔约 36.5 万单）。差距主要来自 <b>TMS</b>，线上侧 <b>调度</b>被剔最狠；8 月线上占比成交 15.9% vs 剔异履约 14.0%（约 -1.9pp）。</p></callout>
+<h1>一、两个口径是什么</h1>
+<table>
+<colgroup><col width="160"/><col width="420"/></colgroup>
+<thead><tr>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>口径</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>含义（与现有 SQL 对齐）</b></p></th>
+</tr></thead>
+<tbody>
+<tr><td background-color="rgb(254,255,240)" vertical-align="top"><p><b>成交运单</b></p></td><td background-color="rgb(254,255,240)" vertical-align="top"><p>月度汇总主口径（01）：成交过滤 + 举措等权分摊。看板「运单量 / 线上占比」默认多用这一套。</p></td></tr>
+<tr><td vertical-align="top"><p><b>剔异常运单&amp;履约</b></p></td><td vertical-align="top"><p>履约时间轴（unload）+ type_ab：异常剔除 + 申诉中算异常；申诉成功保留；未命中异常场景不算异常（01c / 31）。更贴近「可履约 / 质量较干净」的量。</p></td></tr>
+</tbody></table>
+<p>两 sheet 的月份、截止日序、统计层级、维度完全一致，可直接相减看「被剔掉多少」。</p>
+<h1>二、整体量级差：7 月断层，8 月仍大</h1>
+<table>
+<colgroup><col width="70"/><col width="100"/><col width="110"/><col width="100"/><col width="90"/></colgroup>
+<thead><tr>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>月</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>成交</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>剔异履约</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>差额</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>保留率</b></p></th>
+</tr></thead>
+<tbody>
+<tr><td vertical-align="top"><p>01月</p></td><td vertical-align="top"><p>4.1154</p></td><td vertical-align="top"><p>3.8243</p></td><td vertical-align="top"><p>0.2911</p></td><td vertical-align="top"><p><b>92.9%</b></p></td></tr><tr><td vertical-align="top"><p>02月</p></td><td vertical-align="top"><p>6.3435</p></td><td vertical-align="top"><p>6.0791</p></td><td vertical-align="top"><p>0.2644</p></td><td vertical-align="top"><p><b>95.8%</b></p></td></tr><tr><td vertical-align="top"><p>03月</p></td><td vertical-align="top"><p>21.323</p></td><td vertical-align="top"><p>19.8886</p></td><td vertical-align="top"><p>1.4344</p></td><td vertical-align="top"><p><b>93.3%</b></p></td></tr><tr><td vertical-align="top"><p>04月</p></td><td vertical-align="top"><p>50.8888</p></td><td vertical-align="top"><p>46.8964</p></td><td vertical-align="top"><p>3.9924</p></td><td vertical-align="top"><p><b>92.2%</b></p></td></tr><tr><td vertical-align="top"><p>05月</p></td><td vertical-align="top"><p>123.1226</p></td><td vertical-align="top"><p>108.2535</p></td><td vertical-align="top"><p>14.8691</p></td><td vertical-align="top"><p><b>87.9%</b></p></td></tr><tr><td vertical-align="top"><p>06月</p></td><td vertical-align="top"><p>176.7478</p></td><td vertical-align="top"><p>154.9904</p></td><td vertical-align="top"><p>21.7574</p></td><td vertical-align="top"><p><b>87.7%</b></p></td></tr><tr><td background-color="rgb(255,249,230)" vertical-align="top"><p>07月</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>279.5255</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>157.7782</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>121.7473</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p><b>56.4%</b></p></td></tr><tr><td background-color="rgb(255,249,230)" vertical-align="top"><p>08月</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>155.2763</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>118.7471</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>36.5292</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p><b>76.5%</b></p></td></tr>
+</tbody></table>
+<ul>
+<li>1–4 月：保留率稳定在 92%–96%，差额随放量缓增。</li>
+<li>5–6 月：保留率落到约 88%，6 月差额约 21.8 万单。</li>
+<li><b>7 月：断层月。</b>成交 279.5 → 剔异履约 157.8，保留仅 <b>56.4%</b>，被剔 <b>121.7</b> 万单。</li>
+<li>8 月：成交 155.3 → 剔异履约 118.7，保留回升到 <b>76.5%</b>，仍被剔约 36.5 万单。</li>
+</ul>
+<h1>三、分类型：差距主因是 TMS</h1>
+<table>
+<colgroup><col width="70"/><col/><col/><col/><col/><col/><col/><col/><col/></colgroup>
+<thead><tr>
+<th background-color="rgb(240,244,255)" rowspan="2" vertical-align="middle"><p align="center"><b>类型</b></p></th>
+<th background-color="rgb(240,244,255)" colspan="4" vertical-align="top"><p align="center"><b>7 月</b></p></th>
+<th background-color="rgb(240,244,255)" colspan="4" vertical-align="top"><p align="center"><b>8 月</b></p></th>
+</tr>
+<tr>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>成交</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>剔异</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>差</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>保留</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>成交</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>剔异</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>差</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>保留</b></p></th>
+</tr></thead>
+<tbody>
+<tr><td vertical-align="top"><p>网货</p></td><td vertical-align="top"><p>66.0582</p></td><td vertical-align="top"><p>66.5084</p></td><td vertical-align="top"><p>-0.4502</p></td><td vertical-align="top"><p>100.7%</p></td><td vertical-align="top"><p>40.383</p></td><td vertical-align="top"><p>40.592</p></td><td vertical-align="top"><p>-0.209</p></td><td vertical-align="top"><p>100.5%</p></td></tr><tr><td vertical-align="top"><p>TMS</p></td><td vertical-align="top"><p>116.0812</p></td><td vertical-align="top"><p>39.5993</p></td><td vertical-align="top"><p>76.4819</p></td><td vertical-align="top"><p>34.1%</p></td><td vertical-align="top"><p>71.477</p></td><td vertical-align="top"><p>40.6827</p></td><td vertical-align="top"><p>30.7943</p></td><td vertical-align="top"><p>56.9%</p></td></tr><tr><td vertical-align="top"><p>撮合</p></td><td vertical-align="top"><p>97.3861</p></td><td vertical-align="top"><p>51.6705</p></td><td vertical-align="top"><p>45.7156</p></td><td vertical-align="top"><p>53.1%</p></td><td vertical-align="top"><p>43.4163</p></td><td vertical-align="top"><p>37.4724</p></td><td vertical-align="top"><p>5.9439</p></td><td vertical-align="top"><p>86.3%</p></td></tr>
+</tbody></table>
+<ul>
+<li><b>TMS</b>：7 月保留仅 34.1%（差 76.5 万），8 月仍仅 56.9%（差 30.8 万），是整体差额的主贡献。</li>
+<li><b>撮合</b>：7 月保留 53.1%（差 45.7 万），8 月回升到 86.3%（差 5.9 万）。</li>
+<li><b>网货</b>：两口径几乎持平；6–8 月剔异略高于成交（保留率略超 100%），主要因履约卸货日 vs 成交日的跨月错位，属口径差异而非「多剔」。</li>
+</ul>
+<h1>四、线上举措：调度被剔最狠</h1>
+<table>
+<colgroup><col width="80"/><col/><col/><col/><col/><col/><col/></colgroup>
+<thead><tr>
+<th background-color="rgb(240,244,255)" rowspan="2" vertical-align="middle"><p align="center"><b>举措</b></p></th>
+<th background-color="rgb(240,244,255)" colspan="3" vertical-align="top"><p align="center"><b>7 月</b></p></th>
+<th background-color="rgb(240,244,255)" colspan="3" vertical-align="top"><p align="center"><b>8 月</b></p></th>
+</tr>
+<tr>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>成交</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>剔异</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>保留</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>成交</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>剔异</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>保留</b></p></th>
+</tr></thead>
+<tbody>
+<tr><td vertical-align="top"><p>货主招募</p></td><td vertical-align="top"><p>0.2924</p></td><td vertical-align="top"><p>0.2374</p></td><td vertical-align="top"><p>81.2%</p></td><td vertical-align="top"><p>0.2292</p></td><td vertical-align="top"><p>0.1745</p></td><td vertical-align="top"><p>76.1%</p></td></tr><tr><td vertical-align="top"><p>电销</p></td><td vertical-align="top"><p>5.6793</p></td><td vertical-align="top"><p>3.6891</p></td><td vertical-align="top"><p>65.0%</p></td><td vertical-align="top"><p>5.8656</p></td><td vertical-align="top"><p>4.1255</p></td><td vertical-align="top"><p>70.3%</p></td></tr><tr><td vertical-align="top"><p>投流</p></td><td vertical-align="top"><p>11.1495</p></td><td vertical-align="top"><p>7.2495</p></td><td vertical-align="top"><p>65.0%</p></td><td vertical-align="top"><p>8.3345</p></td><td vertical-align="top"><p>6.7456</p></td><td vertical-align="top"><p>80.9%</p></td></tr><tr><td vertical-align="top"><p>调度</p></td><td vertical-align="top"><p>13.0003</p></td><td vertical-align="top"><p>4.7011</p></td><td vertical-align="top"><p>36.2%</p></td><td vertical-align="top"><p>9.9924</p></td><td vertical-align="top"><p>5.3451</p></td><td vertical-align="top"><p>53.5%</p></td></tr>
+</tbody></table>
+<ul>
+<li><b>调度</b>最弱：7 月保留 36.2%、8 月 53.5%；调度-TMS 更低（7 月约 28%、8 月约 47%）。</li>
+<li>电销 / 投流：7 月保留约 65%，8 月回升到 70% / 81%。</li>
+<li>货主招募体量小，7–8 月保留约 76%–81%。</li>
+</ul>
+<h1>五、线上占比：剔异履约略低</h1>
+<table>
+<colgroup><col width="70"/><col width="120"/><col width="140"/><col width="100"/></colgroup>
+<thead><tr>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>月</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>成交线上占比</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>剔异履约线上占比</b></p></th>
+<th background-color="rgb(240,244,255)" vertical-align="top"><p align="center"><b>差值</b></p></th>
+</tr></thead>
+<tbody>
+<tr><td vertical-align="top"><p>01月</p></td><td vertical-align="top"><p>0.31%</p></td><td vertical-align="top"><p>0.30%</p></td><td vertical-align="top"><p>-0.01pp</p></td></tr><tr><td vertical-align="top"><p>02月</p></td><td vertical-align="top"><p>0.20%</p></td><td vertical-align="top"><p>0.20%</p></td><td vertical-align="top"><p>+0.00pp</p></td></tr><tr><td vertical-align="top"><p>03月</p></td><td vertical-align="top"><p>2.27%</p></td><td vertical-align="top"><p>2.24%</p></td><td vertical-align="top"><p>-0.03pp</p></td></tr><tr><td vertical-align="top"><p>04月</p></td><td vertical-align="top"><p>4.10%</p></td><td vertical-align="top"><p>3.70%</p></td><td vertical-align="top"><p>-0.40pp</p></td></tr><tr><td vertical-align="top"><p>05月</p></td><td vertical-align="top"><p>7.09%</p></td><td vertical-align="top"><p>6.87%</p></td><td vertical-align="top"><p>-0.22pp</p></td></tr><tr><td vertical-align="top"><p>06月</p></td><td vertical-align="top"><p>7.75%</p></td><td vertical-align="top"><p>7.47%</p></td><td vertical-align="top"><p>-0.28pp</p></td></tr><tr><td background-color="rgb(255,249,230)" vertical-align="top"><p>07月</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>10.93%</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>10.31%</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>-0.63pp</p></td></tr><tr><td background-color="rgb(255,249,230)" vertical-align="top"><p>08月</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>15.87%</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>13.98%</p></td><td background-color="rgb(255,249,230)" vertical-align="top"><p>-1.89pp</p></td></tr>
+</tbody></table>
+<p>线上侧异常剔除更狠，所以剔异履约的线上占比系统性偏低；8 月差约 <b>-1.9pp</b>（15.87% → 13.98%）。</p>
+<h1>六、相对上次数据的变化</h1>
+<ul>
+<li>7 月保留率：约 61% → <b>56.4%</b>；差额：约 109 万 → <b>121.7 万</b>。</li>
+<li>8 月保留率：约 80% → <b>76.5%</b>；差额：约 32 万 → <b>36.5 万</b>。</li>
+<li>结论方向不变：7 月断层、TMS 主因、调度最弱；量级差进一步拉大。</li>
+</ul>
+<h1>七、怎么用这两套数</h1>
+<ul>
+<li>看放量 / 目标进度 / 周报 KPI：优先用 <b>成交</b>。</li>
+<li>看质量 / 履约可落地量 / 峰值推演「干净量」：用 <b>剔异&amp;履约</b>。</li>
+<li>解读 7–8 月时务必注明口径；否则同一「线上占比」会差约 1–2pp。</li>
+</ul>
+<h1>附图</h1>

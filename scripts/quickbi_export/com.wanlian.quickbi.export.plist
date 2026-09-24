@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  macOS 定时：每天 09:30 拉 Quick BI「前一天」数据到本地
+
+  安装：
+    cp com.wanlian.quickbi.export.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.wanlian.quickbi.export.plist
+    launchctl start com.wanlian.quickbi.export   # 立刻试跑一次
+
+  卸载：
+    launchctl unload ~/Library/LaunchAgents/com.wanlian.quickbi.export.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.wanlian.quickbi.export</string>
+  <key>WorkingDirectory</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/run.sh</string>
+    <string>--pt</string>
+    <string>yesterday</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>30</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/logs/export.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/logs/export.err.log</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>

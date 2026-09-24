@@ -1,0 +1,69 @@
+[
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A132:G138",
+      "cells": [
+        [
+          {"value": "整体-线下"},
+          {}, {}, {}, {}, {}, {}
+        ],
+        [
+          {},
+          {"value": "2026年8月"},
+          {"value": "2026年9月"},
+          {"value": "2026年10月"},
+          {"value": "2026年11月"},
+          {"value": "2026年12月"},
+          {"value": "合计"}
+        ],
+        [
+          {"value": "大盘峰值单量（万）"},
+          {"value": 8.4, "cell_styles": {"number_format": "0.0"}},
+          {"value": 18, "cell_styles": {"number_format": "0"}},
+          {"value": 24, "cell_styles": {"number_format": "0"}},
+          {"value": 32, "cell_styles": {"number_format": "0"}},
+          {"value": 40, "cell_styles": {"number_format": "0"}},
+          {"formula": "=F134", "cell_styles": {"number_format": "0"}}
+        ],
+        [
+          {"value": "线下人效（人/月）"},
+          {"value": 973, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 1739, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 1817, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 1901, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 2022, "cell_styles": {"number_format": "#,##0"}},
+          {"formula": "=F135", "cell_styles": {"number_format": "#,##0"}}
+        ],
+        [
+          {"value": "线下人力（作业人数）"},
+          {"value": 1628, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 3106, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 4095, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 5050, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 6133, "cell_styles": {"number_format": "#,##0"}},
+          {"formula": "=F136", "cell_styles": {"number_format": "#,##0"}}
+        ],
+        [
+          {"value": "线下人力（到岗数）"},
+          {},
+          {"value": 3727, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 4914, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 6060, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 7360, "cell_styles": {"number_format": "#,##0"}},
+          {"formula": "=F137", "cell_styles": {"number_format": "#,##0"}}
+        ],
+        [
+          {"value": "当月招聘需求"},
+          {},
+          {"value": 2099, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 1187, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 1146, "cell_styles": {"number_format": "#,##0"}},
+          {"value": 1300, "cell_styles": {"number_format": "#,##0"}},
+          {"formula": "=SUM(C138:F138)", "cell_styles": {"number_format": "#,##0"}}
+        ]
+      ]
+    }
+  }
+]

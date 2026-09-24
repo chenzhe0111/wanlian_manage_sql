@@ -1,0 +1,93 @@
+<title>线上举措 · 目标看板原型 v1</title>
+
+<callout emoji="💡" background-color="light-blue" border-color="blue">
+<p>对齐 wiki：<a href="https://wanlianyida.feishu.cn/wiki/Ikdmwf4sqifVOek2gUdcLqWUnKb">目标看板</a></p>
+<p>首期范围：<b>线上举措</b>（货主招募 / 投流 / 电销 / 调度）</p>
+<p>数据口径：同 01_月度汇总（举措等权分摊；调度漏斗含撮合·TMS·网货）</p>
+</callout>
+
+<h1>一、设计原则</h1>
+
+<table>
+<thead><tr><th>原则</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><b>3 秒看懂</b></td><td>首屏只回答：整体达标吗？谁拖后腿？谁超预期？</td></tr>
+<tr><td><b>对标时间进度</b></td><td>完成率 vs 当月时间进度；绿超前、红落后</td></tr>
+<tr><td><b>举措优先</b></td><td>四举措运单与结构，而非明细表</td></tr>
+<tr><td><b>可下钻 4 层</b></td><td>整体 → 举措 → 类型/新老 → 漏斗/明细</td></tr>
+<tr><td><b>一张口径</b></td><td>看板数 = 周报表3 = SQL 01/02/03</td></tr>
+</tbody>
+</table>
+
+<h1>二、信息架构</h1>
+
+<p>4 页 + 1 全局筛选：统计月 · 截止日 · 对比基准（目标/上月同期/上周）</p>
+
+<h1>三、P0 总览页（领导首屏）</h1>
+
+<p>打开即见：4 张 KPI 卡 + 四举措进度条 + 趋势 + 一句话结论。</p>
+
+<table>
+<thead><tr><th>卡片</th><th>主指标</th><th>红绿灯</th></tr></thead>
+<tbody>
+<tr><td>线上运单</td><td>实际/目标（万单）、缺口</td><td>完成率 vs 时间进度 ±2pp</td></tr>
+<tr><td>线上占比</td><td>实际%/目标%</td><td>同上</td></tr>
+<tr><td>发货货主</td><td>实际/目标（家）</td><td>同上</td></tr>
+<tr><td>结构健康</td><td>TMS/撮合/网货 vs 目标结构</td><td>偏差 &gt;5pp 黄/红</td></tr>
+</tbody>
+</table>
+
+<h1>四、P1 举措达成页</h1>
+
+<p>一张主表：举措 × 月目标/实际/完成率/vs进度/TMS/撮合/网货/留存/新增/状态。</p>
+<p>下方：类型结构堆叠柱 + 新老对比 + 漏斗健康度热力格。</p>
+
+<h1>五、P2 举措下钻页</h1>
+
+<p>四举措共用模板；<b>调度</b>无新老 Tab，改为撮合/TMS/网货三列漏斗。</p>
+<p>Tab：总览 · 类型结构 · 新老货主 · 转化漏斗 · 周趋势</p>
+
+<h1>六、P3 异常与明细</h1>
+
+<p>三个子视图：运单明细 · 货主明细 · 公司 TOP。支持从 P0/P1/P2 任意数字点入。</p>
+
+<h1>七、下钻路径</h1>
+
+<whiteboard type="mermaid">
+flowchart TD
+    P0["P0 总览"] --> P1["P1 举措矩阵"]
+    P1 --> P2["P2 举措详情"]
+    P2 --> P3["P3 明细"]
+    P3 --> EXT["运单/货主明细导出"]
+
+    P2 --> T1["Tab 类型结构"]
+    P2 --> T2["Tab 新老货主"]
+    P2 --> T3["Tab 转化漏斗"]
+</whiteboard>
+
+<callout emoji="📝" background-color="light-yellow" border-color="yellow">
+<p><b>示例下钻链</b>：P0 投流红 → P1 新增 0.5% → P2 新老 Tab 看漏斗断点 → P3 筛选「投流+新增+未发货」→ 导出跟进</p>
+</callout>
+
+<h1>八、数据映射 &amp; 分期</h1>
+
+<table>
+<thead><tr><th>模块</th><th>刷新</th><th>数据源</th></tr></thead>
+<tbody>
+<tr><td>P0 四举措</td><td>日</td><td>01_月度汇总 + 目标 Excel</td></tr>
+<tr><td>P1 矩阵/漏斗</td><td>日/周</td><td>01 + 03 + 09</td></tr>
+<tr><td>P2 周趋势</td><td>周</td><td>02_周度汇总</td></tr>
+<tr><td>P3 明细</td><td>按需</td><td>19/33/35/36</td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><tr><th>阶段</th><th>交付</th><th>周期</th></tr></thead>
+<tbody>
+<tr><td>MVP</td><td>P0 + P1 主表 + 四举措卡片</td><td>1–2 周</td></tr>
+<tr><td>V1</td><td>P2 四举措详情（总览+类型+漏斗）</td><td>+2 周</td></tr>
+<tr><td>V2</td><td>P3 明细下钻 + 异常筛选 + 自动结论</td><td>+2 周</td></tr>
+</tbody>
+</table>
+
+<p><i>原型 v1 · 2026-08-27</i></p>

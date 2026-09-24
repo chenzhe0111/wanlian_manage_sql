@@ -1,0 +1,43 @@
+{
+  "presentation_goal": "展示2026年线上运单1-8月实际与8-12月目标路径，并点明达成目标所需环比增速。",
+  "audience": "平台运营/业务负责人，需一眼看清现状缺口与后程增速压力。",
+  "theme_style": "Clean business, light gray content bg, navy header, orange accent for target gap.",
+  "visual_system": {
+    "background_strategy": "Content page light rgba(248,249,251); navy header bar; orange left accent.",
+    "motif": "Left orange accent + navy header strip + right insight panel.",
+    "color_roles": {
+      "primary": "Navy rgb(15,30,58) for structure and actual series",
+      "secondary": "Light card white for chart panel",
+      "accent": "Orange rgb(240,129,54) for target series and key callouts"
+    }
+  },
+  "typography_constraints": {
+    "title_max_lines": 1,
+    "body_max_lines_per_box": 4,
+    "footer_max_lines": 1,
+    "long_text_handling": "Keep insight bullets short; put caveat in footer."
+  },
+  "verification_plan": {
+    "check_background_consistency": true,
+    "check_text_fit": true,
+    "check_visual_focus": true,
+    "check_asset_rendering": true
+  },
+  "slides": [
+    {
+      "page": 1,
+      "title": "线上整体运单：实际 vs 目标",
+      "key_message": "1-7月已放量至30.1万单；8月MTD16.5万，距月目标35.2万仍有缺口；8-12目标路径要求月环比约+17%~+40%。",
+      "layout_type": "chart-insight-split",
+      "visual_focus": "Large dual-series line chart (actual 1-8, target 8-12) occupying left-center; right insight panel with growth rates.",
+      "asset_need": {
+        "asset_type": "none",
+        "purpose": "Chart is native <chart> element; no external image.",
+        "suggested_query": "",
+        "fallback_if_missing": "Use whiteboard SVG line if chart fails."
+      },
+      "text_density": "medium",
+      "speaker_intent": "先讲放量路径，再讲8月MTD缺口，最后落到8→12目标环比增速要求。"
+    }
+  ]
+}

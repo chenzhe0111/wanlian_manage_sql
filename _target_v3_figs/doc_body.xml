@@ -1,0 +1,103 @@
+<title>线上订单目标说明（9–12月 · 峰值反推版）</title>
+
+<callout emoji="📌" background-color="light-blue" border-color="blue">
+  <p>数据来源：<a href="https://wanlianyida.feishu.cn/wiki/VcsPwX0a2iAx7RkigrKcelEmndd?sheet=LsOU1Q">线上目标v3测算 · 四举措推演_9-12</a>。口径：峰值固定 → 线性反推日均 → 月运单量 → 按占比拆四举措 / 类型 / 漏斗。</p>
+</callout>
+
+<h1>一、目标结论（一句话）</h1>
+<p>9–12 月线上运单按「峰值路径」重算后，月量从 <b>3.35 → 13.28 → 49.30 → 195.41 万单</b>（合计 <b>261.35 万单</b>）；12 月峰值做到 <b>10 万单/日</b>、峰值线上占比 <b>25%</b>，对应月量口径线上占比约 <b>20%</b>。结构上仍是投流托底、调度跟进，裂变/电销后段加速。</p>
+
+<h1>二、推演逻辑</h1>
+<p>本版不再直接拍月运单量，而是先锁定日峰值路径，再按线性增长假设反推：</p>
+<ol>
+  <li seq="auto">固定线上日峰值：9–12 月为 0.18 / 0.68 / 2.61 / <b>10.00</b> 万单（12 月对齐整体峰值 40 万单 × 25%）。</li>
+  <li seq="auto">日均 =（上月峰值 + 本月峰值）/ 2；其中 9 月上月峰值取 8 月实际线上峰值。</li>
+  <li seq="auto">月运单 = 日均 × 当月天数（30/31/30/31）。</li>
+  <li seq="auto">四举措 / 类型 / 新老漏斗：月运单 × 表内黄底假设占比与转化率。</li>
+</ol>
+
+<h1>三、整体与线上总览</h1>
+<table>
+  <thead>
+    <tr>
+      <th background-color="light-blue">指标</th>
+      <th background-color="light-blue">9月</th>
+      <th background-color="light-blue">10月</th>
+      <th background-color="light-blue">11月</th>
+      <th background-color="light-blue">12月</th>
+      <th background-color="light-blue">9-12合计</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>整体运单（万单）</td><td>554.7</td><td>679.8</td><td>774.0</td><td>973.1</td><td>2981.6</td>
+    </tr>
+    <tr>
+      <td>整体日峰值（万单）</td><td>24</td><td>27</td><td>33</td><td>40</td><td>—</td>
+    </tr>
+    <tr>
+      <td background-color="light-yellow">线上运单（万单）</td>
+      <td background-color="light-yellow"><b>3.35</b></td>
+      <td background-color="light-yellow"><b>13.28</b></td>
+      <td background-color="light-yellow"><b>49.30</b></td>
+      <td background-color="light-yellow"><b>195.41</b></td>
+      <td background-color="light-yellow"><b>261.35</b></td>
+    </tr>
+    <tr>
+      <td>线上日均（万单）</td><td>0.11</td><td>0.43</td><td>1.64</td><td>6.30</td><td>—</td>
+    </tr>
+    <tr>
+      <td>线上日峰值（万单）</td><td>0.18</td><td>0.68</td><td>2.61</td><td>10.00</td><td>—</td>
+    </tr>
+    <tr>
+      <td>线上量占比</td><td>0.60%</td><td>1.95%</td><td>6.37%</td><td>20.08%</td><td>—</td>
+    </tr>
+    <tr>
+      <td>峰值线上占比</td><td>0.74%</td><td>2.52%</td><td>7.90%</td><td>25.00%</td><td>—</td>
+    </tr>
+  </tbody>
+</table>
+<p>相对上一版「直接给定月量（5.13/13.9/35/97.31）」：前段更保守（9 月下调），后段因峰值指数抬升而显著放量（12 月约翻倍），更贴「峰值先行、量随峰值涨」的打法。</p>
+
+<h1>四、目标图</h1>
+<p><b>图0 推演逻辑</b></p>
+<p>（插图）</p>
+<p><b>图1 线上运单目标路径</b></p>
+<p>（插图）</p>
+<p><b>图2 线上占比跃迁</b></p>
+<p>（插图）</p>
+<p><b>图3 四举措运单堆叠</b></p>
+<p>（插图）</p>
+<p><b>图4 四举措结构与增速</b></p>
+<p>（插图）</p>
+
+<h1>五、四举措拆解</h1>
+<table>
+  <thead>
+    <tr>
+      <th background-color="light-blue">举措</th>
+      <th background-color="light-blue">9月</th>
+      <th background-color="light-blue">10月</th>
+      <th background-color="light-blue">11月</th>
+      <th background-color="light-blue">12月</th>
+      <th background-color="light-blue">合计</th>
+      <th background-color="light-blue">占线上</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>裂变</td><td>0.40</td><td>1.90</td><td>8.11</td><td>36.48</td><td>46.9</td><td>17.9%</td></tr>
+    <tr><td>电销</td><td>0.56</td><td>2.26</td><td>8.73</td><td>35.98</td><td>47.5</td><td>18.2%</td></tr>
+    <tr><td background-color="light-yellow">投流</td><td background-color="light-yellow">1.53</td><td background-color="light-yellow">5.74</td><td background-color="light-yellow">20.38</td><td background-color="light-yellow">77.75</td><td background-color="light-yellow"><b>105.4</b></td><td background-color="light-yellow"><b>40.3%</b></td></tr>
+    <tr><td>调度</td><td>0.87</td><td>3.39</td><td>12.08</td><td>45.20</td><td>61.5</td><td>23.5%</td></tr>
+    <tr><td><b>合计</b></td><td><b>3.35</b></td><td><b>13.28</b></td><td><b>49.30</b></td><td><b>195.41</b></td><td><b>261.35</b></td><td>100%</td></tr>
+  </tbody>
+</table>
+<p>投流仍是量的基本盘（约四成）；调度约两成半；裂变与电销合计约三成半，且占比随月份抬升，后段贡献加速。新老拆分、TMS/撮合/网货及漏斗过程指标详见测算表【2】【4】【5】，文档不重复展开。</p>
+
+<h1>六、跟盯要点</h1>
+<ol>
+  <li seq="auto"><b>盯峰值，不只盯月量。</b>月量由峰值线性反推；日峰值掉队会直接吃掉整月目标。</li>
+  <li seq="auto"><b>12 月是跃迁月。</b>峰值 10 万单、月量约 195 万单，需要投流存量与调度放量同时兑现。</li>
+  <li seq="auto"><b>占比双口径。</b>对外沟通注意区分：量占比约 20% vs 峰值占比 25%（12 月）。</li>
+  <li seq="auto"><b>假设可调。</b>举措占比、类型结构、转化率仍为黄底参数；改占比后运单/漏斗会联动重算。</li>
+</ol>

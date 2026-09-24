@@ -1,9 +1,20 @@
-/* 月度汇总 | 来源：管理专项代码.docx */
-WITH company_zm AS (
+/* 月度汇总 | 本月 vs 上月同期
+ * 口径同原月度汇总（线下线索 OR 非微信主体；等权分摊）
+ * 本月：该月 1 日～截止日（当月未完则到 as_of_dt，已完月到月末）
+ * 上月同期：上月 1 日～上月同日（无该日则取上月最后一天）
+ * 例：算到 8/16 → 8 月=8/1–8/16，上月同期=7/1–7/16
+ */
+WITH tim AS (
+    SELECT
+        DATE '2026-01-01' AS range_start,
+        DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY) AS as_of_dt   /* 统计截止日，右闭；可改成 DATE '2026-08-16' */
+),
+company_zm AS (
     SELECT DISTINCT invitee_id
     FROM dwd_vlsp_mt_user_recruitment_business_process_minf zm
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON zm.invitee_company_user_id = t1.psn_acct_user_base_id
+        AND t1.is_fake_user = '0'
     WHERE activity_title = '货主招募活动'
       AND invitee_id IS NOT NULL AND invitee_id <> ''
 ),
@@ -20,12 +31,15 @@ company_tl AS (
         FROM match_shipper_table_advertise_info a
         LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
             ON a.telephone = b.telephone
+            AND b.is_fake_user = '0'
         WHERE b.user_base_id <> ''
     ) ad
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON ad.user_id = t1.user_base_id
+        AND t1.is_fake_user = '0'
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
         ON t3.psn_acct_user_base_id = ad.user_id
+        AND t3.is_fake_user = '0'
     WHERE COALESCE(t1.company_id, t3.company_id) IS NOT NULL
 ),
 company_dx AS (
@@ -43,10 +57,37 @@ company_wxx AS (
       AND customer_company_id IS NOT NULL
     GROUP BY customer_company_id
 ),
+/* 输出月份：range_start 所在月 ～ as_of 所在月 */
+month_spine AS (
+    SELECT
+        DATE_FORMAT(DATE_ADD(t.range_start, INTERVAL n.n MONTH), '%Y-%m-01') AS mon
+    FROM tim t
+    JOIN (
+        SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3
+        UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7
+        UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11
+    ) n
+        ON DATE_ADD(t.range_start, INTERVAL n.n MONTH)
+           <= DATE_FORMAT(t.as_of_dt, '%Y-%m-01')
+),
+month_meta AS (
+    SELECT
+        m.mon,
+        CASE
+            WHEN m.mon = DATE_FORMAT(t.as_of_dt, '%Y-%m-01') THEN DAY(t.as_of_dt)
+            ELSE DAY(LAST_DAY(m.mon))
+        END AS cutoff_dom,
+        DATE_SUB(m.mon, INTERVAL 1 MONTH) AS prev_mon,
+        t.as_of_dt
+    FROM month_spine m
+    CROSS JOIN tim t
+),
 waybill_hit AS (
     SELECT
         waybill.waybill_id,
+        DATE(waybill.accept_dt) AS accept_day,
         DATE_FORMAT(waybill.accept_dt, '%Y-%m-01') AS mon,
+        DAY(waybill.accept_dt) AS accept_dom,
         CASE
             WHEN waybill.invoice_type = 20 THEN '网货'
             WHEN waybill.invoice_type = 10 AND waybill.tms_flag = 10 THEN 'TMS'
@@ -64,13 +105,15 @@ waybill_hit AS (
             THEN 1 ELSE 0
         END AS hit_wxx
     FROM dwd.dwd_vlsp_mt_match_waybill_match_business_process_minf waybill
+    CROSS JOIN tim t
     LEFT JOIN company_zm  ON company_zm.invitee_id = waybill.process_shipper_company_id
     LEFT JOIN company_tl  ON company_tl.company_id = waybill.process_shipper_company_id
     LEFT JOIN company_dx  ON company_dx.company_name_dx = waybill.process_shipper_company_name
     LEFT JOIN company_dd  ON company_dd.company_name_dd = waybill.process_shipper_company_name
     LEFT JOIN company_wxx ON company_wxx.customer_company_id = waybill.process_shipper_company_id
-    WHERE SUBSTR(waybill.accept_dt, 1, 10) BETWEEN DATE '2026-01-01' AND DATE '2026-07-14'
-    AND (
+    WHERE DATE(waybill.accept_dt) >= DATE_SUB(t.range_start, INTERVAL 1 MONTH)  /* 含首月的上月同期 */
+      AND DATE(waybill.accept_dt) <= t.as_of_dt
+      AND (
           company_wxx.sales_lv1_company_id IS NOT NULL
           OR NVL(waybill.shipper_company_name, '') NOT IN (
               SELECT DISTINCT dept_name
@@ -86,7 +129,7 @@ waybill_hit AS (
 ),
 waybill_split AS (
     SELECT
-        waybill_id, mon, waybill_category,
+        waybill_id, mon, accept_dom, waybill_category,
         hit_offline, hit_zm, hit_tl, hit_dx, hit_dd, hit_wxx,
         CASE WHEN hit_zm  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_zm,
         CASE WHEN hit_tl  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_tl,
@@ -95,105 +138,125 @@ waybill_split AS (
         CASE WHEN hit_wxx = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_wxx
     FROM waybill_hit
 ),
-agg AS (
+/* 本月：落在 mon 且日序 ≤ cutoff_dom */
+agg_cur AS (
     SELECT
-        mon, waybill_category,
-        COUNT(DISTINCT waybill_id) AS total_cnt,
-        COUNT(DISTINCT CASE WHEN hit_offline = 1 THEN waybill_id END) AS offline_cnt,
-        COUNT(DISTINCT CASE WHEN hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx > 0 THEN waybill_id END) AS online_cnt,
-        SUM(w_zm) AS zm_cnt, SUM(w_tl) AS tl_cnt, SUM(w_dx) AS dx_cnt,
-        SUM(w_dd) AS dd_cnt, SUM(w_wxx) AS wxx_cnt
-    FROM waybill_split
-    GROUP BY mon, waybill_category
+        mm.mon,
+        ws.waybill_category,
+        COUNT(DISTINCT ws.waybill_id) AS total_cnt,
+        COUNT(DISTINCT CASE WHEN ws.hit_offline = 1 THEN ws.waybill_id END) AS offline_cnt,
+        COUNT(DISTINCT CASE WHEN ws.hit_zm + ws.hit_tl + ws.hit_dx + ws.hit_dd + ws.hit_wxx > 0 THEN ws.waybill_id END) AS online_cnt,
+        SUM(ws.w_zm) AS zm_cnt, SUM(ws.w_tl) AS tl_cnt, SUM(ws.w_dx) AS dx_cnt,
+        SUM(ws.w_dd) AS dd_cnt, SUM(ws.w_wxx) AS wxx_cnt
+    FROM month_meta mm
+    JOIN waybill_split ws
+        ON ws.mon = mm.mon
+       AND ws.accept_dom <= mm.cutoff_dom
+    GROUP BY mm.mon, ws.waybill_category
 ),
-agg_all AS (
+/* 上月同期：落在 prev_mon 且日序 ≤ LEAST(cutoff_dom, 上月天数) */
+agg_prev AS (
+    SELECT
+        mm.mon,
+        ws.waybill_category,
+        COUNT(DISTINCT ws.waybill_id) AS total_cnt,
+        COUNT(DISTINCT CASE WHEN ws.hit_offline = 1 THEN ws.waybill_id END) AS offline_cnt,
+        COUNT(DISTINCT CASE WHEN ws.hit_zm + ws.hit_tl + ws.hit_dx + ws.hit_dd + ws.hit_wxx > 0 THEN ws.waybill_id END) AS online_cnt,
+        SUM(ws.w_zm) AS zm_cnt, SUM(ws.w_tl) AS tl_cnt, SUM(ws.w_dx) AS dx_cnt,
+        SUM(ws.w_dd) AS dd_cnt, SUM(ws.w_wxx) AS wxx_cnt
+    FROM month_meta mm
+    JOIN waybill_split ws
+        ON ws.mon = mm.prev_mon
+       AND ws.accept_dom <= LEAST(mm.cutoff_dom, DAY(LAST_DAY(mm.prev_mon)))
+    GROUP BY mm.mon, ws.waybill_category
+),
+agg_cur_all AS (
     SELECT
         mon,
-        SUM(total_cnt)   AS total_cnt,
-        SUM(offline_cnt) AS offline_cnt,
-        SUM(online_cnt)  AS online_cnt,
-        SUM(zm_cnt)      AS zm_cnt,
-        SUM(tl_cnt)      AS tl_cnt,
-        SUM(dx_cnt)      AS dx_cnt,
-        SUM(dd_cnt)      AS dd_cnt,
-        SUM(wxx_cnt)     AS wxx_cnt
-    FROM agg
+        SUM(total_cnt) AS total_cnt, SUM(offline_cnt) AS offline_cnt, SUM(online_cnt) AS online_cnt,
+        SUM(zm_cnt) AS zm_cnt, SUM(tl_cnt) AS tl_cnt, SUM(dx_cnt) AS dx_cnt,
+        SUM(dd_cnt) AS dd_cnt, SUM(wxx_cnt) AS wxx_cnt
+    FROM agg_cur
+    GROUP BY mon
+),
+agg_prev_all AS (
+    SELECT
+        mon,
+        SUM(total_cnt) AS total_cnt, SUM(offline_cnt) AS offline_cnt, SUM(online_cnt) AS online_cnt,
+        SUM(zm_cnt) AS zm_cnt, SUM(tl_cnt) AS tl_cnt, SUM(dx_cnt) AS dx_cnt,
+        SUM(dd_cnt) AS dd_cnt, SUM(wxx_cnt) AS wxx_cnt
+    FROM agg_prev
     GROUP BY mon
 ),
 result AS (
     /* ===== 整体：合计 + 运单类型 ===== */
-    SELECT mon, '整体' AS stat_level, '整体' AS stat_dim, total_cnt AS waybill_cnt FROM agg_all
+    SELECT c.mon, '整体' AS stat_level, '整体' AS stat_dim,
+           c.total_cnt AS cnt_cur, COALESCE(p.total_cnt, 0) AS cnt_prev
+    FROM agg_cur_all c
+    LEFT JOIN agg_prev_all p ON p.mon = c.mon
     UNION ALL
-    SELECT mon, '整体', waybill_category, total_cnt FROM agg
+    SELECT c.mon, '整体', c.waybill_category, c.total_cnt, COALESCE(p.total_cnt, 0)
+    FROM agg_cur c
+    LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
     /* ===== 线上线下 ===== */
     UNION ALL
-    SELECT mon, '线上线下', '线下', offline_cnt FROM agg_all
+    SELECT c.mon, '线上线下', '线下', c.offline_cnt, COALESCE(p.offline_cnt, 0)
+    FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
     UNION ALL
-    SELECT mon, '线上线下', '线上', online_cnt FROM agg_all
-    /* ===== ★ 新增：线上 + 运单类型 ===== */
+    SELECT c.mon, '线上线下', '线上', c.online_cnt, COALESCE(p.online_cnt, 0)
+    FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    /* ===== 线上 + 运单类型 ===== */
     UNION ALL
-    SELECT mon, '线上', '线上', online_cnt FROM agg_all
+    SELECT c.mon, '线上', '线上', c.online_cnt, COALESCE(p.online_cnt, 0)
+    FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
     UNION ALL
-    SELECT mon, '线上', waybill_category, online_cnt FROM agg
+    SELECT c.mon, '线上', c.waybill_category, c.online_cnt, COALESCE(p.online_cnt, 0)
+    FROM agg_cur c
+    LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
     /* ===== 线上举措：合计 ===== */
-    UNION ALL
-    SELECT mon, '线上举措', '货主招募', zm_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '线上举措', '投流', tl_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '线上举措', '电销', dx_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '线上举措', '调度', dd_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '线上举措', '无线下销售归属', wxx_cnt FROM agg_all
+    UNION ALL SELECT c.mon, '线上举措', '货主招募', c.zm_cnt, COALESCE(p.zm_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '线上举措', '投流', c.tl_cnt, COALESCE(p.tl_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '线上举措', '电销', c.dx_cnt, COALESCE(p.dx_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '线上举措', '调度', c.dd_cnt, COALESCE(p.dd_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '线上举措', '无线下销售归属', c.wxx_cnt, COALESCE(p.wxx_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
     /* ===== 线上举措 × 运单类型 ===== */
-    UNION ALL
-    SELECT mon, '线上举措', CONCAT('货主招募-', waybill_category), zm_cnt FROM agg
-    UNION ALL
-    SELECT mon, '线上举措', CONCAT('投流-', waybill_category), tl_cnt FROM agg
-    UNION ALL
-    SELECT mon, '线上举措', CONCAT('电销-', waybill_category), dx_cnt FROM agg
-    UNION ALL
-    SELECT mon, '线上举措', CONCAT('调度-', waybill_category), dd_cnt FROM agg
-    UNION ALL
-    SELECT mon, '线上举措', CONCAT('无线下销售归属-', waybill_category), wxx_cnt FROM agg
+    UNION ALL SELECT c.mon, '线上举措', CONCAT('货主招募-', c.waybill_category), c.zm_cnt, COALESCE(p.zm_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '线上举措', CONCAT('投流-', c.waybill_category), c.tl_cnt, COALESCE(p.tl_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '线上举措', CONCAT('电销-', c.waybill_category), c.dx_cnt, COALESCE(p.dx_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '线上举措', CONCAT('调度-', c.waybill_category), c.dd_cnt, COALESCE(p.dd_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '线上举措', CONCAT('无线下销售归属-', c.waybill_category), c.wxx_cnt, COALESCE(p.wxx_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
     /* ===== 举措：合计 ===== */
-    UNION ALL
-    SELECT mon, '举措', '货主招募', zm_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '举措', '投流', tl_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '举措', '电销', dx_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '举措', '调度', dd_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '举措', '无线下销售归属', wxx_cnt FROM agg_all
-    UNION ALL
-    SELECT mon, '举措', '线下', offline_cnt FROM agg_all
+    UNION ALL SELECT c.mon, '举措', '货主招募', c.zm_cnt, COALESCE(p.zm_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '举措', '投流', c.tl_cnt, COALESCE(p.tl_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '举措', '电销', c.dx_cnt, COALESCE(p.dx_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '举措', '调度', c.dd_cnt, COALESCE(p.dd_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '举措', '无线下销售归属', c.wxx_cnt, COALESCE(p.wxx_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
+    UNION ALL SELECT c.mon, '举措', '线下', c.offline_cnt, COALESCE(p.offline_cnt, 0) FROM agg_cur_all c LEFT JOIN agg_prev_all p ON p.mon = c.mon
     /* ===== 举措 × 运单类型 ===== */
-    UNION ALL
-    SELECT mon, '举措', CONCAT('货主招募-', waybill_category), zm_cnt FROM agg
-    UNION ALL
-    SELECT mon, '举措', CONCAT('投流-', waybill_category), tl_cnt FROM agg
-    UNION ALL
-    SELECT mon, '举措', CONCAT('电销-', waybill_category), dx_cnt FROM agg
-    UNION ALL
-    SELECT mon, '举措', CONCAT('调度-', waybill_category), dd_cnt FROM agg
-    UNION ALL
-    SELECT mon, '举措', CONCAT('无线下销售归属-', waybill_category), wxx_cnt FROM agg
-    UNION ALL
-    SELECT mon, '举措', CONCAT('线下-', waybill_category), offline_cnt FROM agg
+    UNION ALL SELECT c.mon, '举措', CONCAT('货主招募-', c.waybill_category), c.zm_cnt, COALESCE(p.zm_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '举措', CONCAT('投流-', c.waybill_category), c.tl_cnt, COALESCE(p.tl_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '举措', CONCAT('电销-', c.waybill_category), c.dx_cnt, COALESCE(p.dx_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '举措', CONCAT('调度-', c.waybill_category), c.dd_cnt, COALESCE(p.dd_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '举措', CONCAT('无线下销售归属-', c.waybill_category), c.wxx_cnt, COALESCE(p.wxx_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
+    UNION ALL SELECT c.mon, '举措', CONCAT('线下-', c.waybill_category), c.offline_cnt, COALESCE(p.offline_cnt, 0) FROM agg_cur c LEFT JOIN agg_prev p ON p.mon = c.mon AND p.waybill_category = c.waybill_category
 )
 SELECT
-    mon AS 月份,
-    stat_level AS 统计层级,
-    stat_dim AS 维度,
-    CONCAT(stat_level, '-', stat_dim) AS 层级维度,
-    waybill_cnt/10000 AS 运单量
-FROM result
+    r.mon AS 月份,
+    mm.cutoff_dom AS 截止日序,
+    r.stat_level AS 统计层级,
+    r.stat_dim AS 维度,
+    CONCAT(r.stat_level, '-', r.stat_dim) AS 层级维度,
+    ROUND(r.cnt_cur / 10000, 4) AS 运单量,
+    ROUND(r.cnt_prev / 10000, 4) AS 上月同期运单量,
+    ROUND(
+        (r.cnt_cur - r.cnt_prev) * 1.0 / NULLIF(r.cnt_prev, 0),
+        4
+    ) AS 较上月同期
+FROM result r
+JOIN month_meta mm ON mm.mon = r.mon
 ORDER BY
-    mon,
-    CASE stat_level
+    r.mon,
+    CASE r.stat_level
         WHEN '整体' THEN 1
         WHEN '线上线下' THEN 2
         WHEN '线上' THEN 3
@@ -202,23 +265,23 @@ ORDER BY
         ELSE 99
     END,
     CASE
-        WHEN stat_dim = '整体' THEN 0
-        WHEN stat_dim = '线上' THEN 1
-        WHEN stat_dim = '线下' THEN 2
-        WHEN stat_dim = '货主招募' THEN 10
-        WHEN stat_dim = '投流' THEN 11
-        WHEN stat_dim = '电销' THEN 12
-        WHEN stat_dim = '调度' THEN 13
-        WHEN stat_dim = '无线下销售归属' THEN 14
-        WHEN stat_dim = '网货' THEN 20
-        WHEN stat_dim = 'TMS' THEN 21
-        WHEN stat_dim = '撮合' THEN 22
-        WHEN stat_dim LIKE '货主招募-%' THEN 30
-        WHEN stat_dim LIKE '投流-%' THEN 31
-        WHEN stat_dim LIKE '电销-%' THEN 32
-        WHEN stat_dim LIKE '调度-%' THEN 33
-        WHEN stat_dim LIKE '无线下销售归属-%' THEN 34
-        WHEN stat_dim LIKE '线下-%' THEN 35
+        WHEN r.stat_dim = '整体' THEN 0
+        WHEN r.stat_dim = '线上' THEN 1
+        WHEN r.stat_dim = '线下' THEN 2
+        WHEN r.stat_dim = '货主招募' THEN 10
+        WHEN r.stat_dim = '投流' THEN 11
+        WHEN r.stat_dim = '电销' THEN 12
+        WHEN r.stat_dim = '调度' THEN 13
+        WHEN r.stat_dim = '无线下销售归属' THEN 14
+        WHEN r.stat_dim = '网货' THEN 20
+        WHEN r.stat_dim = 'TMS' THEN 21
+        WHEN r.stat_dim = '撮合' THEN 22
+        WHEN r.stat_dim LIKE '货主招募-%' THEN 30
+        WHEN r.stat_dim LIKE '投流-%' THEN 31
+        WHEN r.stat_dim LIKE '电销-%' THEN 32
+        WHEN r.stat_dim LIKE '调度-%' THEN 33
+        WHEN r.stat_dim LIKE '无线下销售归属-%' THEN 34
+        WHEN r.stat_dim LIKE '线下-%' THEN 35
         ELSE 99
     END,
-    stat_dim;
+    r.stat_dim;

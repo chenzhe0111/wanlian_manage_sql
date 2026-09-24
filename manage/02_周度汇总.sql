@@ -4,6 +4,7 @@ WITH company_zm AS (
     FROM dwd_vlsp_mt_user_recruitment_business_process_minf zm
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON zm.invitee_company_user_id = t1.psn_acct_user_base_id
+        AND t1.is_fake_user = '0'
     WHERE activity_title = '货主招募活动'
       AND invitee_id IS NOT NULL AND invitee_id <> ''
 ),
@@ -20,12 +21,15 @@ company_tl AS (
         FROM match_shipper_table_advertise_info a
         LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
             ON a.telephone = b.telephone
+            AND b.is_fake_user = '0'
         WHERE b.user_base_id <> ''
     ) ad
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON ad.user_id = t1.user_base_id
+        AND t1.is_fake_user = '0'
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
         ON t3.psn_acct_user_base_id = ad.user_id
+        AND t3.is_fake_user = '0'
     WHERE COALESCE(t1.company_id, t3.company_id) IS NOT NULL
 ),
 company_dx AS (

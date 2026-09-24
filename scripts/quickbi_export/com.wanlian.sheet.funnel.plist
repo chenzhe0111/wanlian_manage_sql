@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- 每天 09:38 拉 Quick BI 月度本月+周度近两周漏斗，回写 QbfdXI -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.wanlian.sheet.funnel</string>
+  <key>WorkingDirectory</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/.venv/bin/python</string>
+    <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/refresh_sheet_funnel.py</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>38</integer>
+  </dict>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/chenzhe/.npm-global/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/logs/sheet_funnel.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/logs/sheet_funnel.err.log</string>
+</dict>
+</plist>

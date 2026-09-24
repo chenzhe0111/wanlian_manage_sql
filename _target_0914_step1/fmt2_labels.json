@@ -1,0 +1,49 @@
+[
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A1:A1",
+      "cells": [[{"value": "一、整体（目标峰值40万）"}]]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A7:A7",
+      "cells": [[{"value": "二、整体业务线"}]]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A37:A38",
+      "cells": [[{"value": "三、整体线下线上"}], [{"value": "线下转化"}]]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "A46:A47",
+      "cells": [[{"value": "整体-线上（待填）"}], [{"value": "四、线上举措转化"}]]
+    }
+  },
+  {
+    "shortcut": "+cells-set",
+    "input": {
+      "sheet_id": "1074dd",
+      "range": "G39:G44",
+      "cells": [
+        [{"value": "合计"}],
+        [{"formula": "=F40", "cell_styles": {"number_format": "0.0"}}],
+        [{"formula": "=F41", "cell_styles": {"number_format": "#,##0"}}],
+        [{"formula": "=F42", "cell_styles": {"number_format": "#,##0"}}],
+        [{"formula": "=F43", "cell_styles": {"number_format": "#,##0"}}],
+        [{"formula": "=SUM(C44:F44)", "cell_styles": {"number_format": "#,##0"}}]
+      ]
+    }
+  }
+]

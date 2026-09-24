@@ -1,0 +1,1 @@
+[[{"formula": "=$L$1", "cell_styles": {"number_format": "0.00%"}}, {"formula": "=IF(OR(H3=\"\",NOT(ISNUMBER(C3)),C3=0),\"\",H3/C3)", "cell_styles": {"number_format": "0.00%"}}]]

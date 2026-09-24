@@ -1,0 +1,83 @@
+<title>中国生产型企业 vs 贸易型企业：全国规模速览</title>
+
+<p>国家统计局没有单独发布「生产型 / 贸易型」企业口径，但可用国民经济行业分类近似对照：生产侧≈工业（主体为制造业），贸易侧≈批发和零售业。数据来自第五次全国经济普查（时点 2023 年末 / 2023 年全年），适合做量级判断与业务对标。</p>
+
+<h1>一、口径怎么对应</h1>
+<table>
+  <thead>
+    <tr>
+      <th background-color="light-blue">业务口语</th>
+      <th background-color="light-blue">官方口径（最常用）</th>
+      <th background-color="light-blue">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>生产型企业</td>
+      <td><b>工业</b>（含采矿业、制造业、电力热力燃气及水生产和供应业）</td>
+      <td>其中制造业约占工业法人单位九成以上</td>
+    </tr>
+    <tr>
+      <td>贸易型企业</td>
+      <td><b>批发和零售业</b></td>
+      <td>可再拆批发 / 零售；不含进出口专营等其他门类</td>
+    </tr>
+  </tbody>
+</table>
+<p>若一家公司「生产 + 贸易」兼营，普查按主营行业归类，不会拆成两家。更细的「按工商经营范围 / 纳税人资质切分」公开统计中没有统一全国表。</p>
+
+<h1>二、全国总规模（企业法人）</h1>
+<table>
+  <thead>
+    <tr>
+      <th background-color="light-blue">指标</th>
+      <th background-color="light-blue">生产侧：工业</th>
+      <th background-color="light-blue">贸易侧：批发零售</th>
+      <th background-color="light-blue">对比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>企业法人单位</td>
+      <td background-color="light-yellow"><b>423.6 万个</b></td>
+      <td background-color="light-yellow"><b>1019.7 万个</b></td>
+      <td>贸易约是工业的 <b>2.4 倍</b></td>
+    </tr>
+    <tr>
+      <td>其中制造业</td>
+      <td>约 404.8–404.9 万个</td>
+      <td>—</td>
+      <td>工业主体是制造业</td>
+    </tr>
+    <tr>
+      <td>从业人员</td>
+      <td><b>1.14 亿人</b></td>
+      <td><b>5326 万人</b></td>
+      <td>工业用人更多</td>
+    </tr>
+    <tr>
+      <td>全年营业收入</td>
+      <td background-color="light-yellow"><b>152.4 万亿元</b></td>
+      <td background-color="light-yellow"><b>153.8 万亿元</b></td>
+      <td>营收几乎相当</td>
+    </tr>
+  </tbody>
+</table>
+<p>贸易侧再拆：批发约 <b>551 万户</b>，零售约 <b>469 万户</b>（合计 1019.7 万）。若把个体经营户也算上，贸易侧更大：批发零售个体户约 <b>4479 万户</b>（约占全部个体户一半）。</p>
+
+<h1>三、怎么读这组数</h1>
+<p><b>家数。</b>贸易型企业远多于生产型企业——流通环节主体更碎、更密。</p>
+<p><b>营收。</b>两边都在 150 万亿量级，看似接近，但批发零售营收含大量转手流通，不等于同等「创造价值」。若看增加值或利润，工业通常更重。</p>
+<p><b>边界。</b>兼营公司按主营归类；个体户在贸易侧占比极高，做市场容量时要先约定「只算企业法人」还是「含个体户」。</p>
+<p><b>更细切分。</b>若要对齐货主侧（制造业货主 vs 贸易商货主），需要另行约定行业映射规则，再用工商 / 业务库拆算，不能直接套本表。</p>
+
+<h1>四、一句话结论</h1>
+<p>全国层面可估到量级：生产侧（工业）约 <b>424 万家、营收约 152 万亿</b>；贸易侧（批发零售）约 <b>1020 万家、营收约 154 万亿</b>。家数上贸易显著更多，营收上两边大体相当。</p>
+
+<h1>五、数据来源</h1>
+<ol>
+  <li seq="auto"><a href="https://www.stats.gov.cn/sj/zxfb/202412/t20241226_1957895.html">五经普公报（第三号）——第二产业 / 工业</a></li>
+  <li seq="auto"><a href="https://www.stats.gov.cn/sj/zxfb/202412/t20241226_1957894.html">五经普公报（第四号）——批发和零售业</a></li>
+  <li seq="auto"><a href="https://www.stats.gov.cn/zwfwck/sjfb/202412/t20241226_1957897.html">五经普公报（第二号）——单位基本情况</a></li>
+</ol>
+<p>整理日期：2026-08-31。口径以国家统计局公开公报为准；后续若有修订公报，以最新发布为准。</p>

@@ -1,0 +1,111 @@
+<table>
+  <colgroup>
+    <col width="234"/><col width="98"/><col width="99"/><col width="99"/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th background-color="light-blue" vertical-align="middle"><p align="center"><b>KPI</b></p></th>
+      <th background-color="light-blue" vertical-align="middle"><p align="center"><b>目标</b></p></th>
+      <th background-color="light-blue" vertical-align="middle"><p align="center"><b>实际达成</b></p></th>
+      <th background-color="light-blue" vertical-align="middle"><p align="center"><b>完成率</b></p></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>裂变 招募</b></p></td>
+      <td vertical-align="middle"><p align="center">1.38</p></td>
+      <td vertical-align="middle"><p align="center">0.29</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center"><b>21.3%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>TMS运单</p></td>
+      <td vertical-align="middle"><p align="center">0.52</p></td>
+      <td vertical-align="middle"><p align="center">0</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">0%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>撮合不开票运单</p></td>
+      <td vertical-align="middle"><p align="center">0.52</p></td>
+      <td vertical-align="middle"><p align="center">0.29</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">55.9%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>开票-网货运单</p></td>
+      <td vertical-align="middle"><p align="center">0.35</p></td>
+      <td vertical-align="middle"><p align="center">0</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">0.1%</p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>电销触达</b></p></td>
+      <td vertical-align="middle"><p align="center">4.02</p></td>
+      <td vertical-align="middle"><p align="center">5.98</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>148.9%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>TMS运单</p></td>
+      <td vertical-align="middle"><p align="center">1.51</p></td>
+      <td vertical-align="middle"><p align="center">1.61</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">106.8%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>撮合不开票运单</p></td>
+      <td vertical-align="middle"><p align="center">1.51</p></td>
+      <td vertical-align="middle"><p align="center">3.24</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">214.2%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>开票-网货运单</p></td>
+      <td vertical-align="middle"><p align="center">0.99</p></td>
+      <td vertical-align="middle"><p align="center">1.13</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">113.8%</p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>端外线上流量转化</b></p></td>
+      <td vertical-align="middle"><p align="center">12.03</p></td>
+      <td vertical-align="middle"><p align="center">11.97</p></td>
+      <td background-color="light-yellow" vertical-align="middle"><p align="center"><b>99.5%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>TMS运单</p></td>
+      <td vertical-align="middle"><p align="center">4.52</p></td>
+      <td vertical-align="middle"><p align="center">4.21</p></td>
+      <td background-color="light-yellow" vertical-align="middle"><p align="center">93.1%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>撮合不开票运单</p></td>
+      <td vertical-align="middle"><p align="center">4.52</p></td>
+      <td vertical-align="middle"><p align="center">4.21</p></td>
+      <td background-color="light-yellow" vertical-align="middle"><p align="center">93.1%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>开票-网货运单</p></td>
+      <td vertical-align="middle"><p align="center">2.98</p></td>
+      <td vertical-align="middle"><p align="center">3.55</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">119.2%</p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>调度</b></p></td>
+      <td vertical-align="middle"><p align="center">5.18</p></td>
+      <td vertical-align="middle"><p align="center">7.17</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>138.5%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>TMS运单</p></td>
+      <td vertical-align="middle"><p align="center">2.57</p></td>
+      <td vertical-align="middle"><p align="center">6.04</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">235.2%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>撮合不开票运单</p></td>
+      <td vertical-align="middle"><p align="center">0.93</p></td>
+      <td vertical-align="middle"><p align="center">0.26</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">27.7%</p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>开票-网货运单</p></td>
+      <td vertical-align="middle"><p align="center">1.68</p></td>
+      <td vertical-align="middle"><p align="center">0.87</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">51.9%</p></td>
+    </tr>
+  </tbody>
+</table>

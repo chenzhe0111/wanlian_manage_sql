@@ -1,0 +1,18 @@
+<presentation xmlns="https://www.larkoffice.com/sml/2.0" width="960" height="540">
+  <title/>
+  <theme>
+    <textStyles>
+      <headline fontColor="rgba(31, 35, 41, 1)"/>
+      <sub-headline fontColor="rgba(31, 35, 41, 1)"/>
+      <body fontColor="rgba(31, 35, 41, 1)"/>
+      <caption fontColor="rgba(155, 158, 162, 1)" fontSize="14"/>
+    </textStyles>
+  </theme>
+  <slide>
+    <style/>
+    <data/>
+    <note>
+      <content/>
+    </note>
+  </slide>
+</presentation>

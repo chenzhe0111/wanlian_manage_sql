@@ -1,0 +1,192 @@
+[
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": ["Sheet1!A1:F130"],
+      "background_color": "#FFFFFF",
+      "font_color": "#000000",
+      "font_weight": "normal",
+      "font_size": 10,
+      "vertical_alignment": "middle",
+      "border_styles": {
+        "top": {"style": "solid", "color": "#D0D5DD", "weight": "thin"},
+        "bottom": {"style": "solid", "color": "#D0D5DD", "weight": "thin"},
+        "left": {"style": "solid", "color": "#D0D5DD", "weight": "thin"},
+        "right": {"style": "solid", "color": "#D0D5DD", "weight": "thin"}
+      }
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": [
+        "Sheet1!A1:F1",
+        "Sheet1!A7:F7",
+        "Sheet1!A32:F32",
+        "Sheet1!A37:F37",
+        "Sheet1!A38:F38",
+        "Sheet1!A41:F41",
+        "Sheet1!A57:F57",
+        "Sheet1!A85:F85",
+        "Sheet1!A110:F110"
+      ],
+      "background_color": "#1F4E79",
+      "font_color": "#FFFFFF",
+      "font_weight": "bold",
+      "font_size": 11,
+      "horizontal_alignment": "left",
+      "vertical_alignment": "middle"
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": ["Sheet1!A2:F2", "Sheet1!A8:F8", "Sheet1!A40:F40"],
+      "background_color": "#D6E3F0",
+      "font_color": "#1F4E79",
+      "font_weight": "bold",
+      "font_size": 10,
+      "horizontal_alignment": "center",
+      "vertical_alignment": "middle"
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": [
+        "Sheet1!A9:F9",
+        "Sheet1!A16:F16",
+        "Sheet1!A21:F21",
+        "Sheet1!A26:F26"
+      ],
+      "background_color": "#5B9BD5",
+      "font_color": "#FFFFFF",
+      "font_weight": "bold",
+      "font_size": 10,
+      "horizontal_alignment": "left",
+      "vertical_alignment": "middle"
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": [
+        "Sheet1!A44:F44",
+        "Sheet1!A52:F52",
+        "Sheet1!A58:F58",
+        "Sheet1!A64:F64",
+        "Sheet1!A70:F70",
+        "Sheet1!A86:F86",
+        "Sheet1!A92:F92",
+        "Sheet1!A98:F98",
+        "Sheet1!A111:F111",
+        "Sheet1!A115:F115"
+      ],
+      "background_color": "#BDD7EE",
+      "font_color": "#1F4E79",
+      "font_weight": "bold",
+      "font_size": 10,
+      "horizontal_alignment": "left",
+      "vertical_alignment": "middle"
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": ["Sheet1!A39:F39"],
+      "background_color": "#F2F2F2",
+      "font_color": "#666666",
+      "font_size": 9,
+      "font_weight": "normal",
+      "horizontal_alignment": "left",
+      "vertical_alignment": "middle",
+      "word_wrap": "auto-wrap"
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": ["Sheet1!A33:F35"],
+      "background_color": "#FFF2CC",
+      "font_color": "#000000",
+      "font_weight": "normal",
+      "font_size": 10,
+      "vertical_alignment": "middle"
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": [
+        "Sheet1!A3:A5",
+        "Sheet1!A10:A15",
+        "Sheet1!A17:A20",
+        "Sheet1!A22:A25",
+        "Sheet1!A27:A30",
+        "Sheet1!A33:A35",
+        "Sheet1!A42:A43",
+        "Sheet1!A45:A51",
+        "Sheet1!A53:A55",
+        "Sheet1!A59:A63",
+        "Sheet1!A65:A69",
+        "Sheet1!A71:A83",
+        "Sheet1!A87:A91",
+        "Sheet1!A93:A97",
+        "Sheet1!A99:A108",
+        "Sheet1!A112:A114",
+        "Sheet1!A116:A130"
+      ],
+      "horizontal_alignment": "left",
+      "vertical_alignment": "middle",
+      "font_size": 10
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": [
+        "Sheet1!B3:F5",
+        "Sheet1!B10:F15",
+        "Sheet1!B17:F20",
+        "Sheet1!B22:F25",
+        "Sheet1!B27:F30",
+        "Sheet1!B33:F35",
+        "Sheet1!B42:F55",
+        "Sheet1!B59:F83",
+        "Sheet1!B87:F108",
+        "Sheet1!B112:F130"
+      ],
+      "horizontal_alignment": "right",
+      "vertical_alignment": "middle",
+      "font_size": 10
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": [
+        "Sheet1!A10:F10",
+        "Sheet1!A17:F17",
+        "Sheet1!A22:F22",
+        "Sheet1!A27:F27",
+        "Sheet1!A45:F45",
+        "Sheet1!A53:F53",
+        "Sheet1!A59:F59",
+        "Sheet1!A65:F65",
+        "Sheet1!A87:F87",
+        "Sheet1!A93:F93",
+        "Sheet1!A112:F114"
+      ],
+      "background_color": "#EAF3FB"
+    }
+  },
+  {
+    "shortcut": "+cells-batch-set-style",
+    "input": {
+      "ranges": ["Sheet1!A130:F130"],
+      "background_color": "#FCE4D6",
+      "font_color": "#C65911",
+      "font_weight": "normal"
+    }
+  }
+]

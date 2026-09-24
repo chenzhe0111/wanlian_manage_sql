@@ -1,0 +1,131 @@
+<title>线上目标拆解汇报（1万峰值版 · 9–12月）</title>
+
+<p>数据来源：<a href="https://wanlianyida.feishu.cn/wiki/VcsPwX0a2iAx7RkigrKcelEmndd?sheet=E7UnTk">线上目标v3测算 · 汇总1w</a>。本文面向向上对齐，只保留决策相关结论；明细漏斗、转化率参数仍以测算表黄底可调项为准；<b>数据刷新：2026-08-31</b>。</p>
+
+<h1>一、汇报结论（先看这三段）</h1>
+<p><b>定位。</b>本版是线上目标的「基础档」：锁定 <b>12 月线上日峰值 = 1 万单</b>，对应峰值线上占比约 <b>2.5%</b>、月量口径线上占比约 <b>2.3%</b>。相对同表另一档「12 月峰值 10 万 / 占比约 20%–25%」，本版回答的是：在整体峰值仍冲 40 万的前提下，线上先立住一条可跟盯、可拆责的增长路径，而不是一次性跃迁到两位数占比。</p>
+<p><b>量级。</b>9–12 月线上月运单路径为 <b>2.19 → 4.88 → 10.18 → 22.69 万单</b>，四个月合计约 <b>40 万单</b>。相对 8 月实际线上峰值约 462 单/日，12 月峰值约放大 <b>22 倍</b>（表内按 8→12 几何倍增反推）；月量相对 8 月约 0.62 万单放大到约 <b>37 倍</b>。</p>
+<p><b>结构。</b>四举措仍是「投流托底、调度跟进，裂变与电销后段抬升」：9–12 合计量里投流约 <b>41%</b>、调度约 <b>24%</b>、电销约 <b>18%</b>、裂变约 <b>17%</b>。投流占比逐月略降、绝对量仍最大；裂变占比从约 12% 抬到约 19%，是结构上需要兑现的后段增量。</p>
+
+<h1>二、这套数怎么来的（对齐口径用）</h1>
+<p>推演顺序与 10 万档相同，只是把终点峰值换成 1 万，并明确「从 8 月实际峰值几何爬到 12 月」：</p>
+<ol>
+  <li seq="auto">先定线上日峰值路径：8 月实际约 <b>0.046</b> → 9/10/11/12 月 <b>0.10 / 0.21 / 0.46 / 1.00</b> 万单。</li>
+  <li seq="auto">日均 =（上月峰值 + 本月峰值）/ 2；月运单 = 日均 × 当月天数。</li>
+  <li seq="auto">下游结构（四举措占比、TMS/撮合/网货、漏斗转化）与 10 万档同源假设；改黄底占比后运单联动重算，本文不展开过程指标。</li>
+</ol>
+<p>因此向上沟通时建议统一话术：<b>先盯日峰值是否按路径爬坡，再看月量与占比</b>——月量是峰值的结果，不是独立拍出来的。</p>
+
+<h1>三、关键路径（只留决策数字）</h1>
+<table>
+  <thead>
+    <tr>
+      <th background-color="light-blue">指标</th>
+      <th background-color="light-blue">8月实际</th>
+      <th background-color="light-blue">9月</th>
+      <th background-color="light-blue">10月</th>
+      <th background-color="light-blue">11月</th>
+      <th background-color="light-blue">12月</th>
+      <th background-color="light-blue">9–12含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>整体日峰值（万单）</td>
+      <td>8.94</td><td>24</td><td>27</td><td>33</td><td>40</td>
+      <td>整体盘仍冲峰值 40 万</td>
+    </tr>
+    <tr>
+      <td background-color="light-yellow"><b>线上日峰值（万单）</b></td>
+      <td background-color="light-yellow">0.046</td>
+      <td background-color="light-yellow"><b>0.10</b></td>
+      <td background-color="light-yellow"><b>0.21</b></td>
+      <td background-color="light-yellow"><b>0.46</b></td>
+      <td background-color="light-yellow"><b>1.00</b></td>
+      <td background-color="light-yellow">本档唯一硬锚点</td>
+    </tr>
+    <tr>
+      <td background-color="light-yellow"><b>线上月运单（万单）</b></td>
+      <td background-color="light-yellow">0.62</td>
+      <td background-color="light-yellow"><b>2.19</b></td>
+      <td background-color="light-yellow"><b>4.88</b></td>
+      <td background-color="light-yellow"><b>10.18</b></td>
+      <td background-color="light-yellow"><b>22.69</b></td>
+      <td background-color="light-yellow">合计约 40 万单</td>
+    </tr>
+    <tr>
+      <td>峰值线上占比</td>
+      <td>0.52%</td><td>0.42%</td><td>0.80%</td><td>1.40%</td><td><b>2.50%</b></td>
+      <td>对外可用「约 2.5%」</td>
+    </tr>
+    <tr>
+      <td>线上量占比</td>
+      <td>0.42%</td><td>0.39%</td><td>0.72%</td><td>1.32%</td><td><b>2.33%</b></td>
+      <td>与峰值占比差约 0.2pp</td>
+    </tr>
+  </tbody>
+</table>
+<p>类型结构按表内假设：9–12 月大致维持 <b>TMS 约一半、撮合约三分之一、网货约一成半</b>，不作为本档主矛盾；主矛盾是峰值爬坡与四举措谁兑现增量。</p>
+
+<h1>四、四举措：各要回答什么问题</h1>
+<table>
+  <thead>
+    <tr>
+      <th background-color="light-blue">举措</th>
+      <th background-color="light-blue">9月</th>
+      <th background-color="light-blue">10月</th>
+      <th background-color="light-blue">11月</th>
+      <th background-color="light-blue">12月</th>
+      <th background-color="light-blue">9–12合计</th>
+      <th background-color="light-blue">占线上</th>
+      <th background-color="light-blue">向上该盯的问题</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td background-color="light-yellow"><b>投流</b></td>
+      <td background-color="light-yellow">1.00</td>
+      <td background-color="light-yellow">2.11</td>
+      <td background-color="light-yellow">4.21</td>
+      <td background-color="light-yellow">9.03</td>
+      <td background-color="light-yellow"><b>16.35</b></td>
+      <td background-color="light-yellow"><b>41%</b></td>
+      <td>能否持续托底？占比从约 46% 降到约 40%，绝对量仍要翻近 9 倍</td>
+    </tr>
+    <tr>
+      <td>调度</td>
+      <td>0.57</td><td>1.24</td><td>2.49</td><td>5.25</td>
+      <td><b>9.55</b></td><td><b>24%</b></td>
+      <td>跟进是否稳定？占比略降但月量约 9 倍，靠 TMS 还是撮合放量</td>
+    </tr>
+    <tr>
+      <td>电销</td>
+      <td>0.36</td><td>0.83</td><td>1.80</td><td>4.18</td>
+      <td><b>7.17</b></td><td><b>18%</b></td>
+      <td>留存人效能否守住；新增漏斗与人力/线索是否同步到位</td>
+    </tr>
+    <tr>
+      <td>裂变</td>
+      <td>0.26</td><td>0.70</td><td>1.67</td><td>4.24</td>
+      <td><b>6.87</b></td><td><b>17%</b></td>
+      <td>后段结构抬升是否兑现（占线上从约 12%→19%）；8 月几乎为空的基线风险</td>
+    </tr>
+  </tbody>
+</table>
+<p>一句话拆责：<b>投流对总量负责，调度对跟进负责，电销对可运营人效负责，裂变对后段结构抬升负责。</b>本档不是「四举措平均发力」，而是投流先扛量、其余三项按路径补结构。</p>
+
+<h1>五、必须同步的资源与风险（汇报建议带上）</h1>
+<p><b>电销资源（表内已列诉求）。</b>人力目标从 8 月约 17 人爬到 12 月约 <b>48</b> 人（招聘节奏：9 月 0、10 月 +2、11 月 +6、12 月 +20）；外呼量从约 8.4 万抬到约 <b>25.2 万</b>通。配套需要：外呼系统持续迭代、分渠道线索运营与数据分析协同、线索供给跟上转化效率抬升。</p>
+<p><b>新增货主漏斗（已刷新）。</b>12 月路径为注册 <b>5250</b> → 认证 <b>1624</b> → 发货 <b>370</b> → 成交 <b>104</b> 家（对应新增成交运单约 1.13 万单）。中段转化假设为注册→认证约 <b>31%</b>、认证→发货约 <b>23%</b>、货主成交率约 <b>28%</b>——比旧版高转化假设更保守；向上对齐时要同步「线索量放大 + 中段承接承压」，不能只看成交运单目标。</p>
+<p><b>裂变基线风险。</b>8 月裂变合计仅约 0.0065 万单；目标要求 9 月起快速起量并在 Q4 占到近两成线上。向上对齐时建议明确：这是结构假设，不是已验证产能——需要产品/运营给出可验收的拉新与留存动作包，否则后段缺口会回落到投流或调度。</p>
+<p><b>与 10 万档的关系。</b>1 万档是「先立路径、可跟盯」的基础目标；10 万档是「峰值占比冲到约 1/4」的跃迁目标。建议汇报时先确认本档作为当前必保锚点，再讨论跃迁档的条件清单，避免两套峰值混讲。</p>
+
+<h1>六、建议的跟盯口径</h1>
+<ol>
+  <li seq="auto"><b>周/月先看日峰值是否贴路径</b>（0.10→0.21→0.46→1.00），掉队直接预警月量。</li>
+  <li seq="auto"><b>结构看投流是否仍托底、裂变占比是否按月抬升</b>；电销看人力与线索是否按招聘/供给节奏到位。</li>
+  <li seq="auto"><b>对外统一用「12 月线上日峰 1 万、线上占比约 2.5%」</b>；需要区分时再补充量占比约 2.3%。</li>
+  <li seq="auto">黄底假设（举措占比、类型、转化率）可调，但调整后应同步刷新四举措责任量，避免只改总量不改拆责。</li>
+</ol>
+
+<p>测算明细（类型矩阵、新老漏斗、电销过程指标）见源表「汇总1w」，本文不再堆叠。</p>

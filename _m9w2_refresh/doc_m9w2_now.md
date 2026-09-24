@@ -1,0 +1,197 @@
+<title>⭐️⭐️9MW2进度（用户+平台+线上) </title>
+
+<callout emoji="💡">
+本周（M9W2）平台贡献运单 54,865 单（周环比 +9%，绝对增加约 4,623 单），总单量占比 20.45%（周环比 +0.8pp）。电销（+18%）与调度（+11%）为本周增量主力，投流基本持平，裂变再降至个位数。结构上 TMS 周度占比约 69%，网货约 18%、撮合约 12%。
+9月MTD 线上 11.37 万单，完成目标 24.12%（时间进度 50%），落后约 25.9pp，同比 -20.5%；线上占比 19.80%（较8月同期 +4.1pp）。
+</callout>
+
+# 一、线上订单KPI目标进度（时间进度：50%）
+
+## 1、进度数据
+
+1. **发货货主**：周度622（-1.9%）；月累计723，完成35.13%（落后时间进度约14.9pp），同比+9.9%。
+2. **整体订单**：周度5.49万（+9.2%，绝对约+4,623单）；TMS周环比约+10%、撮合约+20%、网货约+1%。月累计11.37万，完成24.12%（落后约25.9pp），同比-20.5%。
+3. **线上成交占比**：周度20.45%（+0.8pp）；月累计19.80%，仍大幅超目标8.50%（较8月同期+4.1pp），调度/电销抬升、投流占比小幅回落。
+
+| **KPI（时间进度50%）** | **8月实际值** | **9月目标** | **9月实际** | **完成率** | **同比** | **8月同期** | **M8W5** | **M9W1** | **M9W2** | **周环比** |
+|-|-|-|-|-|-|-|-|-|-|-|
+| **线上合计发货货主数** | **1,145** | 2,058 | 723 | **35.13%** | +9.9% | 658 | 561 | 634 | 622 | -1.89% |
+| **线上合计成交运单数** | **232,483** | 471,495 | 113,729 | **24.12%** | -20.5% | 143,109 | 37,929 | 50,242 | 54,865 | +9.20% |
+| **开票-网货运单** | **45,291** | 89,584 | 20,688 | **23.09%** | -18.4% | 25,361 | 9,237 | 9,988 | 10,136 | +1.48% |
+| **撮合不开票运单** | **60,379** | 150,878 | 16,575 | **10.99%** | -65.2% | 47,640 | 5,180 | 5,693 | 6,806 | +19.55% |
+| **TMS运单** | **126,813** | 231,033 | 76,466 | **33.10%** | +9.1% | 70,108 | 23,512 | 34,341 | 37,923 | +10.43% |
+| **开票-网货运单占比** | **19.48%** | 19% | 18% | / | +0.5pp | 17.72% | 24% | 20% | 18% | -2.0pp |
+| **撮合不开票运单占比** | **25.97%** | 32% | 15% | / | -18.7pp | 33.29% | 14% | 11% | 12% | +1.0pp |
+| **TMS运单占比** | **54.55%** | 49% | 67% | / | +18.2pp | 48.99% | 62% | 69% | 69% | 0.0pp |
+| **线上成交运单数%** | **15.65%** | 8.50% | 19.80% | **232.95%** | +4.1pp | 15.67% | 15.98% | 19.62% | 20.45% | +0.8pp |
+
+## 2、各举措订单结构情况（时间进度50%）
+
+1. **裂变营销**：周度7单（-91%，约-72单），占整体约0.00%，体量接近归零；月累计0.01万，完成0.2%，同比-94.5%。
+2. **资源转化**：周度12,312单（+18%，约+1,898单），占整体4.59%（+0.5pp）；月累计2.42万，完成31.0%（落后约19.0pp），同比-19.6%。TMS周环比+24%为主要拉动。
+3. **端外（投流）**：周度13,651单（约0%），占整体5.09%（-0.3pp）；月累计2.93万，完成13.6%（落后约36.4pp），同比-41.0%。留存企稳，新增运单再降约53%。
+4. **资源合作**：周度28,733单（+11%，约+2,891单），占整体10.71%（+0.6pp），仍为量级第一；月累计5.97万，完成49.0%（接近时间进度），同比-0.7%。以TMS为主（周度2.34万）。
+
+| **举措/类型（万单）** | **9月目标** | **9月实际** | **完成率** | **8月同期** | **同比** | **M8W5** | **M9W1** | **M9W2** | **周环比** |
+|-|-|-|-|-|-|-|-|-|-|
+| **裂变营销** | 5.62 | 0.01 | **0.2%** | 0.19 | -94.5% | 0.01 | 0.01 | 0.00 | -91.1% |
+| — TMS运单 | 2.76 | 0.01 | **0.2%** | 0.00 | — | 0.01 | 0.01 | 0.00 | -100% |
+| — 撮合不开票运单 | 1.80 | 0.00 | **0.2%** | 0.19 | -98.1% | 0.00 | 0.00 | 0.00 | -76.5% |
+| — 开票-网货运单 | 1.07 | 0.00 | **0.0%** | 0.00 | 0.0% | 0.00 | 0.00 | 0.00 | 0.0% |
+| **资源转化** | 7.81 | 2.42 | **31.0%** | 3.01 | -19.6% | 1.02 | 1.04 | 1.23 | +18.2% |
+| — TMS运单 | 3.83 | 1.79 | **46.9%** | 1.19 | — | 0.73 | 0.75 | 0.93 | +23.6% |
+| — 撮合不开票运单 | 2.50 | 0.15 | **6.2%** | 1.34 | -88.5% | 0.06 | 0.07 | 0.07 | -2.5% |
+| — 开票-网货运单 | 1.48 | 0.47 | **31.8%** | 0.48 | -1.4% | 0.23 | 0.22 | 0.23 | +6.7% |
+| **端外线上流量转化** | 21.54 | 2.93 | **13.6%** | 4.96 | -41.0% | 1.16 | 1.37 | 1.37 | -0.1% |
+| — TMS运单 | 10.55 | 1.07 | **10.2%** | 1.58 | -32.3% | 0.27 | 0.49 | 0.52 | +6.9% |
+| — 撮合不开票运单 | 6.89 | 0.80 | **11.6%** | 2.12 | -62.4% | 0.41 | 0.41 | 0.33 | -20.5% |
+| — 开票-网货运单 | 4.09 | 1.05 | **25.8%** | 1.25 | -15.8% | 0.48 | 0.47 | 0.52 | +10.5% |
+| **资源合作** | 12.18 | 5.97 | **49.0%** | 6.01 | -0.7% | 1.58 | 2.58 | 2.87 | +11.2% |
+| — TMS运单 | 5.97 | 4.77 | **80.0%** | 4.23 | +12.8% | 1.35 | 2.12 | 2.34 | +10.4% |
+| — 撮合不开票运单 | 3.90 | 0.68 | **17.4%** | 1.09 | -37.8% | 0.05 | 0.22 | 0.27 | +22.7% |
+| — 开票-网货运单 | 2.31 | 0.52 | **22.4%** | 0.69 | -24.4% | 0.19 | 0.24 | 0.26 | +8.3% |
+
+## 3、线上订单进展（时间进度50%）
+
+<table><colgroup><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/></colgroup><thead><tr><th vertical-align="middle"><b>指标</b></th><th vertical-align="middle"><b>9月目标值</b></th><th vertical-align="middle"><b>9月实际</b></th><th vertical-align="middle"><b>同比</b></th><th vertical-align="middle"><b>目标完成度</b></th><th vertical-align="middle"><b>M9W1</b></th><th vertical-align="middle"><b>M9W2</b></th><th vertical-align="middle"><b>周环比</b></th><th vertical-align="middle"><b>分析结论</b></th><th vertical-align="middle"><b>本周进展</b></th><th vertical-align="middle"><b>下周计划</b></th></tr></thead><tbody><tr><td vertical-align="middle"><b>①裂变营销</b></td><td vertical-align="middle">5.62</td><td vertical-align="middle">0.010</td><td vertical-align="middle">-94.5%</td><td vertical-align="middle"><b>0.2%</b></td><td vertical-align="middle">0.008</td><td vertical-align="middle">0.001</td><td vertical-align="middle">-91%</td><td rowspan="15" vertical-align="middle">1. 周度（M9W2）：7单（-91%，约-72单），占整体≈0%，体量接近归零。<br/>2. vs时间进度50%：完成0.2%（实际0.010万），同比-94.5%，落后约49.8pp。<br/>3. 订单几乎全部来自留存（0.00065万）；新增仅0.5单量级，注册/认证各1家。</td><td rowspan="15" vertical-align="middle">待本周业务周报确认（本次仅刷数+分析结论）。</td><td rowspan="15" vertical-align="middle">待本周业务周报确认。</td></tr><tr><td vertical-align="middle"><b>留存</b></td><td vertical-align="middle">3.10</td><td vertical-align="middle">0.010</td><td vertical-align="middle">-93.5%</td><td vertical-align="middle"><b>0.3%</b></td><td vertical-align="middle">0.008</td><td vertical-align="middle">0.001</td><td vertical-align="middle">-92%</td></tr><tr><td vertical-align="middle">发货货主数</td><td vertical-align="middle">90</td><td vertical-align="middle">5</td><td vertical-align="middle">+25%</td><td vertical-align="middle">—</td><td vertical-align="middle">4</td><td vertical-align="middle">2</td><td vertical-align="middle">-50%</td></tr><tr><td vertical-align="middle">成交货主数</td><td vertical-align="middle">78</td><td vertical-align="middle">5</td><td vertical-align="middle">+67%</td><td vertical-align="middle">—</td><td vertical-align="middle">4</td><td vertical-align="middle">2</td><td vertical-align="middle">-50%</td></tr><tr><td vertical-align="middle">成交运单数（万单）</td><td vertical-align="middle">3.10</td><td vertical-align="middle">0.010</td><td vertical-align="middle">-93.5%</td><td vertical-align="middle">—</td><td vertical-align="middle">0.008</td><td vertical-align="middle">0.001</td><td vertical-align="middle">-92%</td></tr><tr><td vertical-align="middle">--货主成交率</td><td vertical-align="middle">86%</td><td vertical-align="middle">100%</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">100%</td><td vertical-align="middle">100%</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle">--单货主成交运单数</td><td vertical-align="middle">402</td><td vertical-align="middle">21</td><td vertical-align="middle">-96%</td><td vertical-align="middle">—</td><td vertical-align="middle">19.6</td><td vertical-align="middle">3.3</td><td vertical-align="middle">-83%</td></tr><tr><td vertical-align="middle"><b>新增</b></td><td vertical-align="middle">2.50</td><td vertical-align="middle">0.000</td><td vertical-align="middle">-99.8%</td><td vertical-align="middle"><b>0.0%</b></td><td vertical-align="middle">0</td><td vertical-align="middle">0.000</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle">注册货主数</td><td vertical-align="middle">357</td><td vertical-align="middle">1</td><td vertical-align="middle">-99%</td><td vertical-align="middle">—</td><td vertical-align="middle">0</td><td vertical-align="middle">1</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle">认证货主数</td><td vertical-align="middle">178</td><td vertical-align="middle">1</td><td vertical-align="middle">-99%</td><td vertical-align="middle">—</td><td vertical-align="middle">0</td><td vertical-align="middle">1</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle">新增转介绍 发货货主数（家）</td><td vertical-align="middle">161</td><td vertical-align="middle">1</td><td vertical-align="middle">-98%</td><td vertical-align="middle">—</td><td vertical-align="middle">0</td><td vertical-align="middle">1</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle">成交货主数</td><td vertical-align="middle">161</td><td vertical-align="middle">1</td><td vertical-align="middle">-98%</td><td vertical-align="middle">—</td><td vertical-align="middle">0</td><td vertical-align="middle">1</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle">成交运单数（万单）</td><td vertical-align="middle">2.50</td><td vertical-align="middle">0.000</td><td vertical-align="middle">-99.8%</td><td vertical-align="middle">—</td><td vertical-align="middle">0</td><td vertical-align="middle">0.000</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle">--货主成交率</td><td vertical-align="middle">100%</td><td vertical-align="middle">100%</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">100%</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle">--单货主成交运单数</td><td vertical-align="middle">156</td><td vertical-align="middle">0.5</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">0.5</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle"><b>②资源转化（万单）</b></td><td vertical-align="middle">7.81</td><td vertical-align="middle">2.426</td><td vertical-align="middle">-19.5%</td><td vertical-align="middle"><b>31.1%</b></td><td vertical-align="middle">1.043</td><td vertical-align="middle">1.233</td><td vertical-align="middle">+18%</td><td rowspan="17" vertical-align="middle">1. 周度：12,312单（+18%，约+1,898单），占整体4.59%（+0.5pp），为本周第二增量。<br/>2. vs时间进度50%：完成31.1%（实际2.43万），同比-19.5%，落后约18.9pp。<br/>3. 留存运单1.19万（+16%）托底；新增运单0.042万（+100%）仍弱，认证→发货转化54%（目标90%）为卡点。</td><td rowspan="17" vertical-align="middle">待本周业务周报确认（本次仅刷数+分析结论）。</td><td rowspan="17" vertical-align="middle">待本周业务周报确认。</td></tr><tr><td vertical-align="middle"><b>留存</b></td><td vertical-align="middle">5.45</td><td vertical-align="middle">2.313</td><td vertical-align="middle">-15.6%</td><td vertical-align="middle"><b>42.4%</b></td><td vertical-align="middle">1.023</td><td vertical-align="middle">1.191</td><td vertical-align="middle">+16%</td></tr><tr><td vertical-align="middle">发货货主数</td><td vertical-align="middle">172</td><td vertical-align="middle">199</td><td vertical-align="middle">+29%</td><td vertical-align="middle">—</td><td vertical-align="middle">156</td><td vertical-align="middle">191</td><td vertical-align="middle">+22%</td></tr><tr><td vertical-align="middle">成交货主数</td><td vertical-align="middle">168</td><td vertical-align="middle">186</td><td vertical-align="middle">+17%</td><td vertical-align="middle">—</td><td vertical-align="middle">165</td><td vertical-align="middle">170</td><td vertical-align="middle">+3%</td></tr><tr><td vertical-align="middle">成交运单数（万单）</td><td vertical-align="middle">5.00</td><td vertical-align="middle">2.313</td><td vertical-align="middle">-15.6%</td><td vertical-align="middle">—</td><td vertical-align="middle">1.023</td><td vertical-align="middle">1.191</td><td vertical-align="middle">+16%</td></tr><tr><td vertical-align="middle">--货主成交率</td><td vertical-align="middle">98%</td><td vertical-align="middle">93%</td><td vertical-align="middle">-9%</td><td vertical-align="middle">—</td><td vertical-align="middle">106%</td><td vertical-align="middle">89%</td><td vertical-align="middle">-16%</td></tr><tr><td vertical-align="middle">--单货主成交运单数</td><td vertical-align="middle">324</td><td vertical-align="middle">124</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">62</td><td vertical-align="middle">70</td><td vertical-align="middle">+13%</td></tr><tr><td vertical-align="middle"><b>新增</b></td><td vertical-align="middle">2.36</td><td vertical-align="middle">0.113</td><td vertical-align="middle">-58.6%</td><td vertical-align="middle"><b>4.8%</b></td><td vertical-align="middle">0.021</td><td vertical-align="middle">0.042</td><td vertical-align="middle">+100%</td></tr><tr><td vertical-align="middle">注册货主数（家）</td><td vertical-align="middle">564</td><td vertical-align="middle">258</td><td vertical-align="middle">-12%</td><td vertical-align="middle">—</td><td vertical-align="middle">92</td><td vertical-align="middle">115</td><td vertical-align="middle">+25%</td></tr><tr><td vertical-align="middle">认证货主数（家）</td><td vertical-align="middle">282</td><td vertical-align="middle">250</td><td vertical-align="middle">-8%</td><td vertical-align="middle">—</td><td vertical-align="middle">90</td><td vertical-align="middle">114</td><td vertical-align="middle">+27%</td></tr><tr><td vertical-align="middle">新增 发货货主数（家）</td><td vertical-align="middle">254</td><td vertical-align="middle">135</td><td vertical-align="middle">+31%</td><td vertical-align="middle">—</td><td vertical-align="middle">58</td><td vertical-align="middle">66</td><td vertical-align="middle">+14%</td></tr><tr><td vertical-align="middle">成交货主数</td><td vertical-align="middle">130</td><td vertical-align="middle">35</td><td vertical-align="middle">-19%</td><td vertical-align="middle">—</td><td vertical-align="middle">12</td><td vertical-align="middle">14</td><td vertical-align="middle">+17%</td></tr><tr><td vertical-align="middle">成交运单量（万单）</td><td vertical-align="middle">2.36</td><td vertical-align="middle">0.113</td><td vertical-align="middle">-58.6%</td><td vertical-align="middle">—</td><td vertical-align="middle">0.021</td><td vertical-align="middle">0.042</td><td vertical-align="middle">+100%</td></tr><tr><td vertical-align="middle">--注册 转 认证 转化率</td><td vertical-align="middle">50%</td><td vertical-align="middle">97%</td><td vertical-align="middle">+4%</td><td vertical-align="middle">—</td><td vertical-align="middle">98%</td><td vertical-align="middle">99%</td><td vertical-align="middle">+1%</td></tr><tr><td vertical-align="middle">--认证 转 发货 转化率</td><td vertical-align="middle">90%</td><td vertical-align="middle">54%</td><td vertical-align="middle">+43%</td><td vertical-align="middle">—</td><td vertical-align="middle">64%</td><td vertical-align="middle">58%</td><td vertical-align="middle">-10%</td></tr><tr><td vertical-align="middle">--货主成交率</td><td vertical-align="middle">51%</td><td vertical-align="middle">26%</td><td vertical-align="middle">-38%</td><td vertical-align="middle">—</td><td vertical-align="middle">21%</td><td vertical-align="middle">21%</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle">--单货主成交运单数</td><td vertical-align="middle">182</td><td vertical-align="middle">32</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">17</td><td vertical-align="middle">30</td><td vertical-align="middle">+76%</td></tr><tr><td vertical-align="middle"><b>③ 端外线上流量转化（万单）</b></td><td vertical-align="middle">21.54</td><td vertical-align="middle">2.926</td><td vertical-align="middle">-41.0%</td><td vertical-align="middle"><b>13.6%</b></td><td vertical-align="middle">1.367</td><td vertical-align="middle">1.365</td><td vertical-align="middle">0%</td><td rowspan="22" vertical-align="middle">1. 周度：13,651单（约0%），占整体5.09%（-0.3pp），量级企稳但未回升。<br/>2. vs时间进度50%：完成13.6%（实际2.93万），同比-41.0%，落后约36.4pp。<br/>3. 留存运单1.36万持平；新增运单0.008万（-53%），单货主运单降至4，注册账号虽+95%但成交转化仍弱。</td><td rowspan="22" vertical-align="middle">待本周业务周报确认（本次仅刷数+分析结论）。</td><td rowspan="22" vertical-align="middle">待本周业务周报确认。</td></tr><tr><td vertical-align="middle"><b>留存</b></td><td vertical-align="middle">16.19</td><td vertical-align="middle">2.875</td><td vertical-align="middle">-35.7%</td><td vertical-align="middle"><b>17.8%</b></td><td vertical-align="middle">1.351</td><td vertical-align="middle">1.358</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle">发货货主数</td><td vertical-align="middle">790</td><td vertical-align="middle">330</td><td vertical-align="middle">-10%</td><td vertical-align="middle">—</td><td vertical-align="middle">278</td><td vertical-align="middle">311</td><td vertical-align="middle">+12%</td></tr><tr><td vertical-align="middle">成交货主数</td><td vertical-align="middle">774</td><td vertical-align="middle">325</td><td vertical-align="middle">-11%</td><td vertical-align="middle">—</td><td vertical-align="middle">293</td><td vertical-align="middle">303</td><td vertical-align="middle">+3%</td></tr><tr><td vertical-align="middle">成交运单数（万单）</td><td vertical-align="middle">16.19</td><td vertical-align="middle">2.875</td><td vertical-align="middle">-35.7%</td><td vertical-align="middle">—</td><td vertical-align="middle">1.351</td><td vertical-align="middle">1.358</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle">--货主成交率</td><td vertical-align="middle">98%</td><td vertical-align="middle">98%</td><td vertical-align="middle">-1%</td><td vertical-align="middle">—</td><td vertical-align="middle">105%</td><td vertical-align="middle">97%</td><td vertical-align="middle">-7%</td></tr><tr><td vertical-align="middle">--单货主成交运单数</td><td vertical-align="middle">209</td><td vertical-align="middle">88</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">46</td><td vertical-align="middle">45</td><td vertical-align="middle">-3%</td></tr><tr><td vertical-align="middle"><b>新增</b></td><td vertical-align="middle">5.35</td><td vertical-align="middle">0.051</td><td vertical-align="middle">-89.6%</td><td vertical-align="middle"><b>1.0%</b></td><td vertical-align="middle">0.016</td><td vertical-align="middle">0.008</td><td vertical-align="middle">-53%</td></tr><tr><td vertical-align="middle">曝光量（次）</td><td vertical-align="middle">44,883</td><td vertical-align="middle">7,899,769</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">6,899,658</td><td vertical-align="middle">6,899,658</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle">点击量（次）</td><td vertical-align="middle">898</td><td vertical-align="middle">281,054</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">258,884</td><td vertical-align="middle">258,884</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle">注册货主数（账号）</td><td vertical-align="middle">25,680</td><td vertical-align="middle">10,006</td><td vertical-align="middle">+45%</td><td vertical-align="middle">—</td><td vertical-align="middle">3,194</td><td vertical-align="middle">6,234</td><td vertical-align="middle">+95%</td></tr><tr><td vertical-align="middle">注册货主数（家）</td><td vertical-align="middle">718</td><td vertical-align="middle">134</td><td vertical-align="middle">+44%</td><td vertical-align="middle">—</td><td vertical-align="middle">53</td><td vertical-align="middle">64</td><td vertical-align="middle">+21%</td></tr><tr><td vertical-align="middle">认证货主数（家）</td><td vertical-align="middle">359</td><td vertical-align="middle">136</td><td vertical-align="middle">+51%</td><td vertical-align="middle">—</td><td vertical-align="middle">55</td><td vertical-align="middle">64</td><td vertical-align="middle">+16%</td></tr><tr><td vertical-align="middle">新增 发货货主数（家）</td><td vertical-align="middle">323</td><td vertical-align="middle">115</td><td vertical-align="middle">+67%</td><td vertical-align="middle">—</td><td vertical-align="middle">49</td><td vertical-align="middle">62</td><td vertical-align="middle">+27%</td></tr><tr><td vertical-align="middle">成交货主数</td><td vertical-align="middle">194</td><td vertical-align="middle">39</td><td vertical-align="middle">+8%</td><td vertical-align="middle">—</td><td vertical-align="middle">15</td><td vertical-align="middle">17</td><td vertical-align="middle">+13%</td></tr><tr><td vertical-align="middle">成交运单数（万单）</td><td vertical-align="middle">5.35</td><td vertical-align="middle">0.051</td><td vertical-align="middle">-89.6%</td><td vertical-align="middle">—</td><td vertical-align="middle">0.016</td><td vertical-align="middle">0.008</td><td vertical-align="middle">-53%</td></tr><tr><td vertical-align="middle">--点击率</td><td vertical-align="middle">2%</td><td vertical-align="middle">4%</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">3.8%</td><td vertical-align="middle">3.8%</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle">--点击 转 注册率</td><td vertical-align="middle">80%</td><td vertical-align="middle">0.02%</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">0.02%</td><td vertical-align="middle">0.02%</td><td vertical-align="middle">+21%</td></tr><tr><td vertical-align="middle">--注册 转 认证 转化率</td><td vertical-align="middle">50%</td><td vertical-align="middle">101%</td><td vertical-align="middle">+5%</td><td vertical-align="middle">—</td><td vertical-align="middle">104%</td><td vertical-align="middle">100%</td><td vertical-align="middle">-4%</td></tr><tr><td vertical-align="middle">--认证 转 发货 转化率</td><td vertical-align="middle">90%</td><td vertical-align="middle">85%</td><td vertical-align="middle">+10%</td><td vertical-align="middle">—</td><td vertical-align="middle">89%</td><td vertical-align="middle">97%</td><td vertical-align="middle">+9%</td></tr><tr><td vertical-align="middle">--货主成交率</td><td vertical-align="middle">60%</td><td vertical-align="middle">34%</td><td vertical-align="middle">-35%</td><td vertical-align="middle">—</td><td vertical-align="middle">31%</td><td vertical-align="middle">27%</td><td vertical-align="middle">-12%</td></tr><tr><td vertical-align="middle">--单货主成交运单数</td><td vertical-align="middle">276</td><td vertical-align="middle">13</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">10</td><td vertical-align="middle">4</td><td vertical-align="middle">-55%</td></tr><tr><td vertical-align="middle"><b>④资源合作（万单）</b></td><td vertical-align="middle">12.18</td><td vertical-align="middle">5.969</td><td vertical-align="middle">-0.7%</td><td vertical-align="middle"><b>49.0%</b></td><td vertical-align="middle">2.584</td><td vertical-align="middle">2.873</td><td vertical-align="middle">+11%</td><td rowspan="25" vertical-align="middle">1. 周度：28,733单（+11%，约+2,891单），占整体10.71%（+0.6pp），仍为绝对量第一；TMS 2.34万为主，撮合0.27万、网货0.26万。<br/>2. vs时间进度50%：完成49.0%（实际5.97万），同比-0.7%，接近时间进度（落后约1.0pp）。漏斗撮合月实际与类型KPI如有偏差，以KPI模块为准。</td><td rowspan="25" vertical-align="middle">待本周业务周报确认（本次仅刷数+分析结论）。</td><td rowspan="25" vertical-align="middle">待本周业务周报确认。</td></tr><tr><td vertical-align="middle"><b>1-撮合</b></td><td vertical-align="middle">3.90</td><td vertical-align="middle">0.68</td><td vertical-align="middle">-37.8%</td><td vertical-align="middle"><b>17.4%</b></td><td vertical-align="middle">0.220</td><td vertical-align="middle">0.274</td><td vertical-align="middle">+25%</td></tr><tr><td vertical-align="middle">注册三方资源合作人数</td><td vertical-align="middle">1,299</td><td vertical-align="middle">191</td><td vertical-align="middle">+13%</td><td vertical-align="middle">—</td><td vertical-align="middle">180</td><td vertical-align="middle">191</td><td vertical-align="middle">+6%</td></tr><tr><td vertical-align="middle">认证三方资源合作人数</td><td vertical-align="middle">1,039</td><td vertical-align="middle">191</td><td vertical-align="middle">+13%</td><td vertical-align="middle">—</td><td vertical-align="middle">180</td><td vertical-align="middle">191</td><td vertical-align="middle">+6%</td></tr><tr><td vertical-align="middle">三方资源合作人数</td><td vertical-align="middle">520</td><td vertical-align="middle">12</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">7</td><td vertical-align="middle">10</td><td vertical-align="middle">+43%</td></tr><tr><td vertical-align="middle">成交运单量（万单）</td><td vertical-align="middle">3.90</td><td vertical-align="middle">0.68</td><td vertical-align="middle">-37.8%</td><td vertical-align="middle">—</td><td vertical-align="middle">0.220</td><td vertical-align="middle">0.274</td><td vertical-align="middle">+25%</td></tr><tr><td vertical-align="middle">--资源合作人效</td><td vertical-align="middle">75</td><td vertical-align="middle">565</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">469</td><td vertical-align="middle">274</td><td vertical-align="middle">-42%</td></tr><tr><td vertical-align="middle">--认证转化率</td><td vertical-align="middle">50%</td><td vertical-align="middle">5%</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">4%</td><td vertical-align="middle">5%</td><td vertical-align="middle">+31%</td></tr><tr><td vertical-align="middle">--注册转认证率</td><td vertical-align="middle">80%</td><td vertical-align="middle">100%</td><td vertical-align="middle">0%</td><td vertical-align="middle">—</td><td vertical-align="middle">100%</td><td vertical-align="middle">100%</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle"><b>2-TMS</b></td><td vertical-align="middle">5.97</td><td vertical-align="middle">4.772</td><td vertical-align="middle">+12.8%</td><td vertical-align="middle"><b>80.0%</b></td><td vertical-align="middle">2.120</td><td vertical-align="middle">2.343</td><td vertical-align="middle">+11%</td></tr><tr><td vertical-align="middle">创建运单（计划单）货主数</td><td vertical-align="middle">284</td><td vertical-align="middle">92</td><td vertical-align="middle">-13%</td><td vertical-align="middle">—</td><td vertical-align="middle">110</td><td vertical-align="middle">78</td><td vertical-align="middle">-29%</td></tr><tr><td vertical-align="middle">成交货主数</td><td vertical-align="middle">264</td><td vertical-align="middle">95</td><td vertical-align="middle">+8%</td><td vertical-align="middle">—</td><td vertical-align="middle">111</td><td vertical-align="middle">82</td><td vertical-align="middle">-26%</td></tr><tr><td vertical-align="middle">成交运单量（万单）</td><td vertical-align="middle">5.97</td><td vertical-align="middle">4.772</td><td vertical-align="middle">+12.8%</td><td vertical-align="middle">—</td><td vertical-align="middle">2.120</td><td vertical-align="middle">2.343</td><td vertical-align="middle">+11%</td></tr><tr><td vertical-align="middle">--成交/创建</td><td vertical-align="middle">93%</td><td vertical-align="middle">103%</td><td vertical-align="middle">+24%</td><td vertical-align="middle">—</td><td vertical-align="middle">101%</td><td vertical-align="middle">105%</td><td vertical-align="middle">+4%</td></tr><tr><td vertical-align="middle">--单货主成交运单数</td><td vertical-align="middle">226</td><td vertical-align="middle">502</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">316</td><td vertical-align="middle">286</td><td vertical-align="middle">-10%</td></tr><tr><td vertical-align="middle"><b>3-网货</b></td><td vertical-align="middle">2.31</td><td vertical-align="middle">0.519</td><td vertical-align="middle">-24.4%</td><td vertical-align="middle"><b>22.4%</b></td><td vertical-align="middle">0.244</td><td vertical-align="middle">0.257</td><td vertical-align="middle">+5%</td></tr><tr><td vertical-align="middle">注册货主数（家）</td><td vertical-align="middle">274</td><td vertical-align="middle">18</td><td vertical-align="middle">-25%</td><td vertical-align="middle">—</td><td vertical-align="middle">10</td><td vertical-align="middle">5</td><td vertical-align="middle">-50%</td></tr><tr><td vertical-align="middle">认证货主数（家）</td><td vertical-align="middle">137</td><td vertical-align="middle">18</td><td vertical-align="middle">-28%</td><td vertical-align="middle">—</td><td vertical-align="middle">10</td><td vertical-align="middle">5</td><td vertical-align="middle">-50%</td></tr><tr><td vertical-align="middle">发货货主数（家）</td><td vertical-align="middle">123</td><td vertical-align="middle">179</td><td vertical-align="middle">-6%</td><td vertical-align="middle">—</td><td vertical-align="middle">182</td><td vertical-align="middle">156</td><td vertical-align="middle">-14%</td></tr><tr><td vertical-align="middle">成交货主数</td><td vertical-align="middle">102</td><td vertical-align="middle">66</td><td vertical-align="middle">-13%</td><td vertical-align="middle">—</td><td vertical-align="middle">57</td><td vertical-align="middle">64</td><td vertical-align="middle">+12%</td></tr><tr><td vertical-align="middle">成交运单数（万单）</td><td vertical-align="middle">2.31</td><td vertical-align="middle">0.519</td><td vertical-align="middle">-24.4%</td><td vertical-align="middle">—</td><td vertical-align="middle">0.244</td><td vertical-align="middle">0.257</td><td vertical-align="middle">+5%</td></tr><tr><td vertical-align="middle">--注册 转 认证 转化率</td><td vertical-align="middle">50%</td><td vertical-align="middle">100%</td><td vertical-align="middle">-4%</td><td vertical-align="middle">—</td><td vertical-align="middle">100%</td><td vertical-align="middle">100%</td><td vertical-align="middle">0%</td></tr><tr><td vertical-align="middle">--认证 转 发货 转化率</td><td vertical-align="middle">90%</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td></tr><tr><td vertical-align="middle">--货主成交率</td><td vertical-align="middle">83%</td><td vertical-align="middle">37%</td><td vertical-align="middle">-8%</td><td vertical-align="middle">—</td><td vertical-align="middle">31%</td><td vertical-align="middle">41%</td><td vertical-align="middle">+32%</td></tr><tr><td vertical-align="middle">--单货主成交运单数</td><td vertical-align="middle">226</td><td vertical-align="middle">79</td><td vertical-align="middle">—</td><td vertical-align="middle">—</td><td vertical-align="middle">40</td><td vertical-align="middle">40</td><td vertical-align="middle">0%</td></tr></tbody></table>
+
+# 二、生态运营目标：司机规模
+
+## 4、司机拉新进展 
+
+<sheet sheet-id="QASjx7" token="IAyFsWvIshTvcUt29jZcar6fn0g"></sheet>
+
+<sheet sheet-id="vW47GG" token="IAyFsWvIshTvcUt29jZcar6fn0g"></sheet>
+
+
+
+# 三、撮合物流
+
+## 5、撮合专项进展
+
+#### 1）意向货源匹配 
+
+> 围绕意向货源 选货、集车、撮合交易，关注意向货源成交率：9月目标40%，12月达成55%。本周39.68%，对比上周下降1.74%，9月MTD40.30%。
+
+<table><colgroup><col/><col/><col/><col/><col/><col/><col/><col/></colgroup><thead><tr><th>KR</th><th>方向</th><th>指标</th><th>本周</th><th>上周</th><th>月MTD</th><th>9月目标</th><th>本周进展及Todo</th></tr></thead><tbody><tr><td vertical-align="middle">货源审录及分层</td><td vertical-align="middle">审录单环节高覆盖、有效审核</td><td vertical-align="middle">5min审核率</td><td vertical-align="middle">审核：61.61%<br/>全部：15.84%</td><td vertical-align="middle">审核：42.99%<br/>全部：11.41%</td><td vertical-align="middle">审核：59.67%<br/>全部：16.02%</td><td vertical-align="middle">审核：50%<br/>全部：20%</td><td rowspan="3"><b>本周进展</b>：<br/>1、电销线上审核的MVP版本已完成prd评审，预计9月22日上线。<br/>2、私域分享28票货源，有司机反馈1票，未成交（价格原因）。<br/>3、本周公开货源2411票，电销审核货源620票，其中63票意向找车，意向货源占比2.61%；本月累计公开货源2753票，审核货源744票，其中67票需要找车，意向货源占比2.43%。<br/>4、意向货源激励方案整理与输出：<cite doc-id="ESZswXM9LiA6JhkZ0P8cdZjCnAg" file-type="wiki" title="公开货源激励调整" type="doc"></cite><br/><b>下周计划</b>：<br/>1、意向货源激励方案确定，测算激励金额及向区域销售宣贯<br/>2、电销线上审核的工作流程整理与沟通对接<br/>3、电销审核流程持续跟进并解决各种问题</td></tr><tr><td vertical-align="middle">运力活跃与触达</td><td vertical-align="middle">引导运力活跃表达、大范围触达引导访货</td><td vertical-align="middle">意向货源查看运力数</td><td vertical-align="middle">1.15</td><td vertical-align="middle">0.65</td><td vertical-align="middle">1.09</td><td vertical-align="middle">1.5</td></tr><tr><td vertical-align="middle">撮合成交策略</td><td vertical-align="middle">通过端内、调度、微信生态 促成交易</td><td vertical-align="middle">意向货源三端响应率</td><td vertical-align="middle">27.50%</td><td vertical-align="middle">20.59%</td><td vertical-align="middle">25.00%</td><td vertical-align="middle">30%</td></tr></tbody></table>
+
+#### 2）撮合交易赋能
+
+> 围绕 价格、线索、工具等进行交易赋能，关注公开货源整体成交率：12月目标 80%，本周xx%
+
+**a、价格赋能** 
+
+<table><colgroup><col/><col/><col/><col/><col/><col/><col/><col/></colgroup><tbody><tr><td vertical-align="middle">KR</td><td vertical-align="middle">方向</td><td vertical-align="middle">指标</td><td vertical-align="middle">本周</td><td vertical-align="middle">上周</td><td vertical-align="middle">月mtd</td><td vertical-align="middle">9月目标</td><td>本周进展及Todo</td></tr><tr><td vertical-align="middle">定价覆盖</td><td vertical-align="middle">省市两级 低偏离度基础价 按线路覆盖</td><td vertical-align="middle">省级 运单覆盖率</td><td vertical-align="middle">34.9%</td><td vertical-align="middle">34.5%</td><td vertical-align="middle">35.0%</td><td vertical-align="middle">40%</td><td rowspan="4"><b>本周进展</b><br/>1、完成全量1159条高频线路询价<br/>2、9月累计排查异常流向966条，较8月下降17.4%<br/>3、建立流向价格巡检BI自动化模板，实现异常识别、诊断、调价建议的半自动化闭环<br/>4、询价的埋点逻辑异常本周识别到曝光逻辑是成交list+区间价格一起出现才算曝光，预计线路价格功能上线后修复<br/>5、询价的详细字段目前完成落库，数据取数中，本周内可进行初步分析<br/>6、多式联运-公铁联运接入公路报价能力项目产研侧已进入接口对接环节；<br/><b>下周计划</b><br/>1、完成300条高频流向覆盖，更新后高频流向1037条<br/>2、全量高频线路价格覆盖<br/>3、<cite doc-id="U4anwb3XEifDfWkPac6cRN3YnCc" file-type="wiki" title="调价自动化功能建设方案" type="doc"></cite>调价自动化方案细化<br/>4、询价未下单专项分析<br/>5、全国运价查询工具-万联灵犀企业版方案确认推进</td></tr><tr><td vertical-align="middle">异常调价跟进</td><td vertical-align="middle">人工/自动及时跟进异常，保持价格低偏离度</td><td vertical-align="middle">调价自动化率/存量需人工调价线路比</td><td vertical-align="middle">26.21%</td><td vertical-align="middle">33.12%</td><td vertical-align="middle">26.3%</td><td vertical-align="middle"></td></tr><tr><td rowspan="2" vertical-align="middle">用价效果</td><td rowspan="2" vertical-align="middle">支持各渠道 获取/判断价格<br/>关注用户采纳价格，提升报价后下单转化</td><td vertical-align="middle">报价采纳率</td><td vertical-align="middle">42.83%</td><td vertical-align="middle">42.53%</td><td vertical-align="middle">42%</td><td vertical-align="middle">45%</td></tr><tr><td vertical-align="middle">见价下单转化率</td><td vertical-align="middle">42.63%</td><td vertical-align="middle">32.75%</td><td vertical-align="middle">42.4%</td><td vertical-align="middle">45%</td></tr></tbody></table>
+
+**见价采纳率解析**
+
+- 活跃货主363家，总发货 2406 单。94% 的货主日均发货量<1次，发货量占比58%，且在价格区间内发货数占比19%；整体行为较为离散。
+
+<sheet sheet-id="Cb5oKv" token="IAyFsWvIshTvcUt29jZcar6fn0g"></sheet>
+
+
+
+
+
+#### 3）线上交易履约能力 
+
+> 长期建设策略及产品能力，关注线上响应及成交的运单占比：暂不设量化目标
+
+<table><colgroup><col/><col/><col/></colgroup><tbody><tr><td><b>核心策略</b></td><td><b>本周进展</b></td><td><b>下周计划</b></td></tr><tr><td vertical-align="middle">司机找货基础工具完善（报空/订阅/筛排推/定位基建/听单等）</td><td vertical-align="middle">1、司机听单能力9月8日上线<br/>2、基于司机报空和订阅的货源push能力9月8日上线<br/>3、司机登录app的流量入口由大厅到首页，9月8日上线<br/>4、订阅情况：本周日均订阅线路 156人，人均订阅1.2条线路。<br/>5、报空情况：本周日均上报空车50人，人均上报1条线路。日均查看空车推荐货源36票，响应空车推荐货源5票，查看响应率13.9%。</td><td vertical-align="middle">1、push相关数据输出<br/>2、听单、报空、订阅等能力与司机侧沟通输出培训物料<br/>3、司机流量入口调整对于相关数据影响的评估<br/>4、订阅和报空司机的线下运营（推动私域建联）<br/>5、司机货源大厅&lt;<b>推荐货源</b>&gt;tab的需求整理</td></tr><tr><td vertical-align="middle">匹配交易基础工具建设（IM电联/报议价/货源吸引力/履约 等交易基建）</td><td vertical-align="middle">1、完成一口价货源可议价的业务BRD方案<cite doc-id="Sbe9dnSPUotWw9x4k5lcnV5Ynde" file-type="docx" title="一口价货源报价能力新增" type="doc"></cite><br/>2、IM工具已启动（产运主推）</td><td vertical-align="middle">1、一口价货源议价推动产运进入流程<br/>2、IM工具关于匹配侧的细节需求沟通</td></tr></tbody></table>
+
+**数据**
+
+数据解读：
+
+1. 本周公开货源的车辆需求数相较上周下降较多，主要是填写大数值吨重（如10万吨）和车数（如1万车）的货源减少。
+2. 本周议价货源增加，主要为一个货主发布的多条线路未设置一口价，均为司机扫码成交。
+
+<sheet sheet-id="yzZNdY" token="IAyFsWvIshTvcUt29jZcar6fn0g"></sheet>
+
+#### 4）线路专区运营 
+
+> 线路订单量：（待启动运营后补充）
+
+货主侧：按线路进行外部扒货，重点关注小平台的方案，可行性高的3个平台进行账号注册，整体可行性不高
+
+ <cite doc-id="HQB3dDRzZoxbEtxjrlQcvZfvnPe" file-type="docx" title="货运平台司机账号注册风控规则对比-15家" type="doc"></cite>
+
+司机端：按照线路筛选司机，初步筛选线路标签司机 9195个，安排电销进行私域转化；
+
+双端活动运营：货主端&司机端的的活动H5设计详情
+
+
+
+
+
+#### 5）区域意向货源线上化增长 
+
+> 意向货源占比（目前是已审货源为分母的口径）：9月目10%，12月目标15%。本周10.16%，对比上周提升1.88%，9月MTD9%
+
+本周进展及Todo：电销线上审核的MVP版本已完成PRD评审，预计9月22日上线。后续通过撬动区域调度司机资源线上化增加激励方案，提升区域开放货源的真实性及规模。
+
+**数据表现**
+
+<sheet sheet-id="hQIztk" token="IAyFsWvIshTvcUt29jZcar6fn0g"></sheet>
+
+
+
+
+
+
+
+## 6、私域情况
+
+<sheet sheet-id="czc7ai" token="IAyFsWvIshTvcUt29jZcar6fn0g"></sheet>
+
+## 7、车辆电销进展
+
+**9月总体：** 累计拨打19,332条、人效201条/日、意向率5.00%、leads覆盖率100%。接通率44.46%、有效沟通率66.22%；SAB 127条、占29.53%（S 8 / A 54 / B 65）；电车SAB占8.37%；微信通过率39.40%。
+
+- 留资线索：量小质高。 意向率5.95%、SAB占比80%（SAB占比三池最高）。
+- 意向线索（主池，占53.8%）：结构最稳。 意向率3.92%、SAB占比35.33%。
+- 购车意向分线索：质量最优，但高意向下滑。 意向率6.07%，意向率最高。
+
+**周环比：**
+
+1. 意向率全线上涨： 三池齐升（+2.77 / +0.86 / +1.2pp），总意向率3.95%→5.06%。
+2. 高意向结构下移： SAB占比34.78%→27.50%，增量集中在B/C级，可跟进的高意向在变少。
+3. 电车与私域增长： 电车SAB +20.83%、微信通过率+15.86pp（24.56%→40.42%）。
+4. 销售支持跟进回落（需协同）： 销售支持T+2反馈率54.17%→41.38%（-12.79pp）。
+
+下周计划
+
+1. 电车话术练兵： 会议情景演练 + 每周录音抽听3-5通 + 话术通关考试。
+2. 微信添加100%执行；从已通过微信的客户中（通过率40.42%）筛出有电车购买需求的高意向线索，单独建池、由电销自己优先跟进转化——把"通过率"变成电车意向产出。
+3. 销售支持SAB T+2建联率100%： 9月未建联的线索，单独一对一对接区域销售支持。
+4. 上海区域线索拨打。
+
+<sheet sheet-id="KI01uu" token="IAyFsWvIshTvcUt29jZcar6fn0g"></sheet>
+
+## 8、产品进展
+
+8月重点需求整体进展：
+
+8月新提的需求(W30-W34)中**P0级别需求共117个**。整体进展顺利。进度分布如下：
+
+<sheet sheet-id="zHb8Tk" token="IAyFsWvIshTvcUt29jZcar6fn0g"></sheet>
+
+9月自驱需求进展：
+
+| **需求编号** | **需求描述** | **需求状态** | **产运负责人** |
+|-|-|-|-|
+| 26003507 | 货主极简版优化 | 合并至专项1 预计9月底上线 | 杜希强 |
+| 26003342 | 货主端身份分层体系建设 | 合并至专项4 | 宣涵 |
+| 26003971 | 易达宝货主端-轨迹定位V1.0-轨迹/定位模块拆分+司机GPS免费开放（0804确定优先做后台信息展示，1.0合并在1.2中推进） | MRD待评审 | 郭可人 |
+| 26003953 | TMS履约逆向流程 | PRD待设计 | 王世良 |
+| 26003648 | 司机货源大厅推荐及列表展示优化 | **已上线** | 吴曲丽 |
+| 26003669 | 易达宝货主端-轨迹定位V1.1-轨迹定位额度包付费体系搭建 | 待受理 | 郭可人 |
+| 26004356 | 易达宝货主端-轨迹定位V1.3-轨迹/定位地图前端展示优化 | 待受理，需求已和业产沟通 | 郭可人 |
+| 26004207 | push导出数据增加触达消息相关字段 | 已上线 | 李佳欢 |
+| 26004201 | 司机接单的时候，可以选择挂车 | 待受理 | 王世良 |
+
+
+
+
+
+<cite doc-id="NZYMdX4RKoghc9xU3ZGcuYiXnQf" file-type="docx" title="⭐️8月W5周报" type="doc"></cite>

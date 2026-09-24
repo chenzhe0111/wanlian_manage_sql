@@ -2,12 +2,18 @@
  * 三方调度：user_base_id = waybill.dispatcher_user_id；
  * 注册/认证=用户表按周/月累计（W1 截止到 W1 周末，W2 截止到 W2 周末，与 range_end 取小）；
  * 产生调度=周期内去重
+ *
+ * 新老口径（跨月周关键，同 03）：
+ *   first_dt = 货主历史首次发货/运单日（TMS创建∪货源发布）
+ *   cutoff   = DATE_FORMAT(event_dt, '%Y-%m-01')  —— 事件日所在月 1 号
+ *   first_dt >= cutoff → 新货主；否则老货主
+ *   例：0729–0804 周内，7 月段相对 7/1 判，8 月段相对 8/1 判（同一货主周内可分属新/老）
+ * 当前输出维度仍是「类型」不是「新老」；shipper_type 在 base 层预留
  */
 WITH tim AS (
     SELECT
         DATE '2026-07-01' AS range_start,
-        DATE '2026-07-14' AS range_end,   /* 统计截止日，右闭：event_dt <= range_end */
-        DATE '2026-07-01' AS cutoff_dt  /* 新老货主分界，发货口径与主 SQL 一致 */
+        DATE '2026-08-04' AS range_end   /* 右闭；含 0729-0804 跨月周，按需改 */
 ),
 comp AS (
     SELECT
@@ -30,6 +36,7 @@ comp AS (
         company_name
     FROM dwd_vlsp_mt_em_company_manage_info_minf
     WHERE company_id IS NOT NULL
+      AND is_fake_company_apply_user = '0'
 ),
 tms_waybill AS (
     SELECT waybill_create_time, shipper_company_id, waybill_id
@@ -63,13 +70,11 @@ base AS (
     SELECT create_dt, publish_company_id AS company_id
     FROM goods
 ),
-old_new AS (
+/* 仅存首活日；新老在各 fact 里按「事件月月初」动态判定（勿用全局 cutoff） */
+company_first AS (
     SELECT
         company_id,
-        CASE
-            WHEN create_dt >= (SELECT cutoff_dt FROM tim) THEN '新货主'
-            WHEN create_dt <  (SELECT cutoff_dt FROM tim) THEN '老货主'
-        END AS shipper_type
+        create_dt AS first_dt
     FROM (
         SELECT
             company_id,
@@ -108,12 +113,15 @@ company_tl AS (
         FROM match_shipper_table_advertise_info a
         LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
             ON a.telephone = b.telephone
+            AND b.is_fake_user = '0'
         WHERE b.user_base_id <> ''
     ) ad
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON ad.user_id = t1.user_base_id
+        AND t1.is_fake_user = '0'
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
         ON t3.psn_acct_user_base_id = ad.user_id
+        AND t3.is_fake_user = '0'
     WHERE COALESCE(t1.company_id, t3.company_id) IS NOT NULL
 ),
 company_dx AS (
@@ -151,6 +159,12 @@ waybill_hit AS (
             WHEN waybill.invoice_type = 10 AND waybill.tms_flag = 10 THEN 'TMS'
             ELSE '撮合'
         END AS waybill_category,
+        /* 事件月新老（跨月周：7月段看7/1，8月段看8/1） */
+        CASE
+            WHEN cf.first_dt IS NULL THEN NULL
+            WHEN cf.first_dt >= DATE_FORMAT(DATE(waybill.accept_dt), '%Y-%m-01') THEN '新货主'
+            ELSE '老货主'
+        END AS shipper_type,
         CASE WHEN zm.company_id IS NOT NULL THEN 1 ELSE 0 END AS hit_zm,
         CASE WHEN tl.company_id IS NOT NULL THEN 1 ELSE 0 END AS hit_tl,
         CASE WHEN dx.company_name_dx IS NOT NULL THEN 1 ELSE 0 END AS hit_dx,
@@ -174,6 +188,8 @@ waybill_hit AS (
         ON dd.company_name_dd = waybill.process_shipper_company_name
     LEFT JOIN company_wxx wxx
         ON wxx.company_id = waybill.process_shipper_company_id
+    LEFT JOIN company_first cf
+        ON cf.company_id = waybill.shipper_company_id
     CROSS JOIN tim t
     WHERE DATE(waybill.accept_dt) >= t.range_start
       AND DATE(waybill.accept_dt) <= t.range_end
@@ -195,6 +211,7 @@ dispatch_waybill_base AS (
         wh.waybill_id,
         wh.shipper_company_id,
         wh.waybill_category,
+        wh.shipper_type,
         1.0 / NULLIF(wh.hit_zm + wh.hit_tl + wh.hit_dx + wh.hit_dd + wh.hit_wxx, 0) AS weight
     FROM waybill_hit wh
     WHERE wh.hit_dd = 1
@@ -203,9 +220,15 @@ dispatch_waybill_base AS (
 dispatch_register_base AS (
     SELECT
         c.company_id,
-        DATE(c.register_dt) AS event_dt
+        DATE(c.register_dt) AS event_dt,
+        CASE
+            WHEN cf.first_dt IS NULL THEN NULL
+            WHEN cf.first_dt >= DATE_FORMAT(DATE(c.register_dt), '%Y-%m-01') THEN '新货主'
+            ELSE '老货主'
+        END AS shipper_type
     FROM comp c
     INNER JOIN company_dispatch dd ON dd.company_id = c.company_id
+    LEFT JOIN company_first cf ON cf.company_id = c.company_id
     CROSS JOIN tim t
     WHERE c.register_dt >= t.range_start
       AND c.register_dt <= t.range_end
@@ -213,9 +236,15 @@ dispatch_register_base AS (
 dispatch_certify_base AS (
     SELECT
         c.company_id,
-        DATE(c.audit_dt) AS event_dt
+        DATE(c.audit_dt) AS event_dt,
+        CASE
+            WHEN cf.first_dt IS NULL THEN NULL
+            WHEN cf.first_dt >= DATE_FORMAT(DATE(c.audit_dt), '%Y-%m-01') THEN '新货主'
+            ELSE '老货主'
+        END AS shipper_type
     FROM comp c
     INNER JOIN company_dispatch dd ON dd.company_id = c.company_id
+    LEFT JOIN company_first cf ON cf.company_id = c.company_id
     CROSS JOIN tim t
     WHERE c.audit_dt IS NOT NULL
       AND c.audit_dt >= t.range_start
@@ -224,10 +253,14 @@ dispatch_certify_base AS (
 dispatch_ship_base AS (
     SELECT
         b.company_id,
-        DATE(b.create_dt) AS event_dt
+        DATE(b.create_dt) AS event_dt,
+        CASE
+            WHEN cf.first_dt >= DATE_FORMAT(DATE(b.create_dt), '%Y-%m-01') THEN '新货主'
+            ELSE '老货主'
+        END AS shipper_type
     FROM base b
     INNER JOIN company_dispatch cd ON cd.company_id = b.company_id
-    INNER JOIN old_new ow ON ow.company_id = b.company_id
+    INNER JOIN company_first cf ON cf.company_id = b.company_id
     CROSS JOIN tim t
     WHERE b.create_dt >= t.range_start
       AND b.create_dt <= t.range_end
@@ -281,6 +314,7 @@ dispatcher_user AS (
         DATE(SUBSTR(register_dt, 1, 10)) AS register_dt
     FROM dwd.dwd_vlsp_mt_em_user_manage_info_minf
     WHERE is_dispatcher = 1
+      AND is_fake_user = '0'
       AND deleted = 21
       AND user_status = 11
       AND dispatch_type = 30
@@ -302,13 +336,21 @@ third_dispatch_base AS (
       AND w.waybill_status NOT IN (540, 100)
     GROUP BY DATE(w.accept_dt), w.dispatcher_user_id
 ),
-/* 周期清单：月=截止月末；周=周三起始，period_end=当周结束日与 range_end 取小 */
+/* 周期清单：月=range 内每个自然月（跨月周也出齐各月）；周=周三起始，period_end=min(周末, range_end) */
 third_period AS (
     SELECT
         '月' AS stat_granularity,
-        DATE_FORMAT(t.range_end, '%Y-%m-01') AS period_start,
-        LEAST(LAST_DAY(t.range_end), t.range_end) AS period_end
+        ADD_MONTHS(DATE_FORMAT(t.range_start, '%Y-%m-01'), m.n) AS period_start,
+        LEAST(
+            LAST_DAY(ADD_MONTHS(DATE_FORMAT(t.range_start, '%Y-%m-01'), m.n)),
+            t.range_end
+        ) AS period_end
     FROM tim t
+    CROSS JOIN (
+        SELECT 0 AS n UNION ALL SELECT 1 UNION ALL SELECT 2
+        UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5
+    ) m
+    WHERE ADD_MONTHS(DATE_FORMAT(t.range_start, '%Y-%m-01'), m.n) <= t.range_end
     UNION
     SELECT DISTINCT
         '周',
@@ -325,10 +367,16 @@ third_period AS (
         CROSS JOIN (
             SELECT 0 AS n UNION ALL SELECT 7 UNION ALL SELECT 14
             UNION ALL SELECT 21 UNION ALL SELECT 28 UNION ALL SELECT 35
+            UNION ALL SELECT 42 UNION ALL SELECT 49 UNION ALL SELECT 56
+            UNION ALL SELECT 63 UNION ALL SELECT 70 UNION ALL SELECT 77
         ) s
         WHERE DATE_ADD(t2.range_start, INTERVAL s.n DAY) <= t2.range_end
     ) ws
     WHERE ws.week_start <= t.range_end
+      AND ws.week_start >= DATE_SUB(
+            t.range_start,
+            INTERVAL ((WEEKDAY(t.range_start) - 2 + 7) % 7) DAY
+        )
 ),
 /* 注册=认证：按周期累计，W1 截止到 W1，W2 截止到 W2 */
 dispatcher_cum_by_period AS (

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 780" width="1480" height="780">
+  <rect x="0" y="0" width="1480" height="780" fill="#FFFFFF"/>
+
+  <!-- ===== 业务环节 ===== -->
+  <!-- stages -->
+  <g id="stages">
+    <!-- boxes -->
+    <rect x="70" y="36" width="110" height="44" rx="6" fill="#F5A623"/>
+    <text x="125" y="64" text-anchor="middle" fill="#FFFFFF" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">拉新</text>
+
+    <rect x="220" y="36" width="110" height="44" rx="6" fill="#F5A623"/>
+    <text x="275" y="64" text-anchor="middle" fill="#FFFFFF" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">注册</text>
+
+    <rect x="370" y="36" width="110" height="44" rx="6" fill="#F5A623"/>
+    <text x="425" y="64" text-anchor="middle" fill="#FFFFFF" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">认证</text>
+
+    <rect x="520" y="30" width="130" height="56" rx="6" fill="#F5A623"/>
+    <text x="585" y="52" text-anchor="middle" fill="#FFFFFF" font-size="16" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">活跃</text>
+    <text x="585" y="72" text-anchor="middle" fill="#FFFFFF" font-size="14" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">发货/接单</text>
+
+    <rect x="690" y="36" width="110" height="44" rx="6" fill="#F5A623"/>
+    <text x="745" y="64" text-anchor="middle" fill="#FFFFFF" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">成交</text>
+
+    <rect x="840" y="36" width="110" height="44" rx="6" fill="#F5A623"/>
+    <text x="895" y="64" text-anchor="middle" fill="#FFFFFF" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">履约</text>
+
+    <rect x="990" y="36" width="110" height="44" rx="6" fill="#F5A623"/>
+    <text x="1045" y="64" text-anchor="middle" fill="#FFFFFF" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">留存</text>
+
+    <!-- arrows between stages -->
+    <polyline points="180,58 212,58" fill="none" stroke="#555555" stroke-width="3"/>
+    <polygon points="212,52 224,58 212,64" fill="#555555"/>
+    <polyline points="330,58 362,58" fill="none" stroke="#555555" stroke-width="3"/>
+    <polygon points="362,52 374,58 362,64" fill="#555555"/>
+    <polyline points="480,58 512,58" fill="none" stroke="#555555" stroke-width="3"/>
+    <polygon points="512,52 524,58 512,64" fill="#555555"/>
+    <polyline points="650,58 682,58" fill="none" stroke="#555555" stroke-width="3"/>
+    <polygon points="682,52 694,58 682,64" fill="#555555"/>
+    <polyline points="800,58 832,58" fill="none" stroke="#555555" stroke-width="3"/>
+    <polygon points="832,52 844,58 832,64" fill="#555555"/>
+    <polyline points="950,58 982,58" fill="none" stroke="#555555" stroke-width="3"/>
+    <polygon points="982,52 994,58 982,64" fill="#555555"/>
+  </g>
+
+  <!-- ===== 行业 ===== -->
+  <text x="28" y="200" fill="#222222" font-size="20" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">行业</text>
+
+  <!-- left industry block -->
+  <rect x="70" y="120" width="410" height="70" rx="4" fill="#F7E7C7" stroke="#E8D2A8" stroke-width="1"/>
+  <text x="275" y="162" text-anchor="middle" fill="#333333" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif">营销拉新，激励给用户（司货）</text>
+  <!-- down arrow -->
+  <polyline points="275,190 275,220" fill="none" stroke="#888888" stroke-width="2"/>
+  <polygon points="269,220 275,232 281,220" fill="#888888"/>
+  <rect x="145" y="236" width="260" height="48" rx="4" fill="#F7E7C7" stroke="#E8D2A8" stroke-width="1"/>
+  <text x="275" y="266" text-anchor="middle" fill="#333333" font-size="16" font-family="Noto Sans SC, PingFang SC, sans-serif">激励更看重：注册、认证</text>
+
+  <!-- right industry block -->
+  <rect x="690" y="120" width="260" height="70" rx="4" fill="#F7E7C7" stroke="#E8D2A8" stroke-width="1"/>
+  <text x="820" y="152" text-anchor="middle" fill="#333333" font-size="16" font-family="Noto Sans SC, PingFang SC, sans-serif">补贴转化，激励给用户</text>
+  <text x="820" y="174" text-anchor="middle" fill="#333333" font-size="16" font-family="Noto Sans SC, PingFang SC, sans-serif">（司货）</text>
+  <polyline points="820,190 820,220" fill="none" stroke="#888888" stroke-width="2"/>
+  <polygon points="814,220 820,232 826,220" fill="#888888"/>
+  <rect x="720" y="236" width="200" height="48" rx="4" fill="#F7E7C7" stroke="#E8D2A8" stroke-width="1"/>
+  <text x="820" y="266" text-anchor="middle" fill="#333333" font-size="16" font-family="Noto Sans SC, PingFang SC, sans-serif">激励更看重：运单/GTV</text>
+
+  <!-- industry goal arrow + box -->
+  <polyline points="970,170 1120,170" fill="none" stroke="#F0E0C0" stroke-width="18"/>
+  <polygon points="1120,155 1150,170 1120,185" fill="#F0E0C0"/>
+  <rect x="1160" y="120" width="260" height="130" rx="6" fill="#F7E7C7" stroke="#E8D2A8" stroke-width="1"/>
+  <text x="1290" y="158" text-anchor="middle" fill="#333333" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">目标导向：</text>
+  <text x="1290" y="192" text-anchor="middle" fill="#333333" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif">注册规模</text>
+  <text x="1290" y="222" text-anchor="middle" fill="#333333" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif">运单/GTV</text>
+
+  <!-- dashed separator -->
+  <line x1="50" y1="320" x2="1430" y2="320" stroke="#999999" stroke-width="2" stroke-dasharray="8 6"/>
+
+  <!-- ===== 易达宝 ===== -->
+  <text x="18" y="470" fill="#222222" font-size="20" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">易达宝</text>
+
+  <!-- dual register dashed -->
+  <rect x="70" y="360" width="410" height="70" rx="4" fill="#F5F5F5" stroke="#888888" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="275" y="402" text-anchor="middle" fill="#333333" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif">双端注册/认证</text>
+
+  <!-- incentive to employees -->
+  <rect x="540" y="360" width="410" height="70" rx="4" fill="#5B9BD5" stroke="#3A7BB8" stroke-width="1"/>
+  <text x="745" y="402" text-anchor="middle" fill="#FFFFFF" font-size="18" font-family="Noto Sans SC, PingFang SC, sans-serif">激励转化，激励给员工</text>
+
+  <!-- reverse arrow -->
+  <polyline points="540,395 490,395" fill="none" stroke="#555555" stroke-width="2"/>
+  <polygon points="490,389 478,395 490,401" fill="#555555"/>
+  <text x="470" y="382" text-anchor="middle" fill="#333333" font-size="13" font-family="Noto Sans SC, PingFang SC, sans-serif">反向带来了拉新规模</text>
+
+  <!-- down to focus -->
+  <polyline points="745,430 745,470" fill="none" stroke="#5B9BD5" stroke-width="2"/>
+  <polygon points="739,470 745,482 751,470" fill="#5B9BD5"/>
+  <rect x="620" y="490" width="250" height="52" rx="4" fill="#5B9BD5" stroke="#3A7BB8" stroke-width="1"/>
+  <text x="745" y="522" text-anchor="middle" fill="#FFFFFF" font-size="16" font-family="Noto Sans SC, PingFang SC, sans-serif">激励更看重：运单/GTV</text>
+
+  <!-- yidabao goal -->
+  <polyline points="970,395 1120,395" fill="none" stroke="#5B9BD5" stroke-width="18"/>
+  <polygon points="1120,380 1150,395 1120,410" fill="#5B9BD5"/>
+  <rect x="1160" y="350" width="280" height="240" rx="6" fill="#5B9BD5" stroke="#3A7BB8" stroke-width="1"/>
+  <text x="1300" y="385" text-anchor="middle" fill="#FFFFFF" font-size="16" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">目标导向（现状）：运单/GTV</text>
+  <text x="1300" y="420" text-anchor="middle" fill="#FFFFFF" font-size="15" font-family="Noto Sans SC, PingFang SC, sans-serif" font-weight="700">未来可能：</text>
+  <text x="1180" y="455" text-anchor="start" fill="#FFFFFF" font-size="14" font-family="Noto Sans SC, PingFang SC, sans-serif">1) 撮合：运力注册规模 +</text>
+  <text x="1210" y="478" text-anchor="start" fill="#FFFFFF" font-size="14" font-family="Noto Sans SC, PingFang SC, sans-serif">交易运单规模</text>
+  <text x="1180" y="510" text-anchor="start" fill="#FFFFFF" font-size="14" font-family="Noto Sans SC, PingFang SC, sans-serif">2) TMS：运力注册规模 +</text>
+  <text x="1210" y="533" text-anchor="start" fill="#FFFFFF" font-size="14" font-family="Noto Sans SC, PingFang SC, sans-serif">交易运单规模</text>
+  <text x="1180" y="565" text-anchor="start" fill="#FFFFFF" font-size="14" font-family="Noto Sans SC, PingFang SC, sans-serif">3) 网货：毛利</text>
+</svg>

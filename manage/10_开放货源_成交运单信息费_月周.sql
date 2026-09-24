@@ -1,5 +1,10 @@
-/* 开放货源 + 成交率 + 开放货源运单量 + 信息费 | 月度 + 周度 合并输出 */
-WITH open_goods AS (
+/* 开放货源 + 成交率 + 开放货源运单量 + 信息费 | 月度 + 周度 | 2026年4-6月 */
+WITH tim AS (
+    SELECT
+        '2026-04-01' AS range_start,
+        '2026-07-01' AS range_end   /* 含6月，不含7月 */
+),
+open_goods AS (
     SELECT
         goods_id,
         create_time
@@ -51,6 +56,7 @@ waybill AS (
         w.accept_dt,
         w.dispatcher_user_id
     FROM dwd.dwd_vlsp_mt_match_waybill_match_business_process_minf w
+    CROSS JOIN tim
     WHERE NVL(shipper_company_id, '') NOT IN (
           '065d39e9afac48d8a0bdc5896c18d96c',
           '1993982792389951488',
@@ -59,24 +65,28 @@ waybill AS (
       )
       AND tms_flag = 20
       AND w.waybill_status NOT IN (540, 100)
-      AND w.accept_dt > '2026-07-01'
+      AND DATE_FORMAT(w.accept_dt, '%Y-%m-%d') >= tim.range_start
+      AND DATE_FORMAT(w.accept_dt, '%Y-%m-%d') <  tim.range_end
 ),
 waybill_info_fee AS (
     SELECT
-        waybill_id,
-        info_fee,
-        info_fee_pay_time
+        r.waybill_id,
+        r.info_fee,
+        r.info_fee_pay_time
     FROM dwd.dwd_vlsp_mt_settle_waybill_revenue_share_business_process_minf r
-    WHERE info_fee > 0
-      AND dispatch_type IN (20, 30)           /* 区域/三方调度 */
-      AND dispatcher_user_id NOT IN (
+    CROSS JOIN tim
+    WHERE r.info_fee > 0
+      AND r.dispatch_type IN (20, 30)           /* 区域/三方调度 */
+      AND r.dispatcher_user_id NOT IN (
           '1993495329000587264',
           '2061773197266493440',
           '2048625413768757248',
           '1993985265305452544'
       )
-      AND info_fee_pay_status = 30            /* 支付成功 */
-      AND DATE_FORMAT(info_fee_pay_time, '%Y-%m-%d') > '2026-07-01'
+      AND r.info_fee_pay_status = 30            /* 支付成功 */
+      /* 与原文一致：用 DATE_FORMAT 字符串比较，避免 DATE() 对时间字段解析失败导致信息费全空 */
+      AND DATE_FORMAT(r.info_fee_pay_time, '%Y-%m-%d') >= tim.range_start
+      AND DATE_FORMAT(r.info_fee_pay_time, '%Y-%m-%d') <  tim.range_end
 ),
 
 /* ========== ① 开放货源统计（按货源创建时间） ========== */
@@ -92,7 +102,9 @@ metric_open_goods AS (
             4
         ) AS cj_open_goods_rat
     FROM open_goods_waybill
-    WHERE DATE_FORMAT(create_time, '%Y-%m-%d') > '2026-07-01'
+    CROSS JOIN tim
+    WHERE DATE_FORMAT(create_time, '%Y-%m-%d') >= tim.range_start
+      AND DATE_FORMAT(create_time, '%Y-%m-%d') <  tim.range_end
     GROUP BY DATE(DATE_FORMAT(create_time, '%Y-%m-01'))
     UNION ALL
     SELECT
@@ -106,7 +118,9 @@ metric_open_goods AS (
             4
         )
     FROM open_goods_waybill
-    WHERE DATE_FORMAT(create_time, '%Y-%m-%d') > '2026-07-01'
+    CROSS JOIN tim
+    WHERE DATE_FORMAT(create_time, '%Y-%m-%d') >= tim.range_start
+      AND DATE_FORMAT(create_time, '%Y-%m-%d') <  tim.range_end
     GROUP BY DATE(DATE_SUB(create_time, INTERVAL ((WEEKDAY(create_time) - 2 + 7) % 7) DAY))
 ),
 

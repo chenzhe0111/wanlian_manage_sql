@@ -1,11 +1,15 @@
-/* 运单量 MTD 对比 | 本月 vs 上个月同期
- * 截止口径：截止到「昨天」全天（右开：accept_dt < 昨天次日0点）
+/* 运单量 MTD 对比 | 履约剔异常 | 本月 vs 上个月同期
+ * 截止口径：截止到「昨天」全天（右开：unload_time < 今天0点）
  * 线上过滤：与月度拆分SQL一致（线下线索 OR 非微信主体）
  *
- * 对齐说明（为何会和「按月汇总SQL」对不上）：
- *   1) 本月 MTD 可对齐：月度SQL 里 mon=当月 且 accept 截止到昨天
- *   2) 「上个月」是上月1日~上月同日(相对昨天)，不是上月整月
- *   3) 月度SQL含「整体×运单类型/线上×运单类型」等更多拆分；本SQL只出合计维度
+ * 履约口径（同 01c）：
+ *   1) 时间轴：unload_time；load_time / unload_time 均非空
+ *   2) 异常：排除 异常剔除 + 申诉中；申诉成功计入履约
+ *      行程：司机近30天行程异常；申诉中(100/300/310/410/500)、成功(400)、失败(110/200/320/440)
+ *
+ * 输出维度：整体 / 线上 / 线下 + 四举措（货主招募/投流/电销/调度）
+ * 无线下仍参与等权分摊，但不单独输出
+ * 「上个月」= 上月1日~上月同日(相对昨天)，不是上月整月
  */
 WITH tim AS (
     SELECT
@@ -42,33 +46,118 @@ WITH tim AS (
             INTERVAL 1 DAY
         ) AS last_month_end_excl                                       /* 过滤：上月截止日次日0点 */
 ),
+/* ===== 异常运单判定（履约新口径，同 01c） ===== */
+ab_raw AS (
+    SELECT
+        ab.waybill_id,
+        CASE
+            WHEN scenario_tags LIKE '%账号登录异常-剔除%'
+              OR scenario_tags LIKE '%同时段履约多单-剔除%'
+              OR scenario_tags LIKE '%装卸货打卡异常-剔除%'
+              OR scenario_tags LIKE '%司机近30天行程异常-剔除%'
+            THEN '剔除'
+            ELSE '下发'
+        END AS 类别
+    FROM ads.ads_vlsp_mt_match_waybill_abnormal_detail_info_df ab
+    WHERE (
+        scenario_tags LIKE '%运费异常%'
+        OR scenario_tags LIKE '%秒装秒卸%'
+        OR scenario_tags LIKE '%时速异常高%'
+        OR scenario_tags LIKE '%装卸货打卡异常-申诉%'
+        OR scenario_tags LIKE '%装卸货打卡异常-剔除%'
+        OR scenario_tags LIKE '%司机近30天行程异常%'
+        OR scenario_tags LIKE '%账号登录异常%'
+        OR scenario_tags LIKE '%同时段履约多单-剔除%'
+        OR scenario_tags LIKE '%运单间隔过短%'
+    )
+),
+ab AS (
+    SELECT
+        waybill_id,
+        CASE WHEN MAX(CASE WHEN 类别 = '剔除' THEN 1 ELSE 0 END) = 1 THEN '剔除' ELSE '下发' END AS 类别
+    FROM ab_raw
+    GROUP BY waybill_id
+),
+ss_raw AS (
+    SELECT DISTINCT waybill_id, '申诉成功' AS 是否申诉成功
+    FROM match_way_abnormal_appeal_approved_info
+    WHERE waybill_id NOT IN (SELECT DISTINCT waybill_id FROM match_way_abnormal_appeal_failed_info)
+    UNION ALL
+    SELECT DISTINCT waybill_id, '申诉失败' AS 是否申诉成功
+    FROM match_way_abnormal_appeal_failed_info
+    UNION ALL
+    SELECT DISTINCT
+        waybill_id,
+        CASE
+            WHEN appl_status IN (100, 300, 310, 410, 500) THEN '申诉中'   /* 100待推送 500已作废 */
+            WHEN appl_status IN (400) THEN '申诉成功'
+            WHEN appl_status IN (110, 200, 320, 440) THEN '申诉失败'
+            ELSE CAST(appl_status AS STRING)
+        END AS 是否申诉成功
+    FROM ads.ads_vlsp_mt_match_waybill_high_abnormal_detail_info_minf
+),
+ss AS (
+    SELECT
+        waybill_id,
+        CASE
+            WHEN MAX(CASE WHEN 是否申诉成功 = '申诉成功' THEN 1 ELSE 0 END) = 1 THEN '申诉成功'
+            WHEN MAX(CASE WHEN 是否申诉成功 = '申诉中' THEN 1 ELSE 0 END) = 1 THEN '申诉中'
+            WHEN MAX(CASE WHEN 是否申诉成功 = '申诉失败' THEN 1 ELSE 0 END) = 1 THEN '申诉失败'
+            ELSE NULL
+        END AS 是否申诉成功
+    FROM ss_raw
+    GROUP BY waybill_id
+),
+type_ab AS (
+    SELECT
+        ab.waybill_id,
+        CASE
+            WHEN ab.类别 = '剔除'
+              OR (ab.类别 = '下发' AND ss.是否申诉成功 = '申诉失败')
+            THEN '异常剔除'
+            WHEN ab.类别 = '下发' AND (ss.waybill_id IS NULL OR ss.是否申诉成功 = '申诉中')
+            THEN '申诉中'
+            WHEN ab.类别 = '下发' AND ss.是否申诉成功 = '申诉成功'
+            THEN '申诉成功'
+            ELSE NULL
+        END AS 异常类别
+    FROM ab
+    LEFT JOIN ss ON ab.waybill_id = ss.waybill_id
+),
+abnormal_waybill AS (
+    SELECT DISTINCT waybill_id
+    FROM type_ab
+    WHERE 异常类别 IN ('异常剔除', '申诉中')
+),
 company_zm AS (
     SELECT DISTINCT invitee_id
     FROM dwd_vlsp_mt_user_recruitment_business_process_minf zm
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON zm.invitee_company_user_id = t1.psn_acct_user_base_id
+        AND t1.is_fake_user = '0'
     WHERE activity_title = '货主招募活动'
       AND invitee_id IS NOT NULL AND invitee_id <> ''
 ),
 company_tl AS (
     SELECT DISTINCT COALESCE(t1.company_id, t3.company_id) AS company_id
     FROM (
-        /* 信息流投放 */
         SELECT a.user_id
         FROM dwd_vlsp_mt_bt_advertise_placement_business_process_minf a
         WHERE a.user_id <> ''
         UNION
-        /* 拼表单投放 */
         SELECT b.user_base_id AS user_id
         FROM match_shipper_table_advertise_info a
         LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf b
             ON a.telephone = b.telephone
+            AND b.is_fake_user = '0'
         WHERE b.user_base_id <> ''
     ) ad
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t1
         ON ad.user_id = t1.user_base_id
+        AND t1.is_fake_user = '0'
     LEFT JOIN dwd_vlsp_mt_em_user_manage_info_minf t3
         ON t3.psn_acct_user_base_id = ad.user_id
+        AND t3.is_fake_user = '0'
     WHERE COALESCE(t1.company_id, t3.company_id) IS NOT NULL
 ),
 company_dx AS (
@@ -89,13 +178,13 @@ company_wxx AS (
 waybill_hit AS (
     SELECT
         waybill.waybill_id,
-        waybill.accept_dt,
+        waybill.unload_time,
         CASE
-            WHEN waybill.accept_dt >= t.this_month_start
-             AND waybill.accept_dt <  t.this_month_end_excl
+            WHEN waybill.unload_time >= t.this_month_start
+             AND waybill.unload_time <  t.this_month_end_excl
                 THEN '本月'
-            WHEN waybill.accept_dt >= t.last_month_start
-             AND waybill.accept_dt <  t.last_month_end_excl
+            WHEN waybill.unload_time >= t.last_month_start
+             AND waybill.unload_time <  t.last_month_end_excl
                 THEN '上个月'
         END AS period_tag,
         CASE WHEN company_wxx.sales_lv1_company_id IS NOT NULL THEN 1 ELSE 0 END AS hit_offline,
@@ -117,10 +206,11 @@ waybill_hit AS (
     LEFT JOIN company_dd  ON company_dd.company_name_dd = waybill.process_shipper_company_name
     LEFT JOIN company_wxx ON company_wxx.customer_company_id = waybill.process_shipper_company_id
     WHERE (
-            (waybill.accept_dt >= t.this_month_start AND waybill.accept_dt < t.this_month_end_excl)
-         OR (waybill.accept_dt >= t.last_month_start AND waybill.accept_dt < t.last_month_end_excl)
+            (waybill.unload_time >= t.this_month_start AND waybill.unload_time < t.this_month_end_excl)
+         OR (waybill.unload_time >= t.last_month_start AND waybill.unload_time < t.last_month_end_excl)
           )
-      /* 与月度SQL一致：线下线索保留，或企业名不在微信主体维表 */
+      AND waybill.load_time IS NOT NULL
+      AND waybill.unload_time IS NOT NULL
       AND (
           company_wxx.sales_lv1_company_id IS NOT NULL
           OR NVL(waybill.shipper_company_name, '') NOT IN (
@@ -137,17 +227,19 @@ waybill_hit AS (
 ),
 waybill_split AS (
     SELECT
-        waybill_id,
-        period_tag,
-        hit_offline,
-        hit_zm, hit_tl, hit_dx, hit_dd, hit_wxx,
-        CASE WHEN hit_zm  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_zm,
-        CASE WHEN hit_tl  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_tl,
-        CASE WHEN hit_dx  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_dx,
-        CASE WHEN hit_dd  = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_dd,
-        CASE WHEN hit_wxx = 1 THEN 1.0 / NULLIF(hit_zm + hit_tl + hit_dx + hit_dd + hit_wxx, 0) ELSE 0 END AS w_wxx
-    FROM waybill_hit
-    WHERE period_tag IS NOT NULL
+        wh.waybill_id,
+        wh.period_tag,
+        wh.hit_offline,
+        wh.hit_zm, wh.hit_tl, wh.hit_dx, wh.hit_dd, wh.hit_wxx,
+        CASE WHEN wh.hit_zm  = 1 THEN 1.0 / NULLIF(wh.hit_zm + wh.hit_tl + wh.hit_dx + wh.hit_dd + wh.hit_wxx, 0) ELSE 0 END AS w_zm,
+        CASE WHEN wh.hit_tl  = 1 THEN 1.0 / NULLIF(wh.hit_zm + wh.hit_tl + wh.hit_dx + wh.hit_dd + wh.hit_wxx, 0) ELSE 0 END AS w_tl,
+        CASE WHEN wh.hit_dx  = 1 THEN 1.0 / NULLIF(wh.hit_zm + wh.hit_tl + wh.hit_dx + wh.hit_dd + wh.hit_wxx, 0) ELSE 0 END AS w_dx,
+        CASE WHEN wh.hit_dd  = 1 THEN 1.0 / NULLIF(wh.hit_zm + wh.hit_tl + wh.hit_dx + wh.hit_dd + wh.hit_wxx, 0) ELSE 0 END AS w_dd,
+        CASE WHEN wh.hit_wxx = 1 THEN 1.0 / NULLIF(wh.hit_zm + wh.hit_tl + wh.hit_dx + wh.hit_dd + wh.hit_wxx, 0) ELSE 0 END AS w_wxx
+    FROM waybill_hit wh
+    LEFT JOIN abnormal_waybill abn ON abn.waybill_id = wh.waybill_id
+    WHERE wh.period_tag IS NOT NULL
+      AND abn.waybill_id IS NULL
 ),
 agg AS (
     SELECT
@@ -158,8 +250,7 @@ agg AS (
         SUM(w_zm)  AS zm_cnt,
         SUM(w_tl)  AS tl_cnt,
         SUM(w_dx)  AS dx_cnt,
-        SUM(w_dd)  AS dd_cnt,
-        SUM(w_wxx) AS wxx_cnt
+        SUM(w_dd)  AS dd_cnt
     FROM waybill_split
     GROUP BY period_tag
 ),
@@ -177,8 +268,6 @@ long_fmt AS (
     SELECT period_tag, '线上举措', '电销', dx_cnt FROM agg
     UNION ALL
     SELECT period_tag, '线上举措', '调度', dd_cnt FROM agg
-    UNION ALL
-    SELECT period_tag, '线上举措', '无线下销售归属', wxx_cnt FROM agg
 )
 SELECT
     l.stat_level AS 统计层级,
@@ -205,6 +294,5 @@ ORDER BY
         WHEN '投流' THEN 5
         WHEN '电销' THEN 6
         WHEN '调度' THEN 7
-        WHEN '无线下销售归属' THEN 8
         ELSE 99
     END;

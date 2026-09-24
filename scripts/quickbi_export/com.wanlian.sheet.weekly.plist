@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- 每天 09:36 拉 Quick BI 最近两周周度数据，回写「周度详细数据」66mgnV -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.wanlian.sheet.weekly</string>
+  <key>WorkingDirectory</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/.venv/bin/python</string>
+    <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/refresh_sheet_weekly.py</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>36</integer>
+  </dict>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/chenzhe/.npm-global/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/logs/sheet_weekly.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/logs/sheet_weekly.err.log</string>
+</dict>
+</plist>

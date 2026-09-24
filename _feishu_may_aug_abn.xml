@@ -1,0 +1,143 @@
+<title>5–8月：整体/分举措 · 线上占比 vs 剔除异常后线上占比</title>
+<callout emoji="bulb" background-color="light-yellow">
+<p><b>统一口径（整体与分举措同一套）</b></p>
+<ul>
+<li><b>整体线上占比</b> = 线上整体 ÷ 整体运单</li>
+<li><b>正常线上占比</b> = 线上正常 ÷ 整体正常（剔除异常后）</li>
+<li><b>分举措 · 整体线上占比</b> = 该举措运单 ÷ 整体运单（对该月整体线上占比的贡献）</li>
+<li><b>分举措 · 正常线上占比</b> = 该举措正常运单 ÷ 整体正常（对该月正常线上占比的贡献）</li>
+</ul>
+<p>四举措贡献之和 ≈ 对应口径下的线上占比。8 月未完月，仅作开局信号。</p>
+</callout>
+
+<h1>一、整体：线上占比 vs 正常线上占比</h1>
+<table>
+<tr>
+<td background-color="light-blue"><b>指标</b></td>
+<td background-color="light-blue"><b>5月</b></td>
+<td background-color="light-blue"><b>6月</b></td>
+<td background-color="light-blue"><b>7月</b></td>
+<td background-color="light-blue"><b>8月*</b></td>
+<td background-color="light-blue"><b>5→7</b></td>
+</tr>
+<tr>
+<td><b>整体线上占比</b></td>
+<td>6.12%</td><td>6.93%</td>
+<td background-color="rgb(255,249,230)"><b>9.18%</b></td>
+<td>13.37%</td><td><b>+3.06pp</b></td>
+</tr>
+<tr>
+<td><b>正常线上占比</b></td>
+<td>6.27%</td><td>7.07%</td>
+<td background-color="rgb(255,249,230)"><b>9.25%</b></td>
+<td>12.91%</td><td><b>+2.98pp</b></td>
+</tr>
+<tr>
+<td>差值（正常−整体）</td>
+<td>+0.15pp</td><td>+0.14pp</td><td>+0.08pp</td><td>-0.46pp</td><td>—</td>
+</tr>
+</table>
+<p>两种口径同向抬升约 +3pp；异常几乎不改变整体判断。</p>
+
+<h1>二、分举措：整体线上占比 vs 正常线上占比</h1>
+<p>下表每个举措两行，与第一节同一指标名：看该举措对「整体线上占比 / 正常线上占比」各贡献多少。</p>
+
+<h2>2.1 投流</h2>
+<table>
+<tr>
+<td background-color="light-blue"><b>指标</b></td>
+<td background-color="light-blue"><b>5月</b></td>
+<td background-color="light-blue"><b>6月</b></td>
+<td background-color="light-blue"><b>7月</b></td>
+<td background-color="light-blue"><b>8月*</b></td>
+<td background-color="light-blue"><b>5→7</b></td>
+</tr>
+<tr><td>整体线上占比</td><td>3.11%</td><td>3.94%</td><td>4.30%</td><td>6.24%</td><td>+1.19pp</td></tr>
+<tr><td>正常线上占比</td><td>3.23%</td><td>4.00%</td><td>4.30%</td><td>6.00%</td><td>+1.07pp</td></tr>
+<tr><td>差值</td><td>+0.13pp</td><td>+0.06pp</td><td>-0.01pp</td><td>-0.23pp</td><td>—</td></tr>
+</table>
+
+<h2>2.2 电销</h2>
+<table>
+<tr>
+<td background-color="light-blue"><b>指标</b></td>
+<td background-color="light-blue"><b>5月</b></td>
+<td background-color="light-blue"><b>6月</b></td>
+<td background-color="light-blue"><b>7月</b></td>
+<td background-color="light-blue"><b>8月*</b></td>
+<td background-color="light-blue"><b>5→7</b></td>
+</tr>
+<tr><td>整体线上占比</td><td>1.69%</td><td>1.29%</td><td>2.13%</td><td>3.62%</td><td>+0.44pp</td></tr>
+<tr>
+<td>正常线上占比</td>
+<td>1.76%</td><td>1.39%</td>
+<td background-color="rgb(255,249,230)"><b>2.38%</b></td>
+<td>3.66%</td><td><b>+0.62pp</b></td>
+</tr>
+<tr><td>差值</td><td>+0.07pp</td><td>+0.10pp</td><td><b>+0.24pp</b></td><td>+0.04pp</td><td>—</td></tr>
+</table>
+<p>电销异常率低 → 正常线上占比高于整体线上占比（有效贡献被总体口径低估）。</p>
+
+<h2>2.3 调度</h2>
+<table>
+<tr>
+<td background-color="light-blue"><b>指标</b></td>
+<td background-color="light-blue"><b>5月</b></td>
+<td background-color="light-blue"><b>6月</b></td>
+<td background-color="light-blue"><b>7月</b></td>
+<td background-color="light-blue"><b>8月*</b></td>
+<td background-color="light-blue"><b>5→7</b></td>
+</tr>
+<tr><td>整体线上占比</td><td>1.17%</td><td>1.45%</td><td>2.53%</td><td>3.17%</td><td>+1.36pp</td></tr>
+<tr>
+<td>正常线上占比</td>
+<td>1.15%</td><td>1.42%</td>
+<td background-color="rgb(255,249,230)">2.35%</td>
+<td>2.90%</td><td>+1.20pp</td>
+</tr>
+<tr><td>差值</td><td>-0.02pp</td><td>-0.03pp</td><td><b>-0.18pp</b></td><td>-0.27pp</td><td>—</td></tr>
+</table>
+<p>调度异常率高（7 月约 20.7%）→ 正常线上占比低于整体线上占比（有效贡献被总体口径高估）。</p>
+
+<h2>2.4 货主招募</h2>
+<table>
+<tr>
+<td background-color="light-blue"><b>指标</b></td>
+<td background-color="light-blue"><b>5月</b></td>
+<td background-color="light-blue"><b>6月</b></td>
+<td background-color="light-blue"><b>7月</b></td>
+<td background-color="light-blue"><b>8月*</b></td>
+<td background-color="light-blue"><b>5→7</b></td>
+</tr>
+<tr><td>整体线上占比</td><td>0.03%</td><td>0.02%</td><td>0.10%</td><td>0.26%</td><td>+0.07pp</td></tr>
+<tr><td>正常线上占比</td><td>0.02%</td><td>0.01%</td><td>0.12%</td><td>0.27%</td><td>+0.10pp</td></tr>
+<tr><td>差值</td><td>-0.01pp</td><td>-0.01pp</td><td>+0.01pp</td><td>+0.01pp</td><td>—</td></tr>
+</table>
+<p>体量极小，两种口径均不改变「仍弱」。</p>
+
+<h1>三、总览（同一指标：整体线上占比 / 正常线上占比）</h1>
+<table>
+<tr>
+<td background-color="light-blue"><b>维度</b></td>
+<td background-color="light-blue"><b>口径</b></td>
+<td background-color="light-blue"><b>5月</b></td>
+<td background-color="light-blue"><b>6月</b></td>
+<td background-color="light-blue"><b>7月</b></td>
+<td background-color="light-blue"><b>8月*</b></td>
+</tr>
+<tr><td rowspan="2"><b>整体</b></td><td>整体线上占比</td><td>6.12%</td><td>6.93%</td><td>9.18%</td><td>13.37%</td></tr>
+<tr><td>正常线上占比</td><td>6.27%</td><td>7.07%</td><td>9.25%</td><td>12.91%</td></tr>
+<tr><td rowspan="2">投流</td><td>整体线上占比</td><td>3.11%</td><td>3.94%</td><td>4.30%</td><td>6.24%</td></tr>
+<tr><td>正常线上占比</td><td>3.23%</td><td>4.00%</td><td>4.30%</td><td>6.00%</td></tr>
+<tr><td rowspan="2">电销</td><td>整体线上占比</td><td>1.69%</td><td>1.29%</td><td>2.13%</td><td>3.62%</td></tr>
+<tr><td>正常线上占比</td><td>1.76%</td><td>1.39%</td><td>2.38%</td><td>3.66%</td></tr>
+<tr><td rowspan="2">调度</td><td>整体线上占比</td><td>1.17%</td><td>1.45%</td><td>2.53%</td><td>3.17%</td></tr>
+<tr><td>正常线上占比</td><td>1.15%</td><td>1.42%</td><td>2.35%</td><td>2.90%</td></tr>
+<tr><td rowspan="2">货主招募</td><td>整体线上占比</td><td>0.03%</td><td>0.02%</td><td>0.10%</td><td>0.26%</td></tr>
+<tr><td>正常线上占比</td><td>0.02%</td><td>0.01%</td><td>0.12%</td><td>0.27%</td></tr>
+<tr><td rowspan="2">四举措合计</td><td>整体线上占比</td><td>6.01%</td><td>6.70%</td><td>9.08%</td><td>13.28%</td></tr>
+<tr><td>正常线上占比</td><td>6.17%</td><td>6.82%</td><td>9.14%</td><td>12.83%</td></tr>
+</table>
+
+<h1>四、一句话</h1>
+<p>整体与分举措统一看「整体线上占比 vs 正常线上占比」：大盘同向抬升；投流两口径接近；电销正常线上占比更高、调度正常线上占比更低。</p>

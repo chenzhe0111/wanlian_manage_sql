@@ -1,0 +1,182 @@
+{
+  "n": 85,
+  "styles_plan": [
+    "title",
+    "meta",
+    "header",
+    "section",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "section",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "section",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "section",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "group",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric",
+    "metric"
+  ],
+  "grid_sample": [
+    [
+      {
+        "value": "七、线上举措转化（明细）｜业务汇报"
+      },
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    [
+      {
+        "value": "统计截止日=整合表J1（2026-09-21）；时间进度70%；周度=M9W1/M9W2；目标/实际引用「整合表」C/H列"
+      },
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    [
+      {
+        "value": "模块"
+      },
+      {
+        "value": "指标"
+      },
+      {
+        "value": "9月目标"
+      },
+      {
+        "value": "9月实际"
+      },
+      {
+        "value": "目标完成度"
+      },
+      {
+        "value": "M9W1"
+      },
+      {
+        "value": "M9W2"
+      },
+      {
+        "value": "周环比"
+      }
+    ],
+    [
+      {
+        "value": "①营销裂变（货主招募）"
+      },
+      {
+        "value": "合计"
+      },
+      {
+        "formula": "='整合表'!C72"
+      },
+      {
+        "formula": "='整合表'!H102+'整合表'!H106"
+      },
+      {
+        "formula": "=IF(OR(C4=\"\",C4=0),\"\",IF(D4=\"\",\"\",D4/C4))"
+      },
+      {
+        "value": 0.008
+      },
+      {
+        "value": 0.0007
+      },
+      {
+        "formula": "=IF(OR(F4=\"\",F4=0),\"\",IF(G4=\"\",\"\",(G4-F4)/F4))"
+      }
+    ],
+    [
+      {
+        "value": ""
+      },
+      {
+        "value": "【新增转化】"
+      },
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  ]
+}

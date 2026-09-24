@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "identity": "user",
+  "data": {
+    "document": {
+      "content": "<fragment mode=\"outline\"><outline><h1 id=\"doxcnVAEgCifGlFyCZTWw6Ov3dc\">一、线上订单KPI目标进度（时间进度：26.67%）</h1><h2 id=\"doxcnnNqtQXU9xkc19SgyjFg1DQ\">1、进度数据</h2><h2 id=\"doxcncqP1QYMBdyQfet7nn0JnDe\">2、各举措订单结构情况（时间进度26.67%）</h2><h2 id=\"doxcneGNR0jNrDrer2Ni3oRNUOe\">3、线上订单进展（时间进度26.67%）</h2><h1 id=\"doxcnGMFWV6j5x1JqOvtzKMTvCf\">二、生态运营目标：司机规模</h1><h2 id=\"doxcnYrK7TU2ESiINCpCdBI3Lkf\">4、司机拉新进展</h2><h1 id=\"doxcnwVi7lIuBllMKofsNW02Jef\">三、撮合物流</h1><h2 id=\"doxcnkLS7DgSPl8ZgW05VymmAYb\">5、撮合专项进展</h2><h1 id=\"doxcnPimBymBgQR8bsAwJVyfHbe\"></h1><h2 id=\"doxcngM56Rx5b6S4aByiD12CPld\">6、私域情况</h2><h2 id=\"doxcn3sqAET68V7xfyvkugoxt9b\">7、车辆电销进展</h2><h2 id=\"doxcnOGI4sRdQ8UL4eqqdun98de\">8、产品进展</h2></outline></fragment>",
+      "document_id": "ZruxdQwNuoDu6AxoXe4cOCk7n8g",
+      "revision_id": 1
+    }
+  },
+  "_notice": {
+    "update": {
+      "command": "lark-cli update",
+      "current": "1.0.70",
+      "latest": "1.0.95",
+      "message": "lark-cli 1.0.95 available, current 1.0.70, run: lark-cli update"
+    }
+  }
+}

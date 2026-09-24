@@ -1,0 +1,485 @@
+<table>
+  <colgroup><col width="270"/><col width="110"/><col width="110"/><col width="100"/></colgroup>
+  <thead><tr>
+    <th background-color="light-blue" vertical-align="middle"><p align="center"><b>指标</b></p></th>
+    <th background-color="light-blue" vertical-align="middle"><p align="center"><b>7月目标值</b></p></th>
+    <th background-color="light-blue" vertical-align="middle"><p align="center"><b>7月实际值</b></p></th>
+    <th background-color="light-blue" vertical-align="middle"><p align="center"><b>目标完成度</b></p></th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>①裂变 招募</b></p></td>
+      <td vertical-align="middle"><p align="center">1.38</p></td>
+      <td vertical-align="middle"><p align="center">0.29</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center"><b>21.3%</b></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>留存</b></p></td>
+      <td vertical-align="middle"><p align="center">0.14</p></td>
+      <td vertical-align="middle"><p align="center">0.25</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>175.4%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>发货货主数</p></td>
+      <td vertical-align="middle"><p align="center">4.07</p></td>
+      <td vertical-align="middle"><p align="center">7</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交货主数</p></td>
+      <td vertical-align="middle"><p align="center">3.5</p></td>
+      <td vertical-align="middle"><p align="center">6</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">0.14</p></td>
+      <td vertical-align="middle"><p align="center">0.25</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--货主成交率</p></td>
+      <td vertical-align="middle"><p align="center">86.0%</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">85.7%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--单货主成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">402</p></td>
+      <td vertical-align="middle"><p align="center">411.833</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>新增</b></p></td>
+      <td vertical-align="middle"><p align="center">1.24</p></td>
+      <td vertical-align="middle"><p align="center">0.05</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center"><b>3.8%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>注册货主数</p></td>
+      <td vertical-align="middle"><p align="center">198.628</p></td>
+      <td vertical-align="middle"><p align="center">12</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>认证货主数</p></td>
+      <td vertical-align="middle"><p align="center">99.31</p></td>
+      <td vertical-align="middle"><p align="center">12</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>新增转介绍 发货货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">79.45</p></td>
+      <td vertical-align="middle"><p align="center">3</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交货主数</p></td>
+      <td vertical-align="middle"><p align="center">79.45</p></td>
+      <td vertical-align="middle"><p align="center">3</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单数（万单）</p></td>
+      <td vertical-align="middle"><p align="center">1.24</p></td>
+      <td vertical-align="middle"><p align="center">0.05</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--货主成交率</p></td>
+      <td vertical-align="middle"><p align="center">100.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">100.0%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--单货主成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">156</p></td>
+      <td vertical-align="middle"><p align="center">155.722</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>②电销触达（万单）</b></p></td>
+      <td vertical-align="middle"><p align="center">3.98</p></td>
+      <td vertical-align="middle"><p align="center">6.01</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>151.0%</b></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>留存</b></p></td>
+      <td vertical-align="middle"><p align="center">2.54</p></td>
+      <td vertical-align="middle"><p align="center">4.45</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>175.4%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>发货货主数</p></td>
+      <td vertical-align="middle"><p align="center">79.86</p></td>
+      <td vertical-align="middle"><p align="center">136</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交货主数</p></td>
+      <td vertical-align="middle"><p align="center">78.26</p></td>
+      <td vertical-align="middle"><p align="center">132</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单数（万单）</p></td>
+      <td vertical-align="middle"><p align="center">2.54</p></td>
+      <td vertical-align="middle"><p align="center">4.45</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--货主成交率</p></td>
+      <td vertical-align="middle"><p align="center">98.0%</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">97.1%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--单货主成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">324</p></td>
+      <td vertical-align="middle"><p align="center">337</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>新增</b></p></td>
+      <td vertical-align="middle"><p align="center">1.44</p></td>
+      <td vertical-align="middle"><p align="center">1.56</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>108.2%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>注册货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">388.683</p></td>
+      <td vertical-align="middle"><p align="center">332</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>认证货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">194.341</p></td>
+      <td vertical-align="middle"><p align="center">308</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>新增 发货货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">155.473</p></td>
+      <td vertical-align="middle"><p align="center">130</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交货主数</p></td>
+      <td vertical-align="middle"><p align="center">79.29</p></td>
+      <td vertical-align="middle"><p align="center">67</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单量（万单）</p></td>
+      <td vertical-align="middle"><p align="center">1.44</p></td>
+      <td vertical-align="middle"><p align="center">1.56</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--注册 转 认证 转化率</p></td>
+      <td vertical-align="middle"><p align="center">50.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">92.8%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--认证 转 发货 转化率</p></td>
+      <td vertical-align="middle"><p align="center">80.0%</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">42.2%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--货主成交率</p></td>
+      <td vertical-align="middle"><p align="center">51.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">51.5%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--单货主成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">182</p></td>
+      <td vertical-align="middle"><p align="center">233.085</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>③ 端外线上流量转化（万单）</b></p></td>
+      <td vertical-align="middle"><p align="center">11.91</p></td>
+      <td vertical-align="middle"><p align="center">11.97</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>100.5%</b></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>留存</b></p></td>
+      <td vertical-align="middle"><p align="center">7.75</p></td>
+      <td vertical-align="middle"><p align="center">9.58</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>123.7%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>发货货主数</p></td>
+      <td vertical-align="middle"><p align="center">378.294</p></td>
+      <td vertical-align="middle"><p align="center">443</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交货主数</p></td>
+      <td vertical-align="middle"><p align="center">370.728</p></td>
+      <td vertical-align="middle"><p align="center">437</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单数（万单）</p></td>
+      <td vertical-align="middle"><p align="center">7.75</p></td>
+      <td vertical-align="middle"><p align="center">9.58</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--货主成交率</p></td>
+      <td vertical-align="middle"><p align="center">98.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">98.6%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--单货主成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">209</p></td>
+      <td vertical-align="middle"><p align="center">219</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>新增</b></p></td>
+      <td vertical-align="middle"><p align="center">4.16</p></td>
+      <td vertical-align="middle"><p align="center">2.39</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center"><b>57.4%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>曝光量（次）</p></td>
+      <td vertical-align="middle"><p align="center">39,239</p></td>
+      <td vertical-align="middle"><p align="center">15,773,582</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>点击量（次）</p></td>
+      <td vertical-align="middle"><p align="center">784.783</p></td>
+      <td vertical-align="middle"><p align="center">366,380</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>注册货主数（账号）</p></td>
+      <td vertical-align="middle"><p align="center">19,968</p></td>
+      <td vertical-align="middle"><p align="center">14,039</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>注册货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">627.827</p></td>
+      <td vertical-align="middle"><p align="center">143</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>认证货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">313.913</p></td>
+      <td vertical-align="middle"><p align="center">145</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>新增 发货货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">251.131</p></td>
+      <td vertical-align="middle"><p align="center">136</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交货主数</p></td>
+      <td vertical-align="middle"><p align="center">150.678</p></td>
+      <td vertical-align="middle"><p align="center">79</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单数（万单）</p></td>
+      <td vertical-align="middle"><p align="center">4.16</p></td>
+      <td vertical-align="middle"><p align="center">2.39</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--点击率</p></td>
+      <td vertical-align="middle"><p align="center">2.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">2.3%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--点击 转 注册率</p></td>
+      <td vertical-align="middle"><p align="center">80.0%</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">0.0%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--注册 转 认证 转化率</p></td>
+      <td vertical-align="middle"><p align="center">50.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">101.4%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--认证 转 发货 转化率</p></td>
+      <td vertical-align="middle"><p align="center">80.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">93.8%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--货主成交率</p></td>
+      <td vertical-align="middle"><p align="center">60.0%</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">58.1%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--单货主成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">276</p></td>
+      <td vertical-align="middle"><p align="center">302</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-blue" vertical-align="middle"><p><b>④调度触达（万单）</b></p></td>
+      <td vertical-align="middle"><p align="center">5.13</p></td>
+      <td vertical-align="middle"><p align="center">7.17</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>139.9%</b></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>1-撮合</b></p></td>
+      <td vertical-align="middle"><p align="center">0.93</p></td>
+      <td vertical-align="middle"><p align="center">0.26</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center"><b>27.7%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>注册三方调度人数</p></td>
+      <td vertical-align="middle"><p align="center">310</p></td>
+      <td vertical-align="middle"><p align="center">163</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>认证三方调度人数</p></td>
+      <td vertical-align="middle"><p align="center">248</p></td>
+      <td vertical-align="middle"><p align="center">163</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>三方调度人数</p></td>
+      <td vertical-align="middle"><p align="center">124</p></td>
+      <td vertical-align="middle"><p align="center">6</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单量（万单）</p></td>
+      <td vertical-align="middle"><p align="center">0.93</p></td>
+      <td vertical-align="middle"><p align="center">0.26</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--调度人效</p></td>
+      <td vertical-align="middle"><p align="center">75</p></td>
+      <td vertical-align="middle"><p align="center">429</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--认证转化率</p></td>
+      <td vertical-align="middle"><p align="center">50.0%</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">3.7%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--注册转认证率</p></td>
+      <td vertical-align="middle"><p align="center">80.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">100.0%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>2-TMS</b></p></td>
+      <td vertical-align="middle"><p align="center">2.57</p></td>
+      <td vertical-align="middle"><p align="center">6.04</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center"><b>235.2%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>创建运单（计划单）货主数</p></td>
+      <td vertical-align="middle"><p align="center">92.72</p></td>
+      <td vertical-align="middle"><p align="center">63</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交货主数</p></td>
+      <td vertical-align="middle"><p align="center">86.23</p></td>
+      <td vertical-align="middle"><p align="center">58</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单量（万单）</p></td>
+      <td vertical-align="middle"><p align="center">2.57</p></td>
+      <td vertical-align="middle"><p align="center">6.04</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--成交/创建</p></td>
+      <td vertical-align="middle"><p align="center">93.0%</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">92.1%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--单货主成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">226</p></td>
+      <td vertical-align="middle"><p align="center">1,042</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td background-color="light-gray" vertical-align="middle"><p><b>3-网货</b></p></td>
+      <td vertical-align="middle"><p align="center">1.68</p></td>
+      <td vertical-align="middle"><p align="center">0.87</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center"><b>51.9%</b></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>注册货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">170.869</p></td>
+      <td vertical-align="middle"><p align="center">19</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>认证货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">85.43</p></td>
+      <td vertical-align="middle"><p align="center">20</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>发货货主数（家）</p></td>
+      <td vertical-align="middle"><p align="center">68.35</p></td>
+      <td vertical-align="middle"><p align="center">127</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交货主数</p></td>
+      <td vertical-align="middle"><p align="center">56.73</p></td>
+      <td vertical-align="middle"><p align="center">65</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>成交运单数（万单）</p></td>
+      <td vertical-align="middle"><p align="center">1.68</p></td>
+      <td vertical-align="middle"><p align="center">0.87</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--注册 转 认证 转化率</p></td>
+      <td vertical-align="middle"><p align="center">50.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">105.3%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--认证 转 发货 转化率</p></td>
+      <td vertical-align="middle"><p align="center">80.0%</p></td>
+      <td background-color="light-green" vertical-align="middle"><p align="center">635.0%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--货主成交率</p></td>
+      <td vertical-align="middle"><p align="center">83.0%</p></td>
+      <td background-color="light-orange" vertical-align="middle"><p align="center">51.0%</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+    <tr>
+      <td vertical-align="middle"><p>--单货主成交运单数</p></td>
+      <td vertical-align="middle"><p align="center">226</p></td>
+      <td vertical-align="middle"><p align="center">134</p></td>
+      <td vertical-align="middle"><p align="center"></p></td>
+    </tr>
+  </tbody>
+</table>

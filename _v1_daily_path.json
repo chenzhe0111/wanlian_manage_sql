@@ -1,0 +1,1010 @@
+{
+  "daily": [
+    {
+      "date": "2026-09-01",
+      "label": "9/1",
+      "month": 9,
+      "day": 1,
+      "value": 1.3591,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-02",
+      "label": "9/2",
+      "month": 9,
+      "day": 2,
+      "value": 1.3682,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-03",
+      "label": "9/3",
+      "month": 9,
+      "day": 3,
+      "value": 1.3774,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-04",
+      "label": "9/4",
+      "month": 9,
+      "day": 4,
+      "value": 1.3866,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-05",
+      "label": "9/5",
+      "month": 9,
+      "day": 5,
+      "value": 1.3959,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-06",
+      "label": "9/6",
+      "month": 9,
+      "day": 6,
+      "value": 1.4053,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-07",
+      "label": "9/7",
+      "month": 9,
+      "day": 7,
+      "value": 1.4147,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-08",
+      "label": "9/8",
+      "month": 9,
+      "day": 8,
+      "value": 1.4242,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-09",
+      "label": "9/9",
+      "month": 9,
+      "day": 9,
+      "value": 1.4338,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-10",
+      "label": "9/10",
+      "month": 9,
+      "day": 10,
+      "value": 1.4434,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-11",
+      "label": "9/11",
+      "month": 9,
+      "day": 11,
+      "value": 1.4531,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-12",
+      "label": "9/12",
+      "month": 9,
+      "day": 12,
+      "value": 1.4628,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-13",
+      "label": "9/13",
+      "month": 9,
+      "day": 13,
+      "value": 1.4726,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-14",
+      "label": "9/14",
+      "month": 9,
+      "day": 14,
+      "value": 1.4825,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-15",
+      "label": "9/15",
+      "month": 9,
+      "day": 15,
+      "value": 1.4925,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-16",
+      "label": "9/16",
+      "month": 9,
+      "day": 16,
+      "value": 1.5025,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-17",
+      "label": "9/17",
+      "month": 9,
+      "day": 17,
+      "value": 1.5126,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-18",
+      "label": "9/18",
+      "month": 9,
+      "day": 18,
+      "value": 1.5227,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-19",
+      "label": "9/19",
+      "month": 9,
+      "day": 19,
+      "value": 1.533,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-20",
+      "label": "9/20",
+      "month": 9,
+      "day": 20,
+      "value": 1.5432,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-21",
+      "label": "9/21",
+      "month": 9,
+      "day": 21,
+      "value": 1.5536,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-22",
+      "label": "9/22",
+      "month": 9,
+      "day": 22,
+      "value": 1.564,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-23",
+      "label": "9/23",
+      "month": 9,
+      "day": 23,
+      "value": 1.5745,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-24",
+      "label": "9/24",
+      "month": 9,
+      "day": 24,
+      "value": 1.5851,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-25",
+      "label": "9/25",
+      "month": 9,
+      "day": 25,
+      "value": 1.5957,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-26",
+      "label": "9/26",
+      "month": 9,
+      "day": 26,
+      "value": 1.6064,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-27",
+      "label": "9/27",
+      "month": 9,
+      "day": 27,
+      "value": 1.6172,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-28",
+      "label": "9/28",
+      "month": 9,
+      "day": 28,
+      "value": 1.6281,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-29",
+      "label": "9/29",
+      "month": 9,
+      "day": 29,
+      "value": 1.639,
+      "is_peak": false
+    },
+    {
+      "date": "2026-09-30",
+      "label": "9/30",
+      "month": 9,
+      "day": 30,
+      "value": 1.65,
+      "is_peak": true
+    },
+    {
+      "date": "2026-10-01",
+      "label": "10/1",
+      "month": 10,
+      "day": 1,
+      "value": 1.6605,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-02",
+      "label": "10/2",
+      "month": 10,
+      "day": 2,
+      "value": 1.6711,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-03",
+      "label": "10/3",
+      "month": 10,
+      "day": 3,
+      "value": 1.6818,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-04",
+      "label": "10/4",
+      "month": 10,
+      "day": 4,
+      "value": 1.6926,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-05",
+      "label": "10/5",
+      "month": 10,
+      "day": 5,
+      "value": 1.7034,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-06",
+      "label": "10/6",
+      "month": 10,
+      "day": 6,
+      "value": 1.7142,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-07",
+      "label": "10/7",
+      "month": 10,
+      "day": 7,
+      "value": 1.7252,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-08",
+      "label": "10/8",
+      "month": 10,
+      "day": 8,
+      "value": 1.7362,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-09",
+      "label": "10/9",
+      "month": 10,
+      "day": 9,
+      "value": 1.7473,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-10",
+      "label": "10/10",
+      "month": 10,
+      "day": 10,
+      "value": 1.7585,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-11",
+      "label": "10/11",
+      "month": 10,
+      "day": 11,
+      "value": 1.7697,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-12",
+      "label": "10/12",
+      "month": 10,
+      "day": 12,
+      "value": 1.781,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-13",
+      "label": "10/13",
+      "month": 10,
+      "day": 13,
+      "value": 1.7924,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-14",
+      "label": "10/14",
+      "month": 10,
+      "day": 14,
+      "value": 1.8038,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-15",
+      "label": "10/15",
+      "month": 10,
+      "day": 15,
+      "value": 1.8153,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-16",
+      "label": "10/16",
+      "month": 10,
+      "day": 16,
+      "value": 1.8269,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-17",
+      "label": "10/17",
+      "month": 10,
+      "day": 17,
+      "value": 1.8386,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-18",
+      "label": "10/18",
+      "month": 10,
+      "day": 18,
+      "value": 1.8503,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-19",
+      "label": "10/19",
+      "month": 10,
+      "day": 19,
+      "value": 1.8622,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-20",
+      "label": "10/20",
+      "month": 10,
+      "day": 20,
+      "value": 1.8741,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-21",
+      "label": "10/21",
+      "month": 10,
+      "day": 21,
+      "value": 1.886,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-22",
+      "label": "10/22",
+      "month": 10,
+      "day": 22,
+      "value": 1.8981,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-23",
+      "label": "10/23",
+      "month": 10,
+      "day": 23,
+      "value": 1.9102,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-24",
+      "label": "10/24",
+      "month": 10,
+      "day": 24,
+      "value": 1.9224,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-25",
+      "label": "10/25",
+      "month": 10,
+      "day": 25,
+      "value": 1.9347,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-26",
+      "label": "10/26",
+      "month": 10,
+      "day": 26,
+      "value": 1.947,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-27",
+      "label": "10/27",
+      "month": 10,
+      "day": 27,
+      "value": 1.9595,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-28",
+      "label": "10/28",
+      "month": 10,
+      "day": 28,
+      "value": 1.972,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-29",
+      "label": "10/29",
+      "month": 10,
+      "day": 29,
+      "value": 1.9846,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-30",
+      "label": "10/30",
+      "month": 10,
+      "day": 30,
+      "value": 1.9972,
+      "is_peak": false
+    },
+    {
+      "date": "2026-10-31",
+      "label": "10/31",
+      "month": 10,
+      "day": 31,
+      "value": 2.01,
+      "is_peak": true
+    },
+    {
+      "date": "2026-11-01",
+      "label": "11/1",
+      "month": 11,
+      "day": 1,
+      "value": 2.0236,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-02",
+      "label": "11/2",
+      "month": 11,
+      "day": 2,
+      "value": 2.0373,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-03",
+      "label": "11/3",
+      "month": 11,
+      "day": 3,
+      "value": 2.051,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-04",
+      "label": "11/4",
+      "month": 11,
+      "day": 4,
+      "value": 2.0649,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-05",
+      "label": "11/5",
+      "month": 11,
+      "day": 5,
+      "value": 2.0788,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-06",
+      "label": "11/6",
+      "month": 11,
+      "day": 6,
+      "value": 2.0929,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-07",
+      "label": "11/7",
+      "month": 11,
+      "day": 7,
+      "value": 2.107,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-08",
+      "label": "11/8",
+      "month": 11,
+      "day": 8,
+      "value": 2.1213,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-09",
+      "label": "11/9",
+      "month": 11,
+      "day": 9,
+      "value": 2.1356,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-10",
+      "label": "11/10",
+      "month": 11,
+      "day": 10,
+      "value": 2.15,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-11",
+      "label": "11/11",
+      "month": 11,
+      "day": 11,
+      "value": 2.1645,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-12",
+      "label": "11/12",
+      "month": 11,
+      "day": 12,
+      "value": 2.1792,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-13",
+      "label": "11/13",
+      "month": 11,
+      "day": 13,
+      "value": 2.1939,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-14",
+      "label": "11/14",
+      "month": 11,
+      "day": 14,
+      "value": 2.2087,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-15",
+      "label": "11/15",
+      "month": 11,
+      "day": 15,
+      "value": 2.2236,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-16",
+      "label": "11/16",
+      "month": 11,
+      "day": 16,
+      "value": 2.2387,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-17",
+      "label": "11/17",
+      "month": 11,
+      "day": 17,
+      "value": 2.2538,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-18",
+      "label": "11/18",
+      "month": 11,
+      "day": 18,
+      "value": 2.269,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-19",
+      "label": "11/19",
+      "month": 11,
+      "day": 19,
+      "value": 2.2844,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-20",
+      "label": "11/20",
+      "month": 11,
+      "day": 20,
+      "value": 2.2998,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-21",
+      "label": "11/21",
+      "month": 11,
+      "day": 21,
+      "value": 2.3153,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-22",
+      "label": "11/22",
+      "month": 11,
+      "day": 22,
+      "value": 2.331,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-23",
+      "label": "11/23",
+      "month": 11,
+      "day": 23,
+      "value": 2.3467,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-24",
+      "label": "11/24",
+      "month": 11,
+      "day": 24,
+      "value": 2.3626,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-25",
+      "label": "11/25",
+      "month": 11,
+      "day": 25,
+      "value": 2.3785,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-26",
+      "label": "11/26",
+      "month": 11,
+      "day": 26,
+      "value": 2.3946,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-27",
+      "label": "11/27",
+      "month": 11,
+      "day": 27,
+      "value": 2.4108,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-28",
+      "label": "11/28",
+      "month": 11,
+      "day": 28,
+      "value": 2.4271,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-29",
+      "label": "11/29",
+      "month": 11,
+      "day": 29,
+      "value": 2.4435,
+      "is_peak": false
+    },
+    {
+      "date": "2026-11-30",
+      "label": "11/30",
+      "month": 11,
+      "day": 30,
+      "value": 2.46,
+      "is_peak": true
+    },
+    {
+      "date": "2026-12-01",
+      "label": "12/1",
+      "month": 12,
+      "day": 1,
+      "value": 2.4758,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-02",
+      "label": "12/2",
+      "month": 12,
+      "day": 2,
+      "value": 2.4917,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-03",
+      "label": "12/3",
+      "month": 12,
+      "day": 3,
+      "value": 2.5077,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-04",
+      "label": "12/4",
+      "month": 12,
+      "day": 4,
+      "value": 2.5238,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-05",
+      "label": "12/5",
+      "month": 12,
+      "day": 5,
+      "value": 2.54,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-06",
+      "label": "12/6",
+      "month": 12,
+      "day": 6,
+      "value": 2.5563,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-07",
+      "label": "12/7",
+      "month": 12,
+      "day": 7,
+      "value": 2.5727,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-08",
+      "label": "12/8",
+      "month": 12,
+      "day": 8,
+      "value": 2.5893,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-09",
+      "label": "12/9",
+      "month": 12,
+      "day": 9,
+      "value": 2.6059,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-10",
+      "label": "12/10",
+      "month": 12,
+      "day": 10,
+      "value": 2.6226,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-11",
+      "label": "12/11",
+      "month": 12,
+      "day": 11,
+      "value": 2.6395,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-12",
+      "label": "12/12",
+      "month": 12,
+      "day": 12,
+      "value": 2.6564,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-13",
+      "label": "12/13",
+      "month": 12,
+      "day": 13,
+      "value": 2.6735,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-14",
+      "label": "12/14",
+      "month": 12,
+      "day": 14,
+      "value": 2.6907,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-15",
+      "label": "12/15",
+      "month": 12,
+      "day": 15,
+      "value": 2.7079,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-16",
+      "label": "12/16",
+      "month": 12,
+      "day": 16,
+      "value": 2.7253,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-17",
+      "label": "12/17",
+      "month": 12,
+      "day": 17,
+      "value": 2.7428,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-18",
+      "label": "12/18",
+      "month": 12,
+      "day": 18,
+      "value": 2.7604,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-19",
+      "label": "12/19",
+      "month": 12,
+      "day": 19,
+      "value": 2.7782,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-20",
+      "label": "12/20",
+      "month": 12,
+      "day": 20,
+      "value": 2.796,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-21",
+      "label": "12/21",
+      "month": 12,
+      "day": 21,
+      "value": 2.814,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-22",
+      "label": "12/22",
+      "month": 12,
+      "day": 22,
+      "value": 2.832,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-23",
+      "label": "12/23",
+      "month": 12,
+      "day": 23,
+      "value": 2.8502,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-24",
+      "label": "12/24",
+      "month": 12,
+      "day": 24,
+      "value": 2.8685,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-25",
+      "label": "12/25",
+      "month": 12,
+      "day": 25,
+      "value": 2.887,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-26",
+      "label": "12/26",
+      "month": 12,
+      "day": 26,
+      "value": 2.9055,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-27",
+      "label": "12/27",
+      "month": 12,
+      "day": 27,
+      "value": 2.9242,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-28",
+      "label": "12/28",
+      "month": 12,
+      "day": 28,
+      "value": 2.9429,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-29",
+      "label": "12/29",
+      "month": 12,
+      "day": 29,
+      "value": 2.9618,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-30",
+      "label": "12/30",
+      "month": 12,
+      "day": 30,
+      "value": 2.9809,
+      "is_peak": false
+    },
+    {
+      "date": "2026-12-31",
+      "label": "12/31",
+      "month": 12,
+      "day": 31,
+      "value": 3.0,
+      "is_peak": true
+    }
+  ],
+  "peaks": [
+    {
+      "month": "9月",
+      "date": "2026-09-30",
+      "peak": 1.65,
+      "avg": 1.49,
+      "vol": 44.8
+    },
+    {
+      "month": "10月",
+      "date": "2026-10-31",
+      "peak": 2.01,
+      "avg": 1.82,
+      "vol": 56.6
+    },
+    {
+      "month": "11月",
+      "date": "2026-11-30",
+      "peak": 2.46,
+      "avg": 2.23,
+      "vol": 66.8
+    },
+    {
+      "month": "12月",
+      "date": "2026-12-31",
+      "peak": 3.0,
+      "avg": 2.72,
+      "vol": 84.3
+    }
+  ]
+}

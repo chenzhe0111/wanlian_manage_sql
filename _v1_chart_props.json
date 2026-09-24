@@ -1,0 +1,52 @@
+{
+  "position": {
+    "row": 0,
+    "col": "H"
+  },
+  "offset": {
+    "row_offset": 0,
+    "col_offset": 10
+  },
+  "size": {
+    "width": 920,
+    "height": 420
+  },
+  "snapshot": {
+    "title": {
+      "text": "v1：9–12月线上日订单量路径（峰值已标）"
+    },
+    "legend": {
+      "position": "bottom"
+    },
+    "data": {
+      "direction": "column",
+      "headerMode": "inline",
+      "refs": [
+        {
+          "value": "'v1日订单路径9-12'!A10:C132"
+        }
+      ],
+      "dim1": {
+        "serie": {
+          "index": 1,
+          "aggregate": false
+        }
+      },
+      "dim2": {
+        "series": [
+          {
+            "index": 2
+          },
+          {
+            "index": 3
+          }
+        ]
+      }
+    },
+    "plotArea": {
+      "plot": {
+        "type": "line"
+      }
+    }
+  }
+}
