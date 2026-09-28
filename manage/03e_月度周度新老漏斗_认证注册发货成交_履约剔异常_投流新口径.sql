@@ -1,11 +1,13 @@
 /* 注册/认证 + 新老货主 + 发货/成交 | 周度 + 月度 | 履约剔异常 + 投流新口径
  * 基于 03c_...履约剔异常.sql，不覆盖 03 / 03c / 03d。
- * 履约 / 异常 / 新老判定 / 输出结构同 03c；本版升级投流：
+ * 履约 / 异常 / 输出结构同 03c；本版升级投流：
  *   1) company_tl：同 01d（投放账户链路 + 拼表单 + 卓易通 → 非假企货主企业）
  *   2) tl_user 宽口径注册账号池：同源三路 + 个人/企业账户链路
  *
- * 新老口径（跨月周关键）：同 03 —— first_dt vs 事件月月初（周度也按「月月初」）
- * 若周度要按「当周首次发货/首活」算新增，用 03d（旧投流）或另行出投流新口径版
+ * 新老口径（与 03d 一致）：
+ *   月度：first_dt >= 事件所在月月初（当月首次发货/首活算新增）
+ *   周度：first_dt >= 当周 week_start（当周首次发货/首活算新增；对照周用 prev_week_start）
+ *   老版 03c/旧 03e 仍为「周也按月月初」；本文件已改为周按周首活
  *
  * 同期口径（同 01 月度汇总）：
  *   月度：本月 1 日～截止日序 vs 上月 1 日～上月同日（无则取上月月末）
@@ -354,6 +356,8 @@ register_fact AS (
     SELECT
         c.company_id,
         ci.initiative,
+        cf.first_dt,
+        /* 月度用：按事件月月初；周度在 metric 里按 week_start 重算 */
         CASE
             WHEN cf.first_dt IS NULL THEN NULL
             WHEN cf.first_dt >= DATE_FORMAT(DATE(c.register_dt), '%Y-%m-01') THEN '新货主'
@@ -371,6 +375,7 @@ certify_fact AS (
     SELECT
         c.company_id,
         ci.initiative,
+        cf.first_dt,
         CASE
             WHEN cf.first_dt IS NULL THEN NULL
             WHEN cf.first_dt >= DATE_FORMAT(DATE(c.audit_dt), '%Y-%m-01') THEN '新货主'
@@ -389,6 +394,7 @@ ship_fact AS (
     SELECT
         b.company_id,
         ci.initiative,
+        cf.first_dt,
         CASE
             WHEN cf.first_dt >= DATE_FORMAT(DATE(b.create_dt), '%Y-%m-01') THEN '新货主'
             ELSE '老货主'
@@ -406,6 +412,7 @@ waybill_hit AS (
         waybill.waybill_id,
         waybill.shipper_company_id,
         DATE(waybill.unload_time) AS event_dt,
+        cf.first_dt,
         CASE
             WHEN cf.first_dt IS NULL THEN NULL
             WHEN cf.first_dt >= DATE_FORMAT(DATE(waybill.unload_time), '%Y-%m-01') THEN '新货主'
@@ -463,33 +470,33 @@ waybill_split AS (
     WHERE abn.waybill_id IS NULL
 ),
 waybill_initiative AS (
-    SELECT event_dt, shipper_company_id, shipper_type, waybill_id, '货主招募' AS initiative,
+    SELECT event_dt, shipper_company_id, first_dt, shipper_type, waybill_id, '货主招募' AS initiative,
            CASE WHEN hit_zm = 1 THEN 1.0 / NULLIF(hit_cnt, 0) ELSE 0 END AS weight
     FROM waybill_split WHERE hit_cnt > 0
     UNION ALL
-    SELECT event_dt, shipper_company_id, shipper_type, waybill_id, '投流',
+    SELECT event_dt, shipper_company_id, first_dt, shipper_type, waybill_id, '投流',
            CASE WHEN hit_tl = 1 THEN 1.0 / NULLIF(hit_cnt, 0) ELSE 0 END
     FROM waybill_split WHERE hit_cnt > 0
     UNION ALL
-    SELECT event_dt, shipper_company_id, shipper_type, waybill_id, '电销',
+    SELECT event_dt, shipper_company_id, first_dt, shipper_type, waybill_id, '电销',
            CASE WHEN hit_dx = 1 THEN 1.0 / NULLIF(hit_cnt, 0) ELSE 0 END
     FROM waybill_split WHERE hit_cnt > 0
     UNION ALL
-    SELECT event_dt, shipper_company_id, shipper_type, waybill_id, '调度',
+    SELECT event_dt, shipper_company_id, first_dt, shipper_type, waybill_id, '调度',
            CASE WHEN hit_dd = 1 THEN 1.0 / NULLIF(hit_cnt, 0) ELSE 0 END
     FROM waybill_split WHERE hit_cnt > 0
     UNION ALL
-    SELECT event_dt, shipper_company_id, shipper_type, waybill_id, '无线下销售归属',
+    SELECT event_dt, shipper_company_id, first_dt, shipper_type, waybill_id, '无线下销售归属',
            CASE WHEN hit_wxx = 1 THEN 1.0 / NULLIF(hit_cnt, 0) ELSE 0 END
     FROM waybill_split WHERE hit_cnt > 0
     UNION ALL
-    SELECT event_dt, shipper_company_id, shipper_type, waybill_id, '线下',
+    SELECT event_dt, shipper_company_id, first_dt, shipper_type, waybill_id, '线下',
            CASE WHEN hit_offline = 1 THEN 1.0 ELSE 0 END
     FROM waybill_split
 ),
 waybill_initiative_filtered AS (
     SELECT * FROM waybill_initiative
-    WHERE weight > 0 AND shipper_type IS NOT NULL
+    WHERE weight > 0 AND first_dt IS NOT NULL
 ),
 /* ========== 投流宽口径（对齐漏斗 ktf_*：不要求事件日>=引流日；投流新口径） ========== */
 /* 用户池：投放业务表 + 拼表单 + 卓易通，货主（账户链路同 01d）；企业池：company_tl */
@@ -677,24 +684,28 @@ metric_sides AS (
       AND f.initiative NOT IN ('投流', '电销', '货主招募')
     GROUP BY mm.mon, f.initiative, f.shipper_type
     UNION ALL
-    SELECT '周', 'cur', w.week_start, f.initiative, f.shipper_type, '注册企业数',
+    SELECT '周', 'cur', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END, '注册企业数',
            COUNT(DISTINCT f.company_id)
     FROM register_fact f
     INNER JOIN week_meta w
         ON f.event_dt >= w.week_start AND f.event_dt <= w.week_end
-    WHERE f.shipper_type IS NOT NULL
+    WHERE f.first_dt IS NOT NULL
       AND f.initiative NOT IN ('投流', '电销', '货主招募')
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
-    SELECT '周', 'prev', w.week_start, f.initiative, f.shipper_type, '注册企业数',
+    SELECT '周', 'prev', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END, '注册企业数',
            COUNT(DISTINCT f.company_id)
     FROM register_fact f
     INNER JOIN week_meta w
         ON f.event_dt >= w.prev_week_start
        AND f.event_dt <= DATE_ADD(w.prev_week_start, INTERVAL w.span_days DAY)
-    WHERE f.shipper_type IS NOT NULL
+    WHERE f.first_dt IS NOT NULL
       AND f.initiative NOT IN ('投流', '电销', '货主招募')
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
     SELECT '月', 'cur', mm.mon, f.initiative, f.shipper_type, '认证企业数',
            COUNT(DISTINCT f.company_id)
@@ -716,24 +727,28 @@ metric_sides AS (
       AND f.initiative NOT IN ('投流', '电销', '货主招募')
     GROUP BY mm.mon, f.initiative, f.shipper_type
     UNION ALL
-    SELECT '周', 'cur', w.week_start, f.initiative, f.shipper_type, '认证企业数',
+    SELECT '周', 'cur', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END, '认证企业数',
            COUNT(DISTINCT f.company_id)
     FROM certify_fact f
     INNER JOIN week_meta w
         ON f.event_dt >= w.week_start AND f.event_dt <= w.week_end
-    WHERE f.shipper_type IS NOT NULL
+    WHERE f.first_dt IS NOT NULL
       AND f.initiative NOT IN ('投流', '电销', '货主招募')
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
-    SELECT '周', 'prev', w.week_start, f.initiative, f.shipper_type, '认证企业数',
+    SELECT '周', 'prev', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END, '认证企业数',
            COUNT(DISTINCT f.company_id)
     FROM certify_fact f
     INNER JOIN week_meta w
         ON f.event_dt >= w.prev_week_start
        AND f.event_dt <= DATE_ADD(w.prev_week_start, INTERVAL w.span_days DAY)
-    WHERE f.shipper_type IS NOT NULL
+    WHERE f.first_dt IS NOT NULL
       AND f.initiative NOT IN ('投流', '电销', '货主招募')
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
     SELECT '月', 'cur', mm.mon, f.initiative, f.shipper_type, '发货货主数',
            COUNT(DISTINCT f.company_id)
@@ -751,20 +766,24 @@ metric_sides AS (
        AND DAY(f.event_dt) <= LEAST(mm.cutoff_dom, DAY(LAST_DAY(mm.prev_mon)))
     GROUP BY mm.mon, f.initiative, f.shipper_type
     UNION ALL
-    SELECT '周', 'cur', w.week_start, f.initiative, f.shipper_type, '发货货主数',
+    SELECT '周', 'cur', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END, '发货货主数',
            COUNT(DISTINCT f.company_id)
     FROM ship_fact f
     INNER JOIN week_meta w
         ON f.event_dt >= w.week_start AND f.event_dt <= w.week_end
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
-    SELECT '周', 'prev', w.week_start, f.initiative, f.shipper_type, '发货货主数',
+    SELECT '周', 'prev', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END, '发货货主数',
            COUNT(DISTINCT f.company_id)
     FROM ship_fact f
     INNER JOIN week_meta w
         ON f.event_dt >= w.prev_week_start
        AND f.event_dt <= DATE_ADD(w.prev_week_start, INTERVAL w.span_days DAY)
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
     SELECT '月', 'cur', mm.mon, f.initiative, f.shipper_type, '成交货主数',
            COUNT(DISTINCT f.shipper_company_id)
@@ -782,20 +801,24 @@ metric_sides AS (
        AND DAY(f.event_dt) <= LEAST(mm.cutoff_dom, DAY(LAST_DAY(mm.prev_mon)))
     GROUP BY mm.mon, f.initiative, f.shipper_type
     UNION ALL
-    SELECT '周', 'cur', w.week_start, f.initiative, f.shipper_type, '成交货主数',
+    SELECT '周', 'cur', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END, '成交货主数',
            COUNT(DISTINCT f.shipper_company_id)
     FROM waybill_initiative_filtered f
     INNER JOIN week_meta w
         ON f.event_dt >= w.week_start AND f.event_dt <= w.week_end
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
-    SELECT '周', 'prev', w.week_start, f.initiative, f.shipper_type, '成交货主数',
+    SELECT '周', 'prev', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END, '成交货主数',
            COUNT(DISTINCT f.shipper_company_id)
     FROM waybill_initiative_filtered f
     INNER JOIN week_meta w
         ON f.event_dt >= w.prev_week_start
        AND f.event_dt <= DATE_ADD(w.prev_week_start, INTERVAL w.span_days DAY)
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
     SELECT '月', 'cur', mm.mon, f.initiative, f.shipper_type, '成交运单量',
            SUM(f.weight)
@@ -813,20 +836,24 @@ metric_sides AS (
        AND DAY(f.event_dt) <= LEAST(mm.cutoff_dom, DAY(LAST_DAY(mm.prev_mon)))
     GROUP BY mm.mon, f.initiative, f.shipper_type
     UNION ALL
-    SELECT '周', 'cur', w.week_start, f.initiative, f.shipper_type, '成交运单量',
+    SELECT '周', 'cur', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END, '成交运单量',
            SUM(f.weight)
     FROM waybill_initiative_filtered f
     INNER JOIN week_meta w
         ON f.event_dt >= w.week_start AND f.event_dt <= w.week_end
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
-    SELECT '周', 'prev', w.week_start, f.initiative, f.shipper_type, '成交运单量',
+    SELECT '周', 'prev', w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END, '成交运单量',
            SUM(f.weight)
     FROM waybill_initiative_filtered f
     INNER JOIN week_meta w
         ON f.event_dt >= w.prev_week_start
        AND f.event_dt <= DATE_ADD(w.prev_week_start, INTERVAL w.span_days DAY)
-    GROUP BY w.week_start, f.initiative, f.shipper_type
+    GROUP BY w.week_start, f.initiative,
+           CASE WHEN f.first_dt >= w.prev_week_start THEN '新货主' ELSE '老货主' END
     UNION ALL
     SELECT '月', 'cur', mm.mon, '投流', '整体', '注册账号',
            COUNT(DISTINCT f.user_id)
