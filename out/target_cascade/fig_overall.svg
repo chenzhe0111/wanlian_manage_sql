@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+<rect width="900" height="420" fill="#FFFFFF"/>
+<text x="450.0" y="36" text-anchor="middle" font-size="18" font-weight="700" fill="#1F2329">目标管理四层拆解</text>
+<rect x="120" y="80" width="660" height="64" rx="14" fill="#FFF7EB" stroke="#E6A23C" stroke-width="2"/>
+<text x="450" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#1F2329">L0 目标文档</text>
+<text x="450" y="130" text-anchor="middle" font-size="12" fill="#646A73">10月实数：投流大部门24.42 / 电销9.63 / 裂变8.07 / 调度14.43 / 司机注册20</text>
+<line x1="450" y1="144" x2="450" y2="160" stroke="#C0C4CC" stroke-width="2"/>
+<polygon points="450,160 444,152 456,152" fill="#C0C4CC"/>
+<rect x="120" y="160" width="660" height="64" rx="14" fill="#E8F3FF" stroke="#3370FF" stroke-width="2"/>
+<text x="450" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#1F2329">L1 部门负责人</text>
+<text x="450" y="210" text-anchor="middle" font-size="12" fill="#646A73">100%承接本举措结果指标</text>
+<line x1="450" y1="224" x2="450" y2="240" stroke="#C0C4CC" stroke-width="2"/>
+<polygon points="450,240 444,232 456,232" fill="#C0C4CC"/>
+<rect x="120" y="240" width="660" height="64" rx="14" fill="#FFF1F0" stroke="#F54A45" stroke-width="2"/>
+<text x="450" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#1F2329">L1.5 子板块</text>
+<text x="450" y="290" text-anchor="middle" font-size="12" fill="#646A73">例：投流大部门→①效果投放②直播③品牌宣发④内容⑤中台</text>
+<line x1="450" y1="304" x2="450" y2="320" stroke="#C0C4CC" stroke-width="2"/>
+<polygon points="450,320 444,312 456,312" fill="#C0C4CC"/>
+<rect x="120" y="320" width="660" height="64" rx="14" fill="#F0FFF0" stroke="#2EA121" stroke-width="2"/>
+<text x="450" y="348" text-anchor="middle" font-size="15" font-weight="700" fill="#1F2329">L2 个人目标卡</text>
+<text x="450" y="370" text-anchor="middle" font-size="12" fill="#646A73">结果运单/货主 + 漏斗过程量/率（按权重分摊）</text>
+</svg>

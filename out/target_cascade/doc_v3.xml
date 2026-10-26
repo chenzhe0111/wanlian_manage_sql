@@ -1,0 +1,132 @@
+<title>目标管理到个人 · 试点方案（详版·10月目标实数）</title>
+<p><b>数源</b>：飞书整合表 <b>202610（10月目标列）</b>。运单单位：万单。投流「投放/品牌」比例、个人权重为落地示意（表内暂无投放/品牌拆），可用实数替换比例。</p>
+<p><b>四举措10月目标</b>：裂变 <b>8.07</b>｜电销 <b>9.63</b>｜投流 <b>24.42</b>｜调度 <b>14.43</b>；司机当月新增注册 <b>20.0</b> 万。</p>
+
+<h1>一、拆解总览</h1>
+<whiteboard type="svg" path="@out/target_cascade/fig_overall.svg"></whiteboard>
+<p>个人结果之和必须加总回部门，再加总回目标文档对应行；过程量按同一权重分摊漏斗目标，过程率沿用文档目标率。</p>
+
+<h1>二、投流详拆（10月目标 24.42 万）</h1>
+<p>目标表：留存运单 <b>18.76</b> + 新增运单 <b>5.66</b> = <b>24.42</b>。示意：投放承接 70%、品牌 30%；投放侧员工 A/B/C 权重 40%/30%/30%。</p>
+<whiteboard type="svg" path="@out/target_cascade/fig_ads_cascade.svg"></whiteboard>
+
+<h2>2.1 数字表（可直接填个人卡）</h2>
+<table>
+<table_header_row>
+<table_cell>对象</table_cell><table_cell>权重</table_cell><table_cell>运单合计</table_cell><table_cell>其中留存</table_cell><table_cell>其中新增</table_cell>
+</table_header_row>
+<table_row>
+<table_cell>投流组（文档）</table_cell><table_cell>100%</table_cell><table_cell>24.42</table_cell><table_cell>18.76</table_cell><table_cell>5.66</table_cell>
+</table_row>
+<table_row>
+<table_cell>投放</table_cell><table_cell>70%</table_cell><table_cell>17.09</table_cell><table_cell>13.13</table_cell><table_cell>3.96</table_cell>
+</table_row>
+<table_row>
+<table_cell>品牌</table_cell><table_cell>30%</table_cell><table_cell>7.33</table_cell><table_cell>5.63</table_cell><table_cell>1.70</table_cell>
+</table_row>
+<table_row>
+<table_cell>投放-员工A</table_cell><table_cell>70%×40%</table_cell><table_cell>6.84</table_cell><table_cell>5.25</table_cell><table_cell>1.58</table_cell>
+</table_row>
+<table_row>
+<table_cell>投放-员工B</table_cell><table_cell>70%×30%</table_cell><table_cell>5.13</table_cell><table_cell>3.94</table_cell><table_cell>1.19</table_cell>
+</table_row>
+<table_row>
+<table_cell>投放-员工C</table_cell><table_cell>70%×30%</table_cell><table_cell>5.13</table_cell><table_cell>3.94</table_cell><table_cell>1.19</table_cell>
+</table_row>
+<table_row>
+<table_cell>品牌-员工D</table_cell><table_cell>30%×60%</table_cell><table_cell>4.40</table_cell><table_cell>3.38</table_cell><table_cell>1.02</table_cell>
+</table_row>
+<table_row>
+<table_cell>品牌-员工E</table_cell><table_cell>30%×40%</table_cell><table_cell>2.93</table_cell><table_cell>2.25</table_cell><table_cell>0.68</table_cell>
+</table_row>
+</table>
+
+<h2>2.2 员工A：按漏斗拆细的过程目标</h2>
+<p>全量权重 28%。率类指标不砍数，沿用文档目标率；量类 = 文档漏斗目标 × 28%。</p>
+<whiteboard type="svg" path="@out/target_cascade/fig_ads_person_a.svg"></whiteboard>
+<table>
+<table_header_row>
+<table_cell>类型</table_cell><table_cell>指标（目标表）</table_cell><table_cell>文档10月目标</table_cell><table_cell>员工A（×28%）</table_cell>
+</table_header_row>
+<table_row>
+<table_cell>结果</table_cell><table_cell>运单合计</table_cell><table_cell>24.42万</table_cell><table_cell><b>6.84万</b></table_cell>
+</table_row>
+<table_row>
+<table_cell>结果</table_cell><table_cell>留存/新增运单</table_cell><table_cell>18.76 / 5.66</table_cell><table_cell>5.25 / 1.58</table_cell>
+</table_row>
+<table_row>
+<table_cell>结果</table_cell><table_cell>留存/新增成交货主</table_cell><table_cell>1092 / 488</table_cell><table_cell>306 / 137</table_cell>
+</table_row>
+<table_row>
+<table_cell>结果水位</table_cell><table_cell>单货主运单（留/新）</table_cell><table_cell>172 / 116</table_cell><table_cell>沿用（不按人分摊）</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程量</table_cell><table_cell>曝光量</table_cell><table_cell>1.256亿</table_cell><table_cell>0.351亿</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程量</table_cell><table_cell>注册账户</table_cell><table_cell>15.07万</table_cell><table_cell>4.22万</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程量</table_cell><table_cell>注册货主</table_cell><table_cell>1808</table_cell><table_cell>506</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程量</table_cell><table_cell>认证货主</table_cell><table_cell>904</table_cell><table_cell>253</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程量</table_cell><table_cell>新增发货货主</table_cell><table_cell>814</table_cell><table_cell>228</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程量</table_cell><table_cell>新增成交货主</table_cell><table_cell>488</table_cell><table_cell>137</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程率</table_cell><table_cell>曝光→注册</table_cell><table_cell>0.12%</table_cell><table_cell>≥0.12%</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程率</table_cell><table_cell>账户→货主 / 注册→认证 / 认证→发货</table_cell><table_cell>1.20% / 50% / 90%</table_cell><table_cell>沿用</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程率</table_cell><table_cell>发货→成交（新增）</table_cell><table_cell>60%</table_cell><table_cell>≥60%</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程</table_cell><table_cell>注册成本</table_cell><table_cell>≤40</table_cell><table_cell>≤40</table_cell>
+</table_row>
+</table>
+<p>员工B/C：指标相同，权重改为 21%（量类 ×0.21）。品牌D/E：结果运单按上表；过程可改为品牌侧指标（待品牌负责人定 2～4 个），运单仍须加总回 7.33 万。</p>
+
+<h1>三、电销详拆（10月目标 9.63 万）</h1>
+<p>目标表：留存 <b>7.44</b> + 新增 <b>2.19</b>；外呼 <b>18.26万</b>、人力 <b>36</b>、人效 <b>220</b>。下图以 3 名坐席均分为例（落地按实际编制/客户包）。</p>
+<whiteboard type="svg" path="@out/target_cascade/fig_tel_cascade.svg"></whiteboard>
+<table>
+<table_header_row>
+<table_cell>坐席（示意均分）</table_cell><table_cell>运单</table_cell><table_cell>留存/新增成交货主</table_cell><table_cell>关键过程</table_cell>
+</table_header_row>
+<table_row>
+<table_cell>A / B / C 各1/3</table_cell><table_cell>各 3.21万</table_cell><table_cell>留110 / 新41</table_cell><table_cell>外呼≈人效220/人·日对应月目标；认证发货率≥43%；发货→成交≥46%；单货主留225/新180</table_cell>
+</table_row>
+</table>
+
+<h1>四、调度 / 裂变 / 司机（10月目标实数）</h1>
+<whiteboard type="svg" path="@out/target_cascade/fig_other_depts.svg"></whiteboard>
+<ul>
+<li><b>调度 14.43万</b>（留存10.62 + 新增3.81）：按客户包拆留存与获客；过程=发货客户、单客户贡献。</li>
+<li><b>裂变 8.07万</b>（新增5.65 + 留存2.42）：活动包/种子包；过程=裂变系数、B转化。</li>
+<li><b>司机</b>：当月新增注册 <b>20万</b>（注册司机表）；按渠道拆到人。</li>
+</ul>
+
+<h1>五、个人卡字段（统一）</h1>
+<ol>
+<li>结果：运单（留存/新增）、成交货主——数值 = 文档目标 × 个人权重。</li>
+<li>过程量：该举措漏斗各环量——同样 × 权重。</li>
+<li>过程率/成本/单货主：沿用文档目标，作为达标水位。</li>
+<li>周跟盯：vs 时间进度；落后时先看过程率再看过程量。</li>
+</ol>
+
+<h1>六、待确认</h1>
+<ol>
+<li>投流投放/品牌比例是否用 70/30，或按预算另定。</li>
+<li>A/B/C、D/E 实名与权重；电销客户包与编制。</li>
+<li>调度是否再拆撮合/TMS/网货；司机渠道清单。</li>
+</ol>
+
+<h1>七、一句话</h1>
+<p>10月以目标表为准：投流24.42万按投放/品牌再到人，每人同时领「运单结果 + 漏斗过程量/率」；电销9.63、调度14.43、裂变8.07、司机注册20万同样拆。个人加总必须回到文档。</p>

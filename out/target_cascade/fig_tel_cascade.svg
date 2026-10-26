@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520">
+<rect width="960" height="520" fill="#FFFFFF"/>
+<rect x="0" y="0" width="960" height="58" fill="#E8F3FF"/>
+<text x="480.0" y="26" text-anchor="middle" font-size="17" font-weight="700" fill="#1F2329">电销 · 10月目标拆到个人（目标表实数）</text>
+<text x="480.0" y="46" text-anchor="middle" font-size="11" fill="#8F959E">部门合计 9.63万（留存7.44+新增2.19）｜示意3名坐席均分；编制目标 36人、外呼 18.3万</text>
+<rect x="330" y="78" width="300" height="64" rx="12" fill="#E8F3FF" stroke="#3370FF" stroke-width="1.5"/>
+<text x="344" y="100" font-size="13" font-weight="700" fill="#1F2329">L0 电销挖潜</text>
+<text x="344" y="120" font-size="16" font-weight="700" fill="#1456F0">运单 9.63万</text>
+<line x1="480" y1="142" x2="180" y2="180" stroke="#3370FF" stroke-width="2"/>
+<polygon points="180,180 172,175 172,185" fill="#3370FF"/>
+<rect x="60" y="180" width="280" height="280" rx="12" fill="#F7F9FF" stroke="#3370FF" stroke-width="1.5"/>
+<text x="74" y="202" font-size="13" font-weight="700" fill="#1F2329">坐席A（均分1/3）</text>
+<text x="74" y="222" font-size="14" font-weight="700" fill="#1456F0">结果运单  3.21万</text>
+<text x="74" y="244" font-size="11" font-weight="400" fill="#646A73">·留存 2.48 / 新增 0.73</text>
+<text x="74" y="263" font-size="11" font-weight="400" fill="#646A73">成交货主 留110/新41</text>
+<text x="74" y="282" font-size="11" font-weight="400" fill="#646A73">单货主 留225/新180</text>
+<text x="74" y="301" font-size="12" font-weight="700" fill="#1F2329">过程（漏斗）：</text>
+<text x="74" y="321" font-size="11" font-weight="400" fill="#4E5969">外呼量  5,060（人效220）</text>
+<text x="74" y="340" font-size="11" font-weight="400" fill="#4E5969">企业认证  414</text>
+<text x="74" y="359" font-size="11" font-weight="400" fill="#4E5969">认证→发货 ≥43%</text>
+<text x="74" y="378" font-size="11" font-weight="400" fill="#4E5969">发货→成交 ≥46%</text>
+<line x1="480" y1="142" x2="480" y2="180" stroke="#3370FF" stroke-width="2"/>
+<polygon points="480,180 472,175 472,185" fill="#3370FF"/>
+<rect x="360" y="180" width="280" height="280" rx="12" fill="#F7F9FF" stroke="#3370FF" stroke-width="1.5"/>
+<text x="374" y="202" font-size="13" font-weight="700" fill="#1F2329">坐席B（均分1/3）</text>
+<text x="374" y="222" font-size="14" font-weight="700" fill="#1456F0">结果运单  3.21万</text>
+<text x="374" y="244" font-size="11" font-weight="400" fill="#646A73">·留存 2.48 / 新增 0.73</text>
+<text x="374" y="263" font-size="11" font-weight="400" fill="#646A73">成交货主 留110/新41</text>
+<text x="374" y="282" font-size="11" font-weight="400" fill="#646A73">单货主 留225/新180</text>
+<text x="374" y="301" font-size="12" font-weight="700" fill="#1F2329">过程（漏斗）：</text>
+<text x="374" y="321" font-size="11" font-weight="400" fill="#4E5969">外呼量  5,060（人效220）</text>
+<text x="374" y="340" font-size="11" font-weight="400" fill="#4E5969">企业认证  414</text>
+<text x="374" y="359" font-size="11" font-weight="400" fill="#4E5969">认证→发货 ≥43%</text>
+<text x="374" y="378" font-size="11" font-weight="400" fill="#4E5969">发货→成交 ≥46%</text>
+<line x1="480" y1="142" x2="780" y2="180" stroke="#3370FF" stroke-width="2"/>
+<polygon points="780,180 772,175 772,185" fill="#3370FF"/>
+<rect x="660" y="180" width="280" height="280" rx="12" fill="#F7F9FF" stroke="#3370FF" stroke-width="1.5"/>
+<text x="674" y="202" font-size="13" font-weight="700" fill="#1F2329">坐席C（均分1/3）</text>
+<text x="674" y="222" font-size="14" font-weight="700" fill="#1456F0">结果运单  3.21万</text>
+<text x="674" y="244" font-size="11" font-weight="400" fill="#646A73">·留存 2.48 / 新增 0.73</text>
+<text x="674" y="263" font-size="11" font-weight="400" fill="#646A73">成交货主 留110/新41</text>
+<text x="674" y="282" font-size="11" font-weight="400" fill="#646A73">单货主 留225/新180</text>
+<text x="674" y="301" font-size="12" font-weight="700" fill="#1F2329">过程（漏斗）：</text>
+<text x="674" y="321" font-size="11" font-weight="400" fill="#4E5969">外呼量  5,060（人效220）</text>
+<text x="674" y="340" font-size="11" font-weight="400" fill="#4E5969">企业认证  414</text>
+<text x="674" y="359" font-size="11" font-weight="400" fill="#4E5969">认证→发货 ≥43%</text>
+<text x="674" y="378" font-size="11" font-weight="400" fill="#4E5969">发货→成交 ≥46%</text>
+</svg>

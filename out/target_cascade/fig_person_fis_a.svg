@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 528">
+<rect width="880" height="528" fill="#FFFFFF"/>
+<rect x="0" y="0" width="880" height="70" fill="#F7F9FC"/>
+<text x="440.0" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#1F2329">裂变 · 活动运营A 个人目标卡（10月）</text>
+<text x="440.0" y="52" text-anchor="middle" font-size="12" fill="#8F959E">示意：活动包占部门60%，A/B各半 → 个人权重30%｜部门合计 8.07万</text>
+<rect x="32" y="78" width="816" height="94" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="48" y="98" font-size="13" font-weight="700" fill="#1F2329">结果指标</text>
+<text x="48" y="120" font-size="13" fill="#4E5969">运单合计  2.42万（新增 1.70 + 留存 0.73）</text>
+<text x="48" y="142" font-size="13" fill="#4E5969">B用户认证分摊 ≈ 2118｜裂变系数沿用 0.4</text>
+<text x="48" y="164" font-size="13" fill="#4E5969">过程：B用户转化率、人均发货（有数则写入人卡）</text>
+<text x="48" y="200" font-size="13" font-weight="700" fill="#1F2329">过程漏斗（分摊后量级｜右侧为目标率）</text>
+<text x="48" y="234" font-size="13" font-weight="600" fill="#1F2329">B用户认证</text>
+<rect x="200" y="216" width="432" height="28" rx="6" fill="#E6A23C"/>
+<text x="720" y="234" font-size="13" font-weight="700" fill="#1F2329">2,118</text>
+<text x="830" y="234" font-size="12" fill="#8F959E">裂变系数目标 0.4</text>
+<text x="48" y="278" font-size="13" font-weight="600" fill="#1F2329">新增运单</text>
+<rect x="200" y="260" width="336" height="28" rx="6" fill="#F5C06A"/>
+<text x="720" y="278" font-size="13" font-weight="700" fill="#1F2329">1.70万</text>
+<text x="830" y="278" font-size="12" fill="#8F959E">← 新增结果</text>
+<text x="48" y="322" font-size="13" font-weight="600" fill="#1F2329">留存运单</text>
+<rect x="200" y="304" width="216" height="28" rx="6" fill="#F0A020"/>
+<text x="720" y="322" font-size="13" font-weight="700" fill="#1F2329">0.73万</text>
+<text x="830" y="322" font-size="12" fill="#8F959E">← 留存结果</text>
+<text x="48" y="366" font-size="13" font-weight="600" fill="#1F2329">运单合计</text>
+<rect x="200" y="348" width="408" height="28" rx="6" fill="#C67C00"/>
+<text x="720" y="366" font-size="13" font-weight="700" fill="#1F2329">2.42万</text>
+<text x="830" y="366" font-size="12" fill="#8F959E">← 总结果</text>
+<rect x="32" y="420" width="816" height="88" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="48" y="448" font-size="12" fill="#4E5969">种子社群包（40%）：可再拆给1～2人；与活动包加总=8.07万。</text>
+<text x="48" y="470" font-size="12" fill="#4E5969">负责人扛部门合计与裂变系数水位。</text>
+</svg>

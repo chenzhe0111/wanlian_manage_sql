@@ -1,0 +1,172 @@
+<title>目标管理到个人 · 试点方案（详版）</title>
+<p><b>定位</b>：目标文档是唯一数源；试点五部门（投流/电销/裂变/调度/司机）把举措月目标拆到子板块，再拆到个人。<b>下文数字为示意</b>，用于讲清规则，落地时用当月目标文档实数替换。</p>
+<p><b>状态</b>：详版草稿，供评审；子板块比例、人名、权重待部门确认。</p>
+
+<h1>一、总体拆解链路</h1>
+<p>从文档到个人共四步：举措月目标 → 部门承接 → 子板块（投放/品牌等）→ 员工个人目标卡（结果+过程）。</p>
+<whiteboard type="mermaid" path="@out/target_cascade/flow_overall.mmd"></whiteboard>
+<ol>
+<li><b>L0 目标文档</b>：整合表该月「目标」列（如投流运单、电销运单）。</li>
+<li><b>L1 部门</b>：部门负责人 100% 承接本举措结果指标。</li>
+<li><b>L1.5 子板块</b>（可选）：如投流再拆「投放 / 品牌」；无子板块则直接到人。</li>
+<li><b>L2 个人</b>：每人一张卡——1～2 个结果指标 + 2～4 个过程指标；个人结果之和 ≈ 子板块/部门目标（±5%）。</li>
+</ol>
+
+<h1>二、详例：投流 150 万运单如何拆到个人</h1>
+<p>假设目标文档中，投流组本月成交运单目标为 <b>150 万</b>（新增+留存合计，示意）。组内先按职能拆子板块，再按权重拆到人。</p>
+
+<h2>2.1 流程图（部门 → 子板块 → 个人）</h2>
+<whiteboard type="mermaid" path="@out/target_cascade/flow_ads.mmd"></whiteboard>
+
+<h2>2.2 数字拆表示意</h2>
+<table>
+<table_header_row>
+<table_cell>层级</table_cell><table_cell>对象</table_cell><table_cell>结果指标</table_cell><table_cell>目标值（示意）</table_cell><table_cell>拆分规则</table_cell>
+</table_header_row>
+<table_row>
+<table_cell>L1</table_cell><table_cell>投流组</table_cell><table_cell>成交运单</table_cell><table_cell>150 万</table_cell><table_cell>承接目标文档投流板块</table_cell>
+</table_row>
+<table_row>
+<table_cell>L1.5</table_cell><table_cell>投放</table_cell><table_cell>成交运单</table_cell><table_cell>105 万（70%）</table_cell><table_cell>历史贡献/预算占比约定</table_cell>
+</table_row>
+<table_row>
+<table_cell>L1.5</table_cell><table_cell>品牌</table_cell><table_cell>成交运单</table_cell><table_cell>45 万（30%）</table_cell><table_cell>同上</table_cell>
+</table_row>
+<table_row>
+<table_cell>L2</table_cell><table_cell>投放-员工A</table_cell><table_cell>渠道包运单</table_cell><table_cell>42 万（占投放 40%）</table_cell><table_cell>人效/渠道权重</table_cell>
+</table_row>
+<table_row>
+<table_cell>L2</table_cell><table_cell>投放-员工B</table_cell><table_cell>渠道包运单</table_cell><table_cell>31.5 万（30%）</table_cell><table_cell>同上</table_cell>
+</table_row>
+<table_row>
+<table_cell>L2</table_cell><table_cell>投放-员工C</table_cell><table_cell>渠道包运单</table_cell><table_cell>31.5 万（30%）</table_cell><table_cell>同上</table_cell>
+</table_row>
+<table_row>
+<table_cell>L2</table_cell><table_cell>品牌-员工D</table_cell><table_cell>品牌贡献运单</table_cell><table_cell>27 万（占品牌 60%）</table_cell><table_cell>职级/项目权重</table_cell>
+</table_row>
+<table_row>
+<table_cell>L2</table_cell><table_cell>品牌-员工E</table_cell><table_cell>品牌贡献运单</table_cell><table_cell>18 万（40%）</table_cell><table_cell>同上</table_cell>
+</table_row>
+</table>
+<p>校验：42+31.5+31.5=105；27+18=45；105+45=150。个人之和必须能加回文档投流目标。</p>
+
+<h2>2.3 每个员工具体扛什么（以投放员工 A 为例）</h2>
+<whiteboard type="mermaid" path="@out/target_cascade/flow_ads_metrics.mmd"></whiteboard>
+<table>
+<table_header_row>
+<table_cell>类型</table_cell><table_cell>指标</table_cell><table_cell>来源（目标文档）</table_cell><table_cell>员工A目标（示意）</table_cell><table_cell>说明</table_cell>
+</table_header_row>
+<table_row>
+<table_cell>结果</table_cell><table_cell>成交运单（万）</table_cell><table_cell>投流-留存/新增运单</table_cell><table_cell>42</table_cell><table_cell>主考核；按渠道包归因</table_cell>
+</table_row>
+<table_row>
+<table_cell>结果</table_cell><table_cell>成交货主数</table_cell><table_cell>投流-成交货主</table_cell><table_cell>按权重分摊部门目标</table_cell><table_cell>防只冲单不顾客</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程</table_cell><table_cell>曝光量</table_cell><table_cell>投流漏斗-曝光</table_cell><table_cell>渠道包分摊</table_cell><table_cell>解释流量是否够</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程</table_cell><table_cell>曝光→注册</table_cell><table_cell>投流漏斗转化率</table_cell><table_cell>不低于部门目标率</table_cell><table_cell>效率卡点</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程</table_cell><table_cell>注册成本</table_cell><table_cell>投流-注册成本</table_cell><table_cell>≤ 部门目标成本</table_cell><table_cell>控费</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程</table_cell><table_cell>单货主运单</table_cell><table_cell>投流-单货主成交运单</table_cell><table_cell>贴近部门目标水位</table_cell><table_cell>质量；与电销分析卡点一致</table_cell>
+</table_row>
+</table>
+<p><b>员工 B / C</b>：指标集合相同，结果目标值按权重换成 31.5 万；过程量按各渠道包分别定。品牌 D/E：结果为品牌贡献运单；过程可改为曝光质量、内容转化等（由品牌负责人定 2～4 个）。</p>
+
+<h2>2.4 月拆分动作（投流负责人）</h2>
+<ol>
+<li>从目标文档读取本月投流运单目标（例：150 万）。</li>
+<li>确认投放/品牌比例（例：70%/30%）→ 写出子板块目标。</li>
+<li>确认投放侧 A/B/C 权重（例：40%/30%/30%）→ 写出个人结果目标。</li>
+<li>为每人勾选过程指标 2～4 个，过程目标尽量从漏斗反推或沿用部门率目标。</li>
+<li>签字确认：个人之和 = 子板块 = 部门 = 文档。</li>
+</ol>
+
+<h1>三、其他试点部门：拆法 + 流程图</h1>
+
+<h2>3.1 电销（示意：运单 50 万）</h2>
+<p>留存按<b>客户包</b>拆到坐席；新增按<b>编制/人效</b>均分或加权。每人扛：结果=名下留存运单+分摊新增运单；过程=外呼量、接通率、认证→发货、发货→成交（与全链路分析卡点对齐）。</p>
+<whiteboard type="mermaid" path="@out/target_cascade/flow_tel.mmd"></whiteboard>
+<table>
+<table_header_row>
+<table_cell>角色</table_cell><table_cell>结果指标</table_cell><table_cell>过程指标</table_cell>
+</table_header_row>
+<table_row>
+<table_cell>坐席A/B/C</table_cell><table_cell>客户包留存运单；分摊新增运单；成交货主</table_cell><table_cell>外呼量、接通率、认证→发货、发货→成交、单货主运单</table_cell>
+</table_row>
+<table_row>
+<table_cell>电销负责人</table_cell><table_cell>部门合计运单 100% 承接文档</table_cell><table_cell>人力与外呼规模、漏斗后半段</table_cell>
+</table_row>
+</table>
+
+<h2>3.2 调度（示意：合计 80 万）</h2>
+<p>留存/新增都尽量落到<b>名下客户包</b>；类型（撮合/TMS/网货）是否再拆由负责人定。</p>
+<whiteboard type="mermaid" path="@out/target_cascade/flow_dispatch.mmd"></whiteboard>
+<table>
+<table_header_row>
+<table_cell>角色</table_cell><table_cell>结果指标</table_cell><table_cell>过程指标</table_cell>
+</table_header_row>
+<table_row>
+<table_cell>调度员</table_cell><table_cell>客户包留存运单；获客/转介绍新增运单</table_cell><table_cell>发货客户数、单客户贡献</table_cell>
+</table_row>
+<table_row>
+<table_cell>调度负责人</table_cell><table_cell>合计运单；新增/留存结构</table_cell><table_cell>编制、转介绍线索发货率</table_cell>
+</table_row>
+</table>
+
+<h2>3.3 裂变（示意：20 万）</h2>
+<p>按活动包 / 种子社群包拆；过程盯裂变系数、B 用户转化、人均发货。</p>
+<whiteboard type="mermaid" path="@out/target_cascade/flow_fission.mmd"></whiteboard>
+
+<h2>3.4 司机（示意）</h2>
+<p>目标在注册司机表；按渠道拆到人，每人扛「该渠道当月新增注册量」，过程可选注册首单率。</p>
+<whiteboard type="mermaid" path="@out/target_cascade/flow_driver.mmd"></whiteboard>
+
+<h1>四、个人目标卡（统一模板）</h1>
+<table>
+<table_header_row>
+<table_cell>字段</table_cell><table_cell>填写说明</table_cell>
+</table_header_row>
+<table_row>
+<table_cell>姓名 / 部门 / 子板块 / 上级</table_cell><table_cell>例：张三 / 投流 / 投放 / 李组长</table_cell>
+</table_row>
+<table_row>
+<table_cell>统计月</table_cell><table_cell>与目标文档一致</table_cell>
+</table_row>
+<table_row>
+<table_cell>结果指标（1～2）</table_cell><table_cell>名称、文档行、月目标值、拆分权重/客户包</table_cell>
+</table_row>
+<table_row>
+<table_cell>过程指标（2～4）</table_cell><table_cell>名称、目标值或目标率、用于解释结果</table_cell>
+</table_row>
+<table_row>
+<table_cell>校验</table_cell><table_cell>同子板块个人结果之和 = 子板块目标</table_cell>
+</table_row>
+<table_row>
+<table_cell>周状态</table_cell><table_cell>vs 时间进度；正常/风险；卡点环节一句</table_cell>
+</table_row>
+</table>
+
+<h1>五、运转节奏与试点</h1>
+<ol>
+<li><b>月初</b>：锁文档目标 → 定子板块比例 → 定个人权重 → 出个人卡。</li>
+<li><b>周会</b>：只看个人卡红绿灯 + 过程卡点（不另起数）。</li>
+<li><b>月末</b>：复盘权重是否调整；比例变更要留痕。</li>
+<li><b>试点两周</b>：建议先跑通「投流」一条链（150 万示意换成实数），再复制到电销/调度。</li>
+</ol>
+<p>本期方案默认<b>不挂钩绩效</b>；先解决「谁扛什么数、如何加总回文档」。</p>
+
+<h1>六、待业务确认</h1>
+<ol>
+<li>投流「投放 / 品牌」比例是否按 70/30，或按预算/历史贡献另定。</li>
+<li>投放侧 A/B/C 用渠道包还是人效权重；名单与权重表。</li>
+<li>电销客户包名单；调度是否拆到撮合/TMS/网货。</li>
+<li>司机渠道与负责人一一对应表。</li>
+</ol>
+
+<h1>七、一句话</h1>
+<p>文档目标先到部门，再到子板块（如投放/品牌），再到个人；每人扛「结果运单/货主 + 若干过程漏斗指标」，个人加总必须回到文档。投流 150 万示例：投放 105、品牌 45；投放再按 40%/30%/30% 到 A/B/C。</p>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560">
+<rect width="920" height="560" fill="#FFFFFF"/>
+<rect x="0" y="0" width="920" height="58" fill="#FFF1F0"/>
+<text x="460.0" y="26" text-anchor="middle" font-size="17" font-weight="700" fill="#1F2329">投放 · 员工A 个人目标卡（按漏斗拆细）</text>
+<text x="460.0" y="46" text-anchor="middle" font-size="11" fill="#8F959E">权重 = 投放70% × 个人40% = 全量的 28%｜结果+过程均来自目标表 10月列</text>
+<rect x="40" y="80" width="260" height="200" rx="12" fill="#FFFAFA" stroke="#F54A45" stroke-width="1.5"/>
+<text x="54" y="102" font-size="13" font-weight="700" fill="#1F2329">结果指标（28%分摊）</text>
+<text x="54" y="122" font-size="15" font-weight="700" fill="#D83931">运单合计  6.84万</text>
+<text x="54" y="145" font-size="12" font-weight="400" fill="#4E5969">· 留存  5.25万</text>
+<text x="54" y="165" font-size="12" font-weight="400" fill="#4E5969">· 新增  1.58万</text>
+<text x="54" y="185" font-size="12" font-weight="400" fill="#4E5969">留存成交货主  306家</text>
+<text x="54" y="205" font-size="12" font-weight="400" fill="#4E5969">新增成交货主  137家</text>
+<text x="54" y="225" font-size="12" font-weight="400" fill="#4E5969">单货主运单 留172/新116</text>
+<text x="340" y="100" font-size="14" font-weight="700" fill="#1F2329">新增漏斗过程量（分摊后）</text>
+<rect x="340" y="120" width="480" height="40" rx="8" fill="#F54A45"/>
+<text x="350" y="146" font-size="12" font-weight="600" fill="#FFFFFF">曝光量  3516.3万</text>
+<rect x="340" y="172" width="94" height="40" rx="8" fill="#F76964"/>
+<text x="350" y="198" font-size="12" font-weight="600" fill="#FFFFFF">注册账户  4.2万  · 目标率 0.12%</text>
+<rect x="340" y="224" width="82" height="40" rx="8" fill="#F98D88"/>
+<text x="350" y="250" font-size="12" font-weight="600" fill="#FFFFFF">注册货主  506  · 目标率 1.2%</text>
+<rect x="340" y="276" width="81" height="40" rx="8" fill="#FBB0AB"/>
+<text x="350" y="302" font-size="12" font-weight="600" fill="#FFFFFF">认证货主  253  · 目标率 50%</text>
+<rect x="340" y="328" width="81" height="40" rx="8" fill="#E6A23C"/>
+<text x="350" y="354" font-size="12" font-weight="600" fill="#FFFFFF">新增发货  228  · 目标率 90%</text>
+<rect x="340" y="380" width="81" height="40" rx="8" fill="#F5C06A"/>
+<text x="350" y="406" font-size="12" font-weight="600" fill="#FFFFFF">新增成交  137  · 目标率 60%</text>
+<rect x="340" y="432" width="80" height="40" rx="8" fill="#C67C00"/>
+<text x="350" y="458" font-size="12" font-weight="600" fill="#FFFFFF">新增运单  1.58万  （结果）</text>
+<text x="40" y="320" font-size="12" fill="#646A73">注册成本目标 ≤ 40 元（率/成本类不按人分摊量，沿用部门目标）</text>
+<text x="40" y="350" font-size="13" font-weight="600" fill="#1F2329">员工B/C：同一套指标，运单与漏斗量分别按 21% / 21% 全量权重计算（投放30%×70%）</text>
+<rect x="40" y="380" width="180" height="70" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="54" y="408" font-size="13" font-weight="700" fill="#1F2329">员工A · 40%</text>
+<text x="54" y="432" font-size="12" fill="#D83931">运单 6.84万</text>
+<rect x="240" y="380" width="180" height="70" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="254" y="408" font-size="13" font-weight="700" fill="#1F2329">员工B · 30%</text>
+<text x="254" y="432" font-size="12" fill="#D83931">运单 5.13万</text>
+<rect x="440" y="380" width="180" height="70" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="454" y="408" font-size="13" font-weight="700" fill="#1F2329">员工C · 30%</text>
+<text x="454" y="432" font-size="12" fill="#D83931">运单 5.13万</text>
+</svg>

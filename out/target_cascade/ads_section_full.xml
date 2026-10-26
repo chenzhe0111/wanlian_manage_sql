@@ -1,0 +1,36 @@
+<h1>二、投流大部门 · 五块业务目标拆解</h1>
+<p><b>整体仍是投流举措</b>（10月运单目标 <b>24.42万</b> = 留存18.76 + 新增5.66）。按拆岗「职能中项」收成五块业务，再拆到人——不是把「投流」改名，而是大部门内部分工。</p>
+
+<h2>2.0 专业分法（对齐拆岗）</h2>
+<table>
+<thead>
+<tr><th>业务块</th><th>英文</th><th>对应拆岗职能中项</th><th>目标性质</th><th>主承接</th></tr>
+</thead>
+<tbody>
+<tr><td>① 效果投放</td><td>Performance Ads</td><td>司/货两端效果广告投放获客；投放中台（渠道侧）</td><td>直接扛部门运单+漏斗+成本</td><td>赵磊、董亮</td></tr>
+<tr><td>② 直播增长</td><td>Live Growth</td><td>直播运营及中台支持</td><td>线索/SOP（不背运单包）</td><td>郭倩玉、靳晨飞</td></tr>
+<tr><td>③ 品牌宣发</td><td>Brand &amp; PR</td><td>品牌建设与推广；媒体对接与传播</td><td>曝光/签约/SEO（不背运单包）</td><td>何萃婷</td></tr>
+<tr><td>④ 内容获客</td><td>Content Growth</td><td>内容营销-新媒体获客</td><td>官号/短视频/SOP（不背运单包）</td><td>郭倩玉、张栩萍</td></tr>
+<tr><td>⑤ 创意与数据中台</td><td>Creative &amp; Analytics</td><td>平面/视频素材支持；投放中台；品牌转化数据评估</td><td>交付/素材库/中台V1/月评（赋能）</td><td>郑显渡、靳晨飞、赵婧（赵磊协同）</td></tr>
+</tbody>
+</table>
+<p>一人多块（郭倩玉②+④、靳晨飞②+⑤、赵磊①+⑤）按业务线分别跟盯指标，运单包只在①上加总一次。</p>
+
+<whiteboard type="svg" path="@out/target_cascade/fig_ads_cascade.svg"></whiteboard>
+
+<h2>2.1 ①效果投放 · 赵磊（信息流·60%）</h2>
+<p>关键结果：运单合计 <b>14.65万</b>（留存11.26 + 新增3.40）。量=全量×60%；率不砍。成本：司机&lt;40、货主&lt;50。</p>
+<table><thead><tr><th>环节</th><th>文档10月全量</th><th>个人应完成量</th><th>转化率/水位</th><th>与运单关系</th></tr></thead><tbody><tr><td>① 曝光量</td><td>12558.0万</td><td>7534.8万</td><td>（漏斗顶）</td><td>流量供给</td></tr><tr><td>② 注册账户</td><td>15.07万</td><td>9.04万</td><td>≥0.12%</td><td>曝光转化</td></tr><tr><td>③ 注册货主</td><td>1808</td><td>1085</td><td>≥1.20%</td><td>账户质量</td></tr><tr><td>④ 认证货主</td><td>904</td><td>543</td><td>≥50%</td><td>认证</td></tr><tr><td>⑤ 新增发货</td><td>814</td><td>488</td><td>≥90%</td><td>发货</td></tr><tr><td>⑥ 新增成交货主</td><td>488</td><td>293</td><td>≥60%</td><td>成交</td></tr><tr><td>⑦ 新增运单（万）</td><td>5.66</td><td>3.40</td><td>单货主≥116</td><td>新增结果</td></tr><tr><td>⑧ 留存运单（万）</td><td>18.76</td><td>11.26</td><td>单货主≥172</td><td>留存结果</td></tr><tr><td>⑨ 运单合计（万）</td><td>24.42</td><td>14.65</td><td>⑧+⑦</td><td>关键结果</td></tr></tbody></table>
+<p>董亮（应用商店·40%）：表结构同左，运单合计 <b>9.77万</b>（留存7.50+新增2.26）；成本司机&lt;21/货主&lt;40；ASO专项见拆岗。校验 14.65+9.77=<b>24.42</b>。</p>
+
+<h2>2.2 ②直播增长</h2>
+<table><thead><tr><th>承接人</th><th>主指标（拆岗）</th><th>如何支撑效果投放运单</th></tr></thead><tbody><tr><td>郭倩玉</td><td>10月底直播SOP V1；线索按期达成；跨部门直播支持</td><td>直播线索进入注册/认证池</td></tr><tr><td>靳晨飞</td><td>切片按双11/年底节点产出并二次分发</td><td>回流信息流/内容场，补曝光降成本</td></tr></tbody></table>
+
+<h2>2.3 ③品牌宣发</h2>
+<table><thead><tr><th>承接人</th><th>主指标（拆岗）</th><th>如何支撑效果投放运单</th></tr></thead><tbody><tr><td>何萃婷</td><td>品牌手册/官网/DM；媒体签约4家；总曝光≥500万；SEO/GEO；白皮书</td><td>扩大品牌与自然流量，降低效投获客难度</td></tr></tbody></table>
+
+<h2>2.4 ④内容获客</h2>
+<table><thead><tr><th>承接人</th><th>主指标（拆岗）</th><th>如何支撑效果投放运单</th></tr></thead><tbody><tr><td>郭倩玉</td><td>公号1-2篇/周，9-12月≥30篇；粉丝年底≥20万</td><td>官号触达与私域蓄水</td></tr><tr><td>张栩萍</td><td>短视频线索/转化；内容SOP V1（10月）；用户增长SOP</td><td>低成本获客 + 稳定内容供给投放</td></tr></tbody></table>
+
+<h2>2.5 ⑤创意与数据中台</h2>
+<table><thead><tr><th>承接人</th><th>主指标（拆岗）</th><th>如何支撑效果投放运单</th></tr></thead><tbody><tr><td>郑显渡</td><td>设计交付100%；素材库≥200套</td><td>保障投放与宣发素材节奏</td></tr><tr><td>靳晨飞</td><td>视频交付100%；素材库≥100套；短剧试点10月</td><td>保障投放/内容/大促素材</td></tr><tr><td>赵婧</td><td>12月投放中台V1；月度品牌效果评估；埋点看板</td><td>算清渠道贡献、优化预算</td></tr><tr><td>赵磊（协同）</td><td>新渠道评估报告；中台V1共背</td><td>拓展投放供给、体系化</td></tr></tbody></table>

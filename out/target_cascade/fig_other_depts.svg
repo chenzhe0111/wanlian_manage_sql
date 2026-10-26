@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480">
+<rect width="960" height="480" fill="#FFFFFF"/>
+<rect x="0" y="0" width="960" height="50" fill="#F5F8FF"/>
+<text x="480.0" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#1F2329">调度 / 裂变 / 司机 · 10月目标（目标表实数）</text>
+<rect x="30" y="70" width="290" height="180" rx="12" fill="#F0FFF0" stroke="#2EA121" stroke-width="1.5"/>
+<text x="44" y="92" font-size="13" font-weight="700" fill="#1F2329">调度 14.43万</text>
+<text x="44" y="112" font-size="12" font-weight="400" fill="#4E5969">留存 10.62万 → 按客户包到人</text>
+<text x="44" y="132" font-size="12" font-weight="400" fill="#4E5969">新增 3.81万 → 获客/转介绍到人</text>
+<text x="44" y="152" font-size="12" font-weight="400" fill="#4E5969">过程：发货客户数、单客户贡献</text>
+<text x="44" y="172" font-size="12" font-weight="400" fill="#646A73">个人示例：3人客户包均分留存</text>
+<text x="44" y="192" font-size="13" font-weight="700" fill="#2EA121">每人留存≈3.54万</text>
+<rect x="335" y="70" width="290" height="180" rx="12" fill="#FFF7EB" stroke="#E6A23C" stroke-width="1.5"/>
+<text x="349" y="92" font-size="13" font-weight="700" fill="#1F2329">裂变 8.07万</text>
+<text x="349" y="112" font-size="12" font-weight="400" fill="#4E5969">新增 5.65万 + 留存 2.42万</text>
+<text x="349" y="132" font-size="12" font-weight="400" fill="#4E5969">拆法：活动包 / 种子社群包</text>
+<text x="349" y="152" font-size="12" font-weight="400" fill="#4E5969">过程：裂变系数、B转化、人均发货</text>
+<text x="349" y="172" font-size="12" font-weight="400" fill="#646A73">示意：活动60% / 种子40%</text>
+<text x="349" y="192" font-size="13" font-weight="700" fill="#C67C00">活动包 4.84万</text>
+<rect x="640" y="70" width="290" height="180" rx="12" fill="#E8F3FF" stroke="#3370FF" stroke-width="1.5"/>
+<text x="654" y="92" font-size="13" font-weight="700" fill="#1F2329">司机 新增注册 20万</text>
+<text x="654" y="112" font-size="12" font-weight="400" fill="#4E5969">指标：当月新增注册量（司机表）</text>
+<text x="654" y="132" font-size="12" font-weight="400" fill="#4E5969">拆法：按渠道到人</text>
+<text x="654" y="152" font-size="12" font-weight="400" fill="#4E5969">过程：渠道注册量、注册首单率</text>
+<text x="654" y="172" font-size="12" font-weight="400" fill="#646A73">示意四渠道均分</text>
+<text x="654" y="192" font-size="13" font-weight="700" fill="#1456F0">每渠道≈5.0万注册</text>
+<rect x="30" y="280" width="900" height="160" rx="12" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="50" y="310" font-size="14" font-weight="700" fill="#1F2329">四举措+司机 10月运单/注册目标一览（整合表）</text>
+<text x="50" y="342" font-size="13" fill="#4E5969">裂变 8.07万（14%）｜电销 9.63万（17%）｜投流 24.42万（43%）｜调度 14.43万（26%）</text>
+<text x="50" y="372" font-size="13" fill="#4E5969">四举措运单合计 56.55万｜司机当月新增注册 20.0万</text>
+<text x="50" y="404" font-size="12" fill="#8F959E">个人拆分时：运单类从对应举措行取值；司机从注册司机表 202610 列取值；漏斗量按个人权重 × 文档漏斗目标。</text>
+</svg>

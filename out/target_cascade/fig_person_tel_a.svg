@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 704">
+<rect width="880" height="704" fill="#FFFFFF"/>
+<rect x="0" y="0" width="880" height="70" fill="#F7F9FC"/>
+<text x="440.0" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#1F2329">电销 · 坐席A 个人目标卡（10月）</text>
+<text x="440.0" y="52" text-anchor="middle" font-size="12" fill="#8F959E">示意均分 1/3（落地按客户包/编制）｜部门运单 9.63万｜人力目标 36人</text>
+<rect x="32" y="78" width="816" height="94" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="48" y="98" font-size="13" font-weight="700" fill="#1F2329">结果指标</text>
+<text x="48" y="120" font-size="13" fill="#4E5969">运单合计  3.21万（留存 2.48 + 新增 0.73）</text>
+<text x="48" y="142" font-size="13" fill="#4E5969">成交货主  留存 110家｜新增 41家｜单货主水位 留225/新180</text>
+<text x="48" y="164" font-size="13" fill="#4E5969">外呼按人效：月外呼目标约 5,060/人（编制内）</text>
+<text x="48" y="200" font-size="13" font-weight="700" fill="#1F2329">过程漏斗（分摊后量级｜右侧为目标率）</text>
+<text x="48" y="234" font-size="13" font-weight="600" fill="#1F2329">外呼量</text>
+<rect x="200" y="216" width="480" height="28" rx="6" fill="#1456F0"/>
+<text x="720" y="234" font-size="13" font-weight="700" fill="#1F2329">6.1万</text>
+<text x="830" y="234" font-size="12" fill="#8F959E">人效≥220</text>
+<text x="48" y="278" font-size="13" font-weight="600" fill="#1F2329">接通量</text>
+<rect x="200" y="260" width="339" height="28" rx="6" fill="#3370FF"/>
+<text x="720" y="278" font-size="13" font-weight="700" fill="#1F2329">2.6万</text>
+<text x="830" y="278" font-size="12" fill="#8F959E">接通率≥42%</text>
+<text x="48" y="322" font-size="13" font-weight="600" fill="#1F2329">有效沟通</text>
+<rect x="200" y="304" width="268" height="28" rx="6" fill="#4E83FD"/>
+<text x="720" y="322" font-size="13" font-weight="700" fill="#1F2329">1.4万</text>
+<text x="830" y="322" font-size="12" fill="#8F959E">有效沟通率≥56%</text>
+<text x="48" y="366" font-size="13" font-weight="600" fill="#1F2329">企业线索</text>
+<rect x="200" y="348" width="94" height="28" rx="6" fill="#6AA1FF"/>
+<text x="720" y="366" font-size="13" font-weight="700" fill="#1F2329">1,036</text>
+<text x="830" y="366" font-size="12" fill="#8F959E">线索获取率≥7.3%</text>
+<text x="48" y="410" font-size="13" font-weight="600" fill="#1F2329">企业认证</text>
+<rect x="200" y="392" width="65" height="28" rx="6" fill="#91CAFF"/>
+<text x="720" y="410" font-size="13" font-weight="700" fill="#1F2329">414</text>
+<text x="830" y="410" font-size="12" fill="#8F959E">线索注册率≥40%</text>
+<text x="48" y="454" font-size="13" font-weight="600" fill="#1F2329">新增发货</text>
+<rect x="200" y="436" width="48" height="28" rx="6" fill="#B3D4FF"/>
+<text x="720" y="454" font-size="13" font-weight="700" fill="#1F2329">88.67</text>
+<text x="830" y="454" font-size="12" fill="#8F959E">认证→发货≥43%</text>
+<text x="48" y="498" font-size="13" font-weight="600" fill="#1F2329">新增成交</text>
+<rect x="200" y="480" width="48" height="28" rx="6" fill="#3370FF"/>
+<text x="720" y="498" font-size="13" font-weight="700" fill="#1F2329">40.56</text>
+<text x="830" y="498" font-size="12" fill="#8F959E">发货→成交≥46%</text>
+<text x="48" y="542" font-size="13" font-weight="600" fill="#1F2329">新增运单</text>
+<rect x="200" y="524" width="206" height="28" rx="6" fill="#0F3EB8"/>
+<text x="720" y="542" font-size="13" font-weight="700" fill="#1F2329">0.73万</text>
+<text x="830" y="542" font-size="12" fill="#8F959E">← 结果</text>
+<rect x="32" y="596" width="816" height="88" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="48" y="624" font-size="12" fill="#4E5969">坐席B/C：指标相同，均分时运单各 3.21万；有客户包则留存按包、新增按权重。</text>
+<text x="48" y="646" font-size="12" fill="#4E5969">负责人额外扛：部门合计 9.63万、人力 36、外呼总量 18.26万。</text>
+</svg>

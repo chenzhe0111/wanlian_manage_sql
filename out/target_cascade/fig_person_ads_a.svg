@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 660">
+<rect width="880" height="660" fill="#FFFFFF"/>
+<rect x="0" y="0" width="880" height="70" fill="#F7F9FC"/>
+<text x="440.0" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#1F2329">投放 · 员工A 个人目标卡（10月）</text>
+<text x="440.0" y="52" text-anchor="middle" font-size="12" fill="#8F959E">权重 = 投放70% × 个人40% = 全量28%｜量=文档目标×28%；率沿用文档目标</text>
+<rect x="32" y="78" width="816" height="94" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="48" y="98" font-size="13" font-weight="700" fill="#1F2329">结果指标</text>
+<text x="48" y="120" font-size="13" fill="#4E5969">运单合计  6.84万（留存 5.25 + 新增 1.58）</text>
+<text x="48" y="142" font-size="13" fill="#4E5969">成交货主  留存 306家｜新增 137家｜单货主水位 留172/新116</text>
+<text x="48" y="164" font-size="13" fill="#4E5969">注册成本 ≤ 40 元（沿用部门目标）</text>
+<text x="48" y="200" font-size="13" font-weight="700" fill="#1F2329">过程漏斗（分摊后量级｜右侧为目标率）</text>
+<text x="48" y="234" font-size="13" font-weight="600" fill="#1F2329">曝光量</text>
+<rect x="200" y="216" width="480" height="28" rx="6" fill="#F54A45"/>
+<text x="720" y="234" font-size="13" font-weight="700" fill="#1F2329">3516.3万</text>
+<text x="830" y="234" font-size="12" fill="#8F959E">曝光→注册 ≥0.12%</text>
+<text x="48" y="278" font-size="13" font-weight="600" fill="#1F2329">注册账户</text>
+<rect x="200" y="260" width="48" height="28" rx="6" fill="#F76964"/>
+<text x="720" y="278" font-size="13" font-weight="700" fill="#1F2329">4.2万</text>
+<text x="830" y="278" font-size="12" fill="#8F959E">账户→货主 ≥1.20%</text>
+<text x="48" y="322" font-size="13" font-weight="600" fill="#1F2329">注册货主</text>
+<rect x="200" y="304" width="48" height="28" rx="6" fill="#F98D88"/>
+<text x="720" y="322" font-size="13" font-weight="700" fill="#1F2329">506</text>
+<text x="830" y="322" font-size="12" fill="#8F959E">注册→认证 ≥50%</text>
+<text x="48" y="366" font-size="13" font-weight="600" fill="#1F2329">认证货主</text>
+<rect x="200" y="348" width="48" height="28" rx="6" fill="#E6A23C"/>
+<text x="720" y="366" font-size="13" font-weight="700" fill="#1F2329">253</text>
+<text x="830" y="366" font-size="12" fill="#8F959E">认证→发货 ≥90%</text>
+<text x="48" y="410" font-size="13" font-weight="600" fill="#1F2329">新增发货</text>
+<rect x="200" y="392" width="48" height="28" rx="6" fill="#F0A020"/>
+<text x="720" y="410" font-size="13" font-weight="700" fill="#1F2329">228</text>
+<text x="830" y="410" font-size="12" fill="#8F959E">发货→成交 ≥60%</text>
+<text x="48" y="454" font-size="13" font-weight="600" fill="#1F2329">新增成交</text>
+<rect x="200" y="436" width="48" height="28" rx="6" fill="#F5C06A"/>
+<text x="720" y="454" font-size="13" font-weight="700" fill="#1F2329">137</text>
+<text x="48" y="498" font-size="13" font-weight="600" fill="#1F2329">新增运单</text>
+<rect x="200" y="480" width="48" height="28" rx="6" fill="#C67C00"/>
+<text x="720" y="498" font-size="13" font-weight="700" fill="#1F2329">1.58万</text>
+<text x="830" y="498" font-size="12" fill="#8F959E">← 结果</text>
+<rect x="32" y="552" width="816" height="88" rx="10" fill="#FAFBFC" stroke="#E5E6EB"/>
+<text x="48" y="580" font-size="12" fill="#4E5969">同组对照：员工B/C 权重各21% → 运单 5.13万 / 5.13万（漏斗量同比例）</text>
+<text x="48" y="602" font-size="12" fill="#4E5969">品牌 D/E 另表：运单 4.40万 / 2.93万（投放+品牌加总=24.42万）</text>
+</svg>
