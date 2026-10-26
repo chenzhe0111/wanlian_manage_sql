@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """每天把 Quick BI T-1 实际写回飞书整合表。
 
-口径：pt = 昨天；只回写该月「实际」列（9月=H … 12月=K），并更新 J1 统计截止日。
+口径：pt = 昨天；只回写该月「实际」列（9月=M … 12月=P），并更新 O1 统计截止日。
 不改公式列（占比、达成率、时间进度）。
 """
 
@@ -24,13 +24,15 @@ SHEET_URL = os.environ.get(
     "https://wanlianyida.feishu.cn/sheets/L91EsEtAohwjhStD4y6cYLCGnVe",
 )
 SHEET_ID = "1074dd"
+# 统计截止日（N1「统计截止日→」右侧）
+AS_OF_CELL = "O1"
 
-# 实际列：与表头「9月实际 / 10月实际 / 11月实际 / 12月实际」一致
+# 实际列：与表头「9月实际 / 10月实际 / 11月实际 / 12月实际」一致（M–P）
 MONTH_COL = {
-    "202609": "H",
-    "202610": "I",
-    "202611": "J",
-    "202612": "K",
+    "202609": "M",
+    "202610": "N",
+    "202611": "O",
+    "202612": "P",
 }
 
 
@@ -73,7 +75,6 @@ def build_writes(rows: list[dict], month: str) -> dict[str, float]:
     ch = ix[("运单类型", "整体-撮合")]
     tms = ix[("运单类型", "整体-TMS")]
     online = ix[("线下线上", "线上")]
-    offline = ix[("线下线上", "线下")]
     zm = ix[("线上举措", "货主招募")]
     dx = ix[("线上举措", "电销")]
     tl = ix[("线上举措", "投流")]
@@ -98,19 +99,22 @@ def build_writes(rows: list[dict], month: str) -> dict[str, float]:
         "29": _f(tms, "avg_num"),
         "30": _f(tms, "max_num"),
         "31": _f(tms, "month_num"),
-        "57": _f(offline, "max_num"),
-        "64": _f(online, "month_num"),
-        "65": _f(online, "avg_num"),
-        "66": _f(online, "max_num"),
-        "72": _f(zm, "month_num"),
-        "73": _f(dx, "month_num"),
-        "74": _f(tl, "month_num"),
-        "75": _f(dd, "month_num"),
-        "76": round(_f(zm, "month_num") + _f(dx, "month_num") + _f(tl, "month_num") + _f(dd, "month_num"), 4),
-        "85": _f(ix[("运单类型", "线上-TMS")], "month_num"),
-        "86": _f(ix[("运单类型", "线上-撮合")], "month_num"),
-        "87": _f(ix[("运单类型", "线上-网货")], "month_num"),
-        "88": _f(online, "month_num"),
+        # 线下峰值：表上 57 为空行（56 标题 / 58 线下转化），不再写入，避免 N57 孤儿数
+        # 线上：64=「线上整体目标」表头；65月量 / 66日均 / 67峰值
+        "65": _f(online, "month_num"),
+        "66": _f(online, "avg_num"),
+        "67": _f(online, "max_num"),
+        # 四举措：73裂变 / 74电销 / 75投流 / 76调度 / 77合计
+        "73": _f(zm, "month_num"),
+        "74": _f(dx, "month_num"),
+        "75": _f(tl, "month_num"),
+        "76": _f(dd, "month_num"),
+        "77": round(_f(zm, "month_num") + _f(dx, "month_num") + _f(tl, "month_num") + _f(dd, "month_num"), 4),
+        # 线上类型：86 TMS / 87 撮合 / 88 网货 / 89 合计
+        "86": _f(ix[("运单类型", "线上-TMS")], "month_num"),
+        "87": _f(ix[("运单类型", "线上-撮合")], "month_num"),
+        "88": _f(ix[("运单类型", "线上-网货")], "month_num"),
+        "89": _f(online, "month_num"),
     }
     col = MONTH_COL.get(month)
     if not col:
@@ -137,7 +141,7 @@ def write_sheet(cell_values: dict[str, float], as_of: str) -> None:
             "shortcut": "+cells-set",
             "input": {
                 "sheet_id": SHEET_ID,
-                "range": "J1",
+                "range": AS_OF_CELL,
                 "cells": [[{"value": as_of}]],
             },
         }
@@ -180,7 +184,9 @@ def main() -> int:
         raise SystemExit(f"没有 pt={as_of} month={month} 的数据，未改表")
 
     writes = build_writes(rows, month)
-    print(f"cells={len(writes)} J1={as_of} sample H3={writes.get('H3')}")
+    col = MONTH_COL.get(month, "N")
+    sample = writes.get(f"{col}3")
+    print(f"cells={len(writes)} {AS_OF_CELL}={as_of} sample {col}3={sample}")
     # run from ROOT so @relative path works
     os.chdir(ROOT)
     write_sheet(writes, as_of)

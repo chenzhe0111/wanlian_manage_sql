@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  每天 10:20：读整合表当月实际 → 生成达成简报+四举措图 → 发到日报群。
+  launchd 不能读 Desktop（TCC），所以跑 Application Support 里的副本。
+  改完仓库脚本后需再 cp 到该目录。
+
+  安装：
+    cp com.wanlian.daily.digest.plist ~/Library/LaunchAgents/
+    launchctl unload ~/Library/LaunchAgents/com.wanlian.daily.digest.plist 2>/dev/null
+    launchctl load ~/Library/LaunchAgents/com.wanlian.daily.digest.plist
+    launchctl start com.wanlian.daily.digest   # 立刻试跑
+
+  卸载：
+    launchctl unload ~/Library/LaunchAgents/com.wanlian.daily.digest.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.wanlian.daily.digest</string>
+  <key>WorkingDirectory</key>
+  <string>/Users/chenzhe/Library/Application Support/wanlian_digest</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/chenzhe/Library/Application Support/wanlian_digest/run_daily_digest.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>10</integer>
+    <key>Minute</key>
+    <integer>20</integer>
+  </dict>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/chenzhe/.npm-global/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/chenzhe/Library/Application Support/wanlian_digest/logs/daily_digest.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chenzhe/Library/Application Support/wanlian_digest/logs/daily_digest.err.log</string>
+</dict>
+</plist>

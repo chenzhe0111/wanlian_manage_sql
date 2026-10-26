@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "note": "黄金问句：改 classify / 同义词 / 优先级后必跑 qa_intent_regress.py",
+  "cases": [
+    {"q": "帮助", "intent": "help"},
+    {"q": "一句话", "intent": "one_liner"},
+    {"q": "红灯", "intent": "risk"},
+    {"q": "还差多少", "intent": "catchup"},
+    {"q": "每天要跑多少", "intent": "catchup"},
+
+    {"q": "本周电销新客转化漏斗", "intent": "init_tel"},
+    {"q": "本周电销新客转化漏斗@陈哲的飞书CLI", "intent": "init_tel"},
+    {"q": "说一下电销本周的数据情况 @陈哲的飞书 CLI", "intent": "init_tel"},
+    {"q": "电销本周怎么样", "intent": "init_tel"},
+    {"q": "看看投流数据情况", "intent": "init_ads"},
+    {"q": "电销挖潜新客转化漏斗", "intent": "init_tel"},
+    {"q": "电销为什么掉队", "intent": "init_tel"},
+    {"q": "本周投流转化漏斗", "intent": "init_ads"},
+    {"q": "端外为什么掉队", "intent": "init_ads"},
+    {"q": "调度为什么托底", "intent": "init_dispatch"},
+    {"q": "本周调度新客漏斗", "intent": "init_dispatch"},
+    {"q": "裂变为什么起不来", "intent": "init_fission"},
+    {"q": "货主招募为什么起不来", "intent": "init_fission"},
+    {"q": "资源合作为什么掉", "intent": "init_dispatch"},
+
+    {"q": "漏斗卡在哪", "intent": "funnel"},
+    {"q": "哪环最弱", "intent": "funnel"},
+
+    {"q": "新客贡献", "intent": "new_contrib"},
+    {"q": "新客贡献有没有提升", "intent": "new_contrib"},
+    {"q": "本周新客贡献有没有提升", "intent": "new_contrib"},
+    {"q": "新增怎么样", "intent": "new_contrib"},
+    {"q": "新老怎么样", "intent": "new_contrib"},
+
+    {"q": "这周怎么样", "intent": "wow"},
+    {"q": "周环比谁掉了", "intent": "wow"},
+    {"q": "和上周比", "intent": "wow"},
+    {"q": "本周运单怎么样", "intent": "wow"},
+
+    {"q": "整体运单量是多少", "intent": "lookup"},
+    {"q": "线上运单量", "intent": "lookup"},
+    {"q": "电销运单量截止到现在是多少", "intent": "lookup"},
+
+    {"q": "留存是不是失血", "intent": "retain"},
+    {"q": "只靠老客", "intent": "retain"},
+    {"q": "结构是不是漂了", "intent": "structure"},
+    {"q": "客单价怎么样", "intent": "gtv"},
+    {"q": "GTV", "intent": "gtv"},
+    {"q": "线上占比为什么掉", "intent": "online_share"},
+    {"q": "撮合为什么弱", "intent": "biz_line"},
+    {"q": "网货是不是在托", "intent": "biz_line"},
+    {"q": "大盘进度", "intent": "overall"},
+    {"q": "今天是不是特别差", "intent": "daily"},
+    {"q": "线上进度为什么慢", "intent": "online_why"},
+    {"q": "为什么运单偏低", "intent": "why_low"},
+    {"q": "谁拖累", "intent": "why_low"},
+    {"q": "进度简报", "intent": "status"},
+    {"q": "达成怎么样", "intent": "status"},
+
+    {"q": "按照周度维度看一下", "intent": "new_contrib"},
+    {"q": "asdfxyz", "intent": "unknown"},
+
+    {
+      "q": "按照周度维度看一下",
+      "intent": "init_tel",
+      "prev": "init_tel",
+      "note": "电销深挖后短跟进切周"
+    },
+    {
+      "q": "按周看一下",
+      "intent": "new_contrib",
+      "prev": "new_contrib",
+      "note": "新客后切周仍新客"
+    },
+    {
+      "q": "漏斗呢",
+      "intent": "init_tel",
+      "prev": "init_tel"
+    },
+    {
+      "q": "周度看一下",
+      "intent": "wow",
+      "prev": "why_low"
+    },
+    {
+      "q": "本周电销新客转化漏斗",
+      "intent": "init_tel",
+      "prev": "new_contrib",
+      "note": "冲突：漏斗优先于上一轮新客"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.wanlian.qa.bot</string>
+  <key>WorkingDirectory</key>
+  <string>/Users/chenzhe/Library/Application Support/wanlian_qa</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/chenzhe/Library/Application Support/wanlian_qa/run_qa_bot.sh</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/chenzhe/.npm-global/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>FEISHU_DIGEST_CHAT_ID</key>
+    <string>oc_8bcbc38d4b5dac27be40c11300a06ff3</string>
+    <key>FEISHU_QA_CHAT_IDS</key>
+    <string>oc_8bcbc38d4b5dac27be40c11300a06ff3</string>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/chenzhe/Library/Application Support/wanlian_qa/logs/qa_bot.launch.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/chenzhe/Library/Application Support/wanlian_qa/logs/qa_bot.launch.err.log</string>
+</dict>
+</plist>

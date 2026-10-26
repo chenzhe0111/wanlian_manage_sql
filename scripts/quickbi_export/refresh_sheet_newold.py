@@ -26,13 +26,15 @@ SHEET_URL = os.environ.get(
 SHEET_ID = "1074dd"
 API_ID = os.environ.get("QUICKBI_API_ID_NEWOLD", "f181db8dd61c")
 
+# 与整合表「9–12月实际」列一致（表头 M–P）
 MONTH_COL = {
-    "2026-08": "H",  # 若以后要刷历史月，可扩
-    "2026-09": "H",
-    "2026-10": "I",
-    "2026-11": "J",
-    "2026-12": "K",
+    "2026-08": "M",  # 若以后要刷历史月，可扩
+    "2026-09": "M",
+    "2026-10": "N",
+    "2026-11": "O",
+    "2026-12": "P",
 }
+AS_OF_CELL = "O1"
 
 
 def _num(row: dict, key: str, ndigits: int | None = None):
@@ -70,60 +72,67 @@ def build_writes(rows: list[dict], month: str) -> dict[str, float | int]:
         "调度-老货主",
     ]
     missing = [k for k in need if k not in ix]
+    # 10 月起接口常缺「货主招募-新货主」：跳过缺行，有数的照写
     if missing:
-        raise SystemExit(f"新老数据集缺行: {missing}")
+        print(f"warn: 新老数据集缺行（跳过）: {missing}")
+    if not any(k in ix for k in need):
+        raise SystemExit("新老数据集当月无任何举措行，未改表")
 
-    zm_n, zm_o = ix["货主招募-新货主"], ix["货主招募-老货主"]
-    dx_n, dx_o = ix["电销-新货主"], ix["电销-老货主"]
-    tl_n, tl_o = ix["投流-新货主"], ix["投流-老货主"]
-    dd_n, dd_o = ix["调度-新货主"], ix["调度-老货主"]
+    empty: dict = {}
+    zm_n, zm_o = ix.get("货主招募-新货主") or empty, ix.get("货主招募-老货主") or empty
+    dx_n, dx_o = ix.get("电销-新货主") or empty, ix.get("电销-老货主") or empty
+    tl_n, tl_o = ix.get("投流-新货主") or empty, ix.get("投流-老货主") or empty
+    dd_n, dd_o = ix.get("调度-新货主") or empty, ix.get("调度-老货主") or empty
     tl_all = ix.get("投流-整体") or {}
     tl_acct = ix.get("投流-注册账号") or {}
 
+    # 行号对齐整合表第七部分当前结构（分组标题行不写；指标行 = 标题行+1）
     raw: dict[str, float | int | None] = {
-        # 裂变
-        "99": _int(zm_n, "renzheng_num"),
-        "101": _int(zm_n, "fahuo_num"),
-        "102": _num(zm_n, "chengjiao_yundan", 4),
-        "103": _num(zm_n, "avg_num", 2),
-        "106": _num(zm_o, "chengjiao_yundan", 4),
-        "107": _int(zm_o, "chengjiao_num"),
-        "108": _num(zm_o, "avg_num", 2),
-        # 电销留存 / 新增
-        "112": _num(dx_o, "chengjiao_yundan", 4),
-        "113": _int(dx_o, "fahuo_num"),
-        "114": _int(dx_o, "chengjiao_num"),
-        "115": _rate(dx_o),
-        "116": _num(dx_o, "avg_num", 2),
-        "119": _num(dx_n, "chengjiao_yundan", 4),
-        "120": _int(dx_n, "fahuo_num"),
-        "121": _int(dx_n, "chengjiao_num"),
-        "122": _rate(dx_n),
-        "123": _num(dx_n, "avg_num", 2),
-        "127": _int(dx_n, "renzheng_num"),
-        # 投流留存 / 新增
-        "141": _num(tl_o, "chengjiao_yundan", 4),
-        "142": _int(tl_o, "fahuo_num"),
-        "143": _int(tl_o, "chengjiao_num"),
-        "144": _rate(tl_o),
-        "145": _num(tl_o, "avg_num", 2),
-        "148": _num(tl_n, "chengjiao_yundan", 4),
-        "149": _int(tl_n, "fahuo_num"),
-        "150": _int(tl_n, "chengjiao_num"),
-        "151": _rate(tl_n),
-        "152": _num(tl_n, "avg_num", 2),
-        "155": _int(tl_all, "renzheng_num") if tl_all else None,
-        "156": _int(tl_all, "zhuce_num") if tl_all else None,
-        "157": _int(tl_acct, "zhuce_num") if tl_acct else None,
-        # 调度
-        "168": _num(dd_n, "chengjiao_yundan", 4),
-        "169": _num(dd_o, "chengjiao_yundan", 4),
-        "167": round(
+        # 裂变：100认证 / 102发货 / 103新增运单 / 104人均；107留存运单 / 108留存用户 / 109人均
+        "100": _int(zm_n, "renzheng_num"),
+        "102": _int(zm_n, "fahuo_num"),
+        "103": _num(zm_n, "chengjiao_yundan", 4),
+        "104": _num(zm_n, "avg_num", 2),
+        "107": _num(zm_o, "chengjiao_yundan", 4),
+        "108": _int(zm_o, "chengjiao_num"),
+        "109": _num(zm_o, "avg_num", 2),
+        # 电销：113–117 留存；120–124 新增；128 认证
+        "113": _num(dx_o, "chengjiao_yundan", 4),
+        "114": _int(dx_o, "fahuo_num"),
+        "115": _int(dx_o, "chengjiao_num"),
+        "116": _rate(dx_o),
+        "117": _num(dx_o, "avg_num", 2),
+        "120": _num(dx_n, "chengjiao_yundan", 4),
+        "121": _int(dx_n, "fahuo_num"),
+        "122": _int(dx_n, "chengjiao_num"),
+        "123": _rate(dx_n),
+        "124": _num(dx_n, "avg_num", 2),
+        "128": _int(dx_n, "renzheng_num"),
+        # 投流：142–146 留存；149–153 新增；156–158 漏斗
+        "142": _num(tl_o, "chengjiao_yundan", 4),
+        "143": _int(tl_o, "fahuo_num"),
+        "144": _int(tl_o, "chengjiao_num"),
+        "145": _rate(tl_o),
+        "146": _num(tl_o, "avg_num", 2),
+        "149": _num(tl_n, "chengjiao_yundan", 4),
+        "150": _int(tl_n, "fahuo_num"),
+        "151": _int(tl_n, "chengjiao_num"),
+        "152": _rate(tl_n),
+        "153": _num(tl_n, "avg_num", 2),
+        "156": _int(tl_all, "renzheng_num") if tl_all else None,
+        "157": _int(tl_all, "zhuce_num") if tl_all else None,
+        "158": _int(tl_acct, "zhuce_num") if tl_acct else None,
+        # 调度：168合计 / 169新增 / 170留存；176新增发货 / 182留存发货
+        "169": _num(dd_n, "chengjiao_yundan", 4),
+        "170": _num(dd_o, "chengjiao_yundan", 4),
+        "168": round(
             (_num(dd_n, "chengjiao_yundan", 4) or 0) + (_num(dd_o, "chengjiao_yundan", 4) or 0),
             4,
-        ),
-        "175": _int(dd_n, "fahuo_num"),
-        "181": _int(dd_o, "fahuo_num"),
+        )
+        if (dd_n or dd_o)
+        else None,
+        "176": _int(dd_n, "fahuo_num"),
+        "182": _int(dd_o, "fahuo_num"),
     }
     col = MONTH_COL.get(month)
     if not col:
@@ -150,7 +159,7 @@ def write_sheet(cell_values: dict[str, float | int], as_of: str) -> None:
             "shortcut": "+cells-set",
             "input": {
                 "sheet_id": SHEET_ID,
-                "range": "J1",
+                "range": AS_OF_CELL,
                 "cells": [[{"value": as_of}]],
             },
         }
@@ -191,7 +200,8 @@ def main() -> int:
         raise SystemExit(f"没有 month={month} 的新老数据，未改表")
 
     writes = build_writes(rows, month)
-    print(f"cells={len(writes)} sample H119={writes.get('H119')} H112={writes.get('H112')}")
+    col = MONTH_COL.get(month, "O")
+    print(f"cells={len(writes)} sample {col}119={writes.get(f'{col}119')} {col}112={writes.get(f'{col}112')}")
     os.chdir(ROOT)
     write_sheet(writes, as_of)
     print("sheet section7 updated")

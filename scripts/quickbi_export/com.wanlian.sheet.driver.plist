@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- 每天 09:34 拉注册司机分类型 T-1，回写「注册司机车辆数据」当月实际列 -->
+<!-- 每天 10:04 拉注册司机分类型 T-1，回写「注册司机车辆数据」当月实际列 -->
 <plist version="1.0">
 <dict>
   <key>Label</key>
@@ -15,9 +15,9 @@
   <key>StartCalendarInterval</key>
   <dict>
     <key>Hour</key>
-    <integer>9</integer>
+    <integer>10</integer>
     <key>Minute</key>
-    <integer>34</integer>
+    <integer>4</integer>
   </dict>
   <key>EnvironmentVariables</key>
   <dict>

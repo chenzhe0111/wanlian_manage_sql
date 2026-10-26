@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- 每天 09:32 拉新老货主 T-1，回写整合表第七部分 -->
+<!-- 每天 10:02 拉新老货主 T-1，回写整合表第七部分 -->
 <plist version="1.0">
 <dict>
   <key>Label</key>
@@ -15,9 +15,9 @@
   <key>StartCalendarInterval</key>
   <dict>
     <key>Hour</key>
-    <integer>9</integer>
+    <integer>10</integer>
     <key>Minute</key>
-    <integer>32</integer>
+    <integer>2</integer>
   </dict>
   <key>EnvironmentVariables</key>
   <dict>

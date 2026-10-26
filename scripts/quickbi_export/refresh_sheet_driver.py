@@ -8,7 +8,7 @@ pt 入参为 YYYYMMDD。
 确认仍是 1–N 月顺序，再取当月那一行。只回写该月实际列：
   J=9月 K=10月 L=11月 M=12月
 行：7 业务合计（三类相加）、8–10 TMS、11–13 撮合、14–16 网货。
-不改 J1 标题，也不写累计/当月新增（接口未返回）。
+截止日写 L1；不写累计/当月新增（接口未返回）。
 """
 
 from __future__ import annotations
@@ -31,6 +31,7 @@ SHEET_URL = os.environ.get(
 )
 SHEET_ID = "41UJIa"
 API_ID = os.environ.get("QUICKBI_API_ID_DRIVER", "a136c69111d1")
+AS_OF_CELL = "L1"
 
 MONTH_COL = {
     "2026-09": "J",
@@ -108,8 +109,19 @@ def _lark(*args: str) -> dict:
     return data
 
 
-def write_sheet(cell_values: dict[str, float]) -> None:
+def write_sheet(cell_values: dict[str, float], as_of: str | None = None) -> None:
     ops = []
+    if as_of:
+        ops.append(
+            {
+                "shortcut": "+cells-set",
+                "input": {
+                    "sheet_id": SHEET_ID,
+                    "range": AS_OF_CELL,
+                    "cells": [[{"value": as_of}]],
+                },
+            }
+        )
     for addr, val in cell_values.items():
         ops.append(
             {
@@ -148,7 +160,7 @@ def main() -> int:
     writes = build_writes(row, month)
     print("writes", json.dumps(writes, ensure_ascii=False))
     os.chdir(ROOT)
-    write_sheet(writes)
+    write_sheet(writes, as_of=as_of)
     print("driver sheet updated")
     return 0
 

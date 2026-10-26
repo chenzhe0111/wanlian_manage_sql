@@ -35,7 +35,7 @@ python3 export_dataset.py --dry-run
 
 ## 定时（macOS launchd，推荐）
 
-每天 **09:30** 自动拉前一天数据：
+每天 **10:00** 自动拉前一天数据：
 
 ```bash
 cp com.wanlian.quickbi.export.plist ~/Library/LaunchAgents/
@@ -50,11 +50,57 @@ launchctl start com.wanlian.quickbi.export   # 立刻试跑
 
 | 任务 | plist | 时间 | 脚本 |
 |---|---|---|---|
-| 整合表月实际 | `com.wanlian.sheet.actuals` | 09:30 | `refresh_sheet_actuals.py` |
-| 新老货主 | `com.wanlian.sheet.newold` | 09:32 | `refresh_sheet_newold.py` |
-| 注册司机 | `com.wanlian.sheet.driver` | 09:34 | `refresh_sheet_driver.py` |
-| 周度最近两周 | `com.wanlian.sheet.weekly` | 09:36 | `refresh_sheet_weekly.py`（ApiId=`6148260aafa3` → sheet `66mgnV`） |
-| 月度+周度漏斗 | `com.wanlian.sheet.funnel` | 09:38 | `refresh_sheet_funnel.py`（ApiId=`9cd9d778e4fd` → sheet `QbfdXI`） |
+| 整合表月实际 | `com.wanlian.sheet.actuals` | 10:00 | `refresh_sheet_actuals.py`（sheet `1074dd`，实际列 M–P，截止日 O1；线上 65/66/67） |
+| 新老货主 | `com.wanlian.sheet.newold` | 10:02 | `refresh_sheet_newold.py`（同表第七部分，列 M–P，截止日 O1） |
+| 注册司机 | `com.wanlian.sheet.driver` | 10:04 | `refresh_sheet_driver.py`（sheet `41UJIa`，实际列 J–M） |
+| 周度最近两周 | `com.wanlian.sheet.weekly` | 10:06 | `refresh_sheet_weekly.py`（ApiId=`6148260aafa3` → sheet `66mgnV`） |
+| 月度+周度漏斗 | `com.wanlian.sheet.funnel` | 10:08 | `refresh_sheet_funnel.py`（ApiId=`9cd9d778e4fd` → sheet `QbfdXI`） |
+| 每日达成简报 | `com.wanlian.daily.digest` | 10:20 | `daily_target_digest.py`（读整合表 → 模板文案+四举措图 → 群/机器人推送；要求 O1=昨天） |
+
+每日简报不依赖 AI：从整合表读当月实际/目标/时间进度，固定模板填数后机器人推送。优先发群 `FEISHU_DIGEST_CHAT_ID`，否则按 `FEISHU_DIGEST_OPEN_IDS` 私聊。
+
+**新鲜度门槛**：推送前要求 O1「统计截止日」== 昨天（与 `refresh_sheet_actuals` 一致），且当月整体月运单实际格有数；未更新则 `SKIP` 退出（不发旧数）。紧急强推加 `--force`。
+
+```bash
+# 手动试跑（不发送）
+./run_daily_digest.sh --dry-run
+# 正式发送
+./run_daily_digest.sh
+# 忽略新鲜度强推
+./run_daily_digest.sh --force
+
+cp com.wanlian.daily.digest.plist ~/Library/LaunchAgents/
+launchctl unload ~/Library/LaunchAgents/com.wanlian.daily.digest.plist 2>/dev/null
+launchctl load ~/Library/LaunchAgents/com.wanlian.daily.digest.plist
+launchctl start com.wanlian.daily.digest
+```
+
+日志：`logs/daily_digest.out.log` / `logs/daily_digest.err.log`；产物：`out/digest_latest.png`、`out/digest_latest.md`。
+
+### 飞书群规则问答（常驻，不经过 AI）
+
+群里问「为什么运单偏低 / 进度怎么样 / 帮助」，机器人用整合表规则归因后回复。默认只响应日简报群。
+
+运行目录在 `~/Library/Application Support/wanlian_qa/`（避开 Desktop 的 TCC 权限）；源码仍在本目录，改完需同步：
+
+```bash
+# 本地试分析（不发飞书）
+/Users/chenzhe/bin/python3 qa_analyze.py "为什么运单偏低"
+
+# 同步并重启常驻
+RUNTIME="$HOME/Library/Application Support/wanlian_qa"
+cp daily_target_digest.py qa_analyze.py qa_bot.py run_qa_bot.sh "$RUNTIME/"
+cp com.wanlian.qa.bot.plist ~/Library/LaunchAgents/
+launchctl unload ~/Library/LaunchAgents/com.wanlian.qa.bot.plist 2>/dev/null
+launchctl load ~/Library/LaunchAgents/com.wanlian.qa.bot.plist
+
+# 日志
+tail -f "$RUNTIME/logs/qa_bot.out.log" "$RUNTIME/logs/qa_bot.err.log"
+```
+
+前提：开放平台已订阅 `im.message.receive_v1`；在「线上目标达成日简报」群里 @机器人 再提问。
+
+分析思路（已固化全表）：`QA_ANALYSIS_PLAYBOOK.md`；实现 `qa_analyze.py` + `qa_playbooks.py`；Cursor skill 见 `.cursor/skills/wanlian-online-data-analysis/SKILL.md` 章节 D–F。草稿已归档于 `QA_ANALYSIS_PLAYBOOK_DRAFT.md`。
 
 ```bash
 cp com.wanlian.sheet.weekly.plist ~/Library/LaunchAgents/
@@ -75,7 +121,7 @@ launchctl start com.wanlian.sheet.funnel
 ## 定时（cron 备选）
 
 ```cron
-30 9 * * * /Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/run.sh --pt yesterday >> /Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/logs/cron.log 2>&1
+0 10 * * * /Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/run.sh --pt yesterday >> /Users/chenzhe/Desktop/wanlian_manage_sql/scripts/quickbi_export/logs/cron.log 2>&1
 ```
 
 ## 常见问题

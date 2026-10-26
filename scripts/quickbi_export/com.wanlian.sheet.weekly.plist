@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- 每天 09:36 拉 Quick BI 最近两周周度数据，回写「周度详细数据」66mgnV -->
+<!-- 每天 10:06 拉 Quick BI 最近两周周度数据，回写「周度详细数据」66mgnV -->
 <plist version="1.0">
 <dict>
   <key>Label</key>
@@ -15,9 +15,9 @@
   <key>StartCalendarInterval</key>
   <dict>
     <key>Hour</key>
-    <integer>9</integer>
+    <integer>10</integer>
     <key>Minute</key>
-    <integer>36</integer>
+    <integer>6</integer>
   </dict>
   <key>EnvironmentVariables</key>
   <dict>
